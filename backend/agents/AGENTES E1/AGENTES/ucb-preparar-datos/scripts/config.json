@@ -1,0 +1,39 @@
+{
+  "subcarpetas": ["bases_de_datos", "presentaciones", "imagenes", "documentos"],
+
+  "mapa_extensiones": {
+    ".xlsx": "bases_de_datos",
+    ".xlsm": "bases_de_datos",
+    ".xls": "bases_de_datos",
+    ".csv": "bases_de_datos",
+    ".tsv": "bases_de_datos",
+    ".ods": "bases_de_datos",
+    ".pptx": "presentaciones",
+    ".ppt": "presentaciones",
+    ".png": "imagenes",
+    ".jpg": "imagenes",
+    ".jpeg": "imagenes",
+    ".bmp": "imagenes",
+    ".tiff": "imagenes",
+    ".heic": "imagenes",
+    ".docx": "documentos",
+    ".doc": "documentos",
+    ".txt": "documentos",
+    ".md": "documentos",
+    ".rtf": "documentos",
+    ".odt": "documentos",
+    ".pdf": "documentos"
+  },
+
+  "patrones_lista_oficial": ["registro", "matricula", "matrícula", "oficial", "nomina", "nómina"],
+
+  "max_filas_encabezado": 3,
+
+  "umbral_similitud": 0.9,
+  "margen_minimo_similitud": 0.06,
+  "minimo_tokens_comunes": 2,
+
+  "marcadores_escala": ["s/", "sobre ", "/"],
+
+  "patron_regla_evaluacion": "^\\s*(?P<instrumento>.+?)\\s+(?P<valor>\\d+(?:[.,]\\d+)?)\\s*(?P<unidad>puntos?|pts?|%)?\\s*$"
+}

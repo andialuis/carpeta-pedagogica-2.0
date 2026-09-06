@@ -1,0 +1,632 @@
+{
+    "subject": "INV101 - Introduccion a la Investigacion",
+    "generated_at": "2026-09-06T15:17:20.043214",
+    "total_students": 25,
+    "promedio_general": 72.6,
+    "mediana_general": 70.6,
+    "desviacion_estandar": 17.4,
+    "skewness": -0.56,
+    "skewness_diagnostico": "Asimetría Negativa: Concentración en notas altas (sesgo a la izquierda).",
+    "kurtosis": 0.11,
+    "kurtosis_diagnostico": "Mesocúrtica: Dispersión moderada equivalente a normalidad.",
+    "spearman_asistencia_nota": 0.57,
+    "spearman_proceso_nota": 0.25,
+    "riesgo_abandono": 3,
+    "cobertura_cbl": "Análisis Multidimensional Activo",
+    "alerta_outsourcing_cognitivo": true,
+    "outsourcing_count": 3,
+    "potencial_oculto_count": 7,
+    "necesidad_andamiaje_vygotsky": "3 estudiantes requieren andamiaje urgente; 7 con potencial oculto detectado.",
+    "alertas": [
+        "3 estudiantes con alerta de Outsourcing Cognitivo (requieren Triangulación Socrática).",
+        "3 estudiantes clasificados en riesgo de rezago o abandono.",
+        "7 estudiantes con alto proceso pero notas moderadas (Potencial Oculto).",
+        "Diagnóstico de Forma: Asimetría Negativa: Concentración en notas altas (sesgo a la izquierda). (Asimetría g1 = -0.56)."
+    ],
+    "deci_ryan_clase": {
+        "autonomia": 6.2,
+        "competencia": 5.9,
+        "relacion": 6.4
+    },
+    "gauss_distribucion": [
+        {
+            "rango": "0-9",
+            "estudiantes": 0
+        },
+        {
+            "rango": "10-19",
+            "estudiantes": 0
+        },
+        {
+            "rango": "20-29",
+            "estudiantes": 0
+        },
+        {
+            "rango": "30-39",
+            "estudiantes": 3
+        },
+        {
+            "rango": "40-49",
+            "estudiantes": 0
+        },
+        {
+            "rango": "50-59",
+            "estudiantes": 0
+        },
+        {
+            "rango": "60-69",
+            "estudiantes": 9
+        },
+        {
+            "rango": "70-79",
+            "estudiantes": 4
+        },
+        {
+            "rango": "80-89",
+            "estudiantes": 2
+        },
+        {
+            "rango": "90-99",
+            "estudiantes": 7
+        },
+        {
+            "rango": "100-109",
+            "estudiantes": 0
+        }
+    ],
+    "scatter_rendimiento_proceso": [
+        {
+            "id": "Est_001",
+            "promedio": 92.0,
+            "iteraciones": 50,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_002",
+            "promedio": 91.0,
+            "iteraciones": 47,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_003",
+            "promedio": 92.2,
+            "iteraciones": 38,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_004",
+            "promedio": 90.8,
+            "iteraciones": 46,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_005",
+            "promedio": 71.9,
+            "iteraciones": 36,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_006",
+            "promedio": 71.2,
+            "iteraciones": 37,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_007",
+            "promedio": 67.6,
+            "iteraciones": 32,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_008",
+            "promedio": 69.5,
+            "iteraciones": 35,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_009",
+            "promedio": 36.2,
+            "iteraciones": 5,
+            "riesgo": "Alto",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_010",
+            "promedio": 36.4,
+            "iteraciones": 7,
+            "riesgo": "Alto",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_011",
+            "promedio": 39.8,
+            "iteraciones": 6,
+            "riesgo": "Alto",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_012",
+            "promedio": 95.8,
+            "iteraciones": 0,
+            "riesgo": "Bajo (aparente)",
+            "alerta_outsourcing": true
+        },
+        {
+            "id": "Est_013",
+            "promedio": 97.6,
+            "iteraciones": 0,
+            "riesgo": "Bajo (aparente)",
+            "alerta_outsourcing": true
+        },
+        {
+            "id": "Est_014",
+            "promedio": 95.0,
+            "iteraciones": 3,
+            "riesgo": "Bajo (aparente)",
+            "alerta_outsourcing": true
+        },
+        {
+            "id": "Est_015",
+            "promedio": 80.0,
+            "iteraciones": 32,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_016",
+            "promedio": 81.3,
+            "iteraciones": 26,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_017",
+            "promedio": 62.9,
+            "iteraciones": 26,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_018",
+            "promedio": 62.1,
+            "iteraciones": 17,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_019",
+            "promedio": 65.3,
+            "iteraciones": 19,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_020",
+            "promedio": 70.6,
+            "iteraciones": 20,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_021",
+            "promedio": 67.5,
+            "iteraciones": 14,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_022",
+            "promedio": 69.7,
+            "iteraciones": 20,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_023",
+            "promedio": 68.2,
+            "iteraciones": 11,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_024",
+            "promedio": 69.1,
+            "iteraciones": 15,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_025",
+            "promedio": 71.0,
+            "iteraciones": 17,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        }
+    ],
+    "estudiantes": [
+        {
+            "id": "Est_001",
+            "nombre_real": "Ana Torres Medina",
+            "promedio": 92.0,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Ana Torres Medina."
+        },
+        {
+            "id": "Est_002",
+            "nombre_real": "Carlos Ruiz Palacios",
+            "promedio": 91.0,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Carlos Ruiz Palacios."
+        },
+        {
+            "id": "Est_003",
+            "nombre_real": "Sofía Mendez Villareal",
+            "promedio": 92.2,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Sofía Mendez Villareal."
+        },
+        {
+            "id": "Est_004",
+            "nombre_real": "Andrés Castillo Mora",
+            "promedio": 90.8,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Andrés Castillo Mora."
+        },
+        {
+            "id": "Est_005",
+            "nombre_real": "Valentina Lagos Fuentes",
+            "promedio": 71.9,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Valentina Lagos Fuentes."
+        },
+        {
+            "id": "Est_006",
+            "nombre_real": "Diego Herrera Campos",
+            "promedio": 71.2,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Diego Herrera Campos."
+        },
+        {
+            "id": "Est_007",
+            "nombre_real": "Camila Ortiz Sandoval",
+            "promedio": 67.6,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Camila Ortiz Sandoval."
+        },
+        {
+            "id": "Est_008",
+            "nombre_real": "Luis Espinoza Delgado",
+            "promedio": 69.5,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Luis Espinoza Delgado."
+        },
+        {
+            "id": "Est_009",
+            "nombre_real": "Daniela Vega Gutierrez",
+            "promedio": 36.2,
+            "nivel_cbl": "Inicial / En Riesgo",
+            "riesgo_abandono": "Alto",
+            "autonomia_deci_ryan": 3,
+            "competencia_deci_ryan": 3,
+            "relacion_deci_ryan": 4,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Prerrequisitos pendientes: Requiere andamiaje intensivo.",
+            "estrategia_hacker_curriculo": "Entrevista motivacional y articulación de apoyo socioeducativo.",
+            "recomendacion": "Plan formativo personalizado para Daniela Vega Gutierrez."
+        },
+        {
+            "id": "Est_010",
+            "nombre_real": "Felipe Ramos Quispe",
+            "promedio": 36.4,
+            "nivel_cbl": "Inicial / En Riesgo",
+            "riesgo_abandono": "Alto",
+            "autonomia_deci_ryan": 3,
+            "competencia_deci_ryan": 3,
+            "relacion_deci_ryan": 4,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Prerrequisitos pendientes: Requiere andamiaje intensivo.",
+            "estrategia_hacker_curriculo": "Entrevista motivacional y articulación de apoyo socioeducativo.",
+            "recomendacion": "Plan formativo personalizado para Felipe Ramos Quispe."
+        },
+        {
+            "id": "Est_011",
+            "nombre_real": "Patricia Suarez Llanos",
+            "promedio": 39.8,
+            "nivel_cbl": "Inicial / En Riesgo",
+            "riesgo_abandono": "Alto",
+            "autonomia_deci_ryan": 3,
+            "competencia_deci_ryan": 3,
+            "relacion_deci_ryan": 4,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Prerrequisitos pendientes: Requiere andamiaje intensivo.",
+            "estrategia_hacker_curriculo": "Entrevista motivacional y articulación de apoyo socioeducativo.",
+            "recomendacion": "Plan formativo personalizado para Patricia Suarez Llanos."
+        },
+        {
+            "id": "Est_012",
+            "nombre_real": "Sebastián Flores Rojas",
+            "promedio": 95.8,
+            "nivel_cbl": "Avanzado (no verificado)",
+            "riesgo_abandono": "Bajo (aparente)",
+            "autonomia_deci_ryan": 2,
+            "competencia_deci_ryan": 2,
+            "relacion_deci_ryan": 3,
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Zona de Confort Digital: Riesgo de outsourcing cognitivo.",
+            "estrategia_hacker_curriculo": "Triangulación Socrática obligatoria. Re-evaluación oral del proceso.",
+            "recomendacion": "Plan formativo personalizado para Sebastián Flores Rojas."
+        },
+        {
+            "id": "Est_013",
+            "nombre_real": "Isabella Vargas Peña",
+            "promedio": 97.6,
+            "nivel_cbl": "Avanzado (no verificado)",
+            "riesgo_abandono": "Bajo (aparente)",
+            "autonomia_deci_ryan": 2,
+            "competencia_deci_ryan": 2,
+            "relacion_deci_ryan": 3,
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Zona de Confort Digital: Riesgo de outsourcing cognitivo.",
+            "estrategia_hacker_curriculo": "Triangulación Socrática obligatoria. Re-evaluación oral del proceso.",
+            "recomendacion": "Plan formativo personalizado para Isabella Vargas Peña."
+        },
+        {
+            "id": "Est_014",
+            "nombre_real": "Martín Cabrera Soto",
+            "promedio": 95.0,
+            "nivel_cbl": "Avanzado (no verificado)",
+            "riesgo_abandono": "Bajo (aparente)",
+            "autonomia_deci_ryan": 2,
+            "competencia_deci_ryan": 2,
+            "relacion_deci_ryan": 3,
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Zona de Confort Digital: Riesgo de outsourcing cognitivo.",
+            "estrategia_hacker_curriculo": "Triangulación Socrática obligatoria. Re-evaluación oral del proceso.",
+            "recomendacion": "Plan formativo personalizado para Martín Cabrera Soto."
+        },
+        {
+            "id": "Est_015",
+            "nombre_real": "Lucía Ríos Montoya",
+            "promedio": 80.0,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Lucía Ríos Montoya."
+        },
+        {
+            "id": "Est_016",
+            "nombre_real": "María José Pedraza",
+            "promedio": 81.3,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para María José Pedraza."
+        },
+        {
+            "id": "Est_017",
+            "nombre_real": "Tomás Aguilar Ibáñez",
+            "promedio": 62.9,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Tomás Aguilar Ibáñez."
+        },
+        {
+            "id": "Est_018",
+            "nombre_real": "Renata Fuentes Alvarado",
+            "promedio": 62.1,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Renata Fuentes Alvarado."
+        },
+        {
+            "id": "Est_019",
+            "nombre_real": "Kevin Mora Salazar",
+            "promedio": 65.3,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Kevin Mora Salazar."
+        },
+        {
+            "id": "Est_020",
+            "nombre_real": "Natalia Pizarro Cano",
+            "promedio": 70.6,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Natalia Pizarro Cano."
+        },
+        {
+            "id": "Est_021",
+            "nombre_real": "Rodrigo Tapia Vidal",
+            "promedio": 67.5,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Rodrigo Tapia Vidal."
+        },
+        {
+            "id": "Est_022",
+            "nombre_real": "Alejandra Muñoz Torres",
+            "promedio": 69.7,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Alejandra Muñoz Torres."
+        },
+        {
+            "id": "Est_023",
+            "nombre_real": "Emilio Bravo Carrasco",
+            "promedio": 68.2,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Emilio Bravo Carrasco."
+        },
+        {
+            "id": "Est_024",
+            "nombre_real": "Fernanda Leal Quiroz",
+            "promedio": 69.1,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Fernanda Leal Quiroz."
+        },
+        {
+            "id": "Est_025",
+            "nombre_real": "Javier Solis Paredes",
+            "promedio": 71.0,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Javier Solis Paredes."
+        }
+    ],
+    "hipotesis_gemini": "El grupo de INV101 - Introduccion a la Investigacion presenta un promedio de 72.6/100 (Mediana: 70.6) con desviación estándar de 17.4. Asimetría de Fisher: -0.56 (Asimetría Negativa: Concentración en notas altas (sesgo a la izquierda).). Se identifican 3 casos en riesgo y 3 alertas de outsourcing cognitivo."
+}

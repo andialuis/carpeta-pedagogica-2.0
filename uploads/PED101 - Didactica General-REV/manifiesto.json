@@ -1,0 +1,14 @@
+{
+  "subject_name": "PED101 - Didactica General",
+  "name": "Didactica General",
+  "code": "PED101",
+  "system": "superior",
+  "level": "pregrado",
+  "duration": "semestral",
+  "year": 2026,
+  "period": "1",
+  "teacher": "Prof. Carmen Mendoza",
+  "description": "",
+  "created_at": 1788727616.1537752,
+  "status": "configurada"
+}

@@ -1,0 +1,64 @@
+{
+  "archivo_resultados": "RESULTADOS_ANALISIS",
+  "hojas_esperadas": [
+    "HALLAZGOS",
+    "HIPOTESIS",
+    "PERFILES",
+    "RELACIONES",
+    "INDICADORES",
+    "ACCIONES",
+    "PRIORIDADES",
+    "DATOS_GRAFICOS"
+  ],
+  "equilibrio": {
+    "objetivo_grafico": 0.6,
+    "tolerancia": 0.1,
+    "pestanas_que_se_miden": [
+      "general",
+      "hipotesis"
+    ],
+    "pestana_exenta": "intervencion",
+    "por_que_exenta": "son tarjetas de accion: ahi el texto es el contenido"
+  },
+  "ancho_tablero": 1280,
+  "maximo_estudiantes_en_tabla": 10,
+  "colores": {
+    "ucb": "#003366",
+    "ucb2": "#2b5a9c",
+    "teal": "#1fa98a",
+    "teal2": "#6eedd4",
+    "coral": "#e05a3a",
+    "gold": "#c9a84c",
+    "lav": "#7b68d4",
+    "tinta": "#0a0b0e",
+    "papel": "#fbfaf6",
+    "linea": "#e2dcce",
+    "gris": "#5c5f66"
+  },
+  "prioridades": {
+    "urgente": "#e05a3a",
+    "alta": "#c9a84c",
+    "media": "#2b5a9c",
+    "baja": "#1fa98a"
+  },
+  "veredictos": {
+    "confirmada": [
+      "se sostiene"
+    ],
+    "descartada": [
+      "no se sostiene"
+    ],
+    "sin_comprobar": [
+      "no se puede comprobar",
+      "no se pudo"
+    ]
+  },
+  "limpieza_de_titulos": {
+    "quitar_prefijo_entre_corchetes": true,
+    "quitar_sufijo_entre_corchetes": true,
+    "reemplazos": {
+      "_": " ",
+      " s/": " sobre "
+    }
+  }
+}

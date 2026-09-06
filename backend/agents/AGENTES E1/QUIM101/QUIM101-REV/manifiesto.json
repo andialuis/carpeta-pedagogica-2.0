@@ -1,0 +1,75 @@
+{
+  "carpeta_origen": "QUIM101",
+  "archivos_de_entrada": [
+    {
+      "archivo": "Actividades y proyecto FINAL.xlsx",
+      "huella": "90c816d14f0d28a034614d79b2482cd901f4c7bb43110868980b4c243e617144",
+      "aprobado": true
+    },
+    {
+      "archivo": "COMPRA MATERIAL LAB.xlsx",
+      "huella": "1e72a6ef6498b81901beca28041aad40d0cfddb2003fe6bd46dfc87560d42ac3",
+      "aprobado": false
+    },
+    {
+      "archivo": "Examenes practicos QUIM101.xlsx",
+      "huella": "76389a97e4dbd5dec8c4696637f120f6e3e1042ea07f5683569ac6362f7da806",
+      "aprobado": true
+    },
+    {
+      "archivo": "Examenes teoricos QUIM101.xlsx",
+      "huella": "bea3bb8cb52c4c6b6fd944b4855e3b92e70e3f9ed45fcca1e7a5a9fb3aea4593",
+      "aprobado": true
+    },
+    {
+      "archivo": "Informe de evaluacion QUIM101.docx",
+      "huella": "45016a6a346f4d3216c9d387ee28be8df1819e858b7056b8fa5b12dd2bb5d08b",
+      "aprobado": true
+    },
+    {
+      "archivo": "Introducci├│n a la Qu├¡mica Anal├¡tica.docx",
+      "huella": "96ab7296e540698d9402450896eba192f360c362811805ab9b841a2777050903",
+      "aprobado": false
+    },
+    {
+      "archivo": "LISTA OFICIAL matricula QUIM101.xlsx",
+      "huella": "686e0f61233079fc5bfd643f32393aa93a67b41227d639beccd40997fb4d8066",
+      "aprobado": true
+    },
+    {
+      "archivo": "Laboratorios QUIM101.xlsx",
+      "huella": "b8cacf62704d8a375d09e6bc84423d869eb74bc10f0be4ae6792dd3938941232",
+      "aprobado": true
+    },
+    {
+      "archivo": "PARTICIPACION EN AULA.jpg",
+      "huella": "d58c7db2afa02046c6c678d57d687c4fcde193668856178bc90e6162f981dbb2",
+      "aprobado": true
+    },
+    {
+      "archivo": "asistencia.xlsx",
+      "huella": "00c8c43d479b89052d60ad729d4a20ab6a18543e26ef02f7d9485058fca23c83",
+      "aprobado": true
+    },
+    {
+      "archivo": "moodle_log_actividad.csv",
+      "huella": "4903b3cbbaa74e2146f46fb8100582d2f326628b0005d3383917000c63134353",
+      "aprobado": true
+    },
+    {
+      "archivo": "quiz_online_final.xlsx",
+      "huella": "82c1f96101617b3870b35011bcdad1072b986372634e23e4042df6b07615babb",
+      "aprobado": true
+    },
+    {
+      "archivo": "quiz_online_p1.xlsx",
+      "huella": "89195f3fdd9170e669045f6b7c7d64e66b1e806ba26cb24ddb0dd541fb67cbc3",
+      "aprobado": true
+    }
+  ],
+  "salidas_generadas": [
+    "bases_de_datos/BASE_INTEGRADA.xlsx",
+    "INFORME_PREPARACION.md"
+  ],
+  "huella_contenido_base": "f91a1af012d835cb"
+}

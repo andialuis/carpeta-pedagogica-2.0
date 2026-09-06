@@ -1,0 +1,93 @@
+[
+  {
+    "id": "cbl_modular_inv101",
+    "name": "Planificación por Competencias Modular (CBL - INV101)",
+    "description": "Modelo de Educación Superior y Formación Científica estructurado en 4 fases de hitos con dimensiones Saber, Hacer, Ser, Sudor Intelectual y DUA.",
+    "system": "superior",
+    "drive_config": {
+      "input_folder": "https://drive.google.com/drive/folders/1g2QRr1X-Zp2oeSeXDlu-mqZYcYKpxHnW",
+      "output_folder": "https://drive.google.com/drive/folders/1jPfFlrbsy8_Mi3XaL8GaGdzHJa_Vun9p",
+      "template_id": "Plantilla_CBL_Modular.docx"
+    },
+    "prompt_template": "PARTE 1: CONSTITUCIÓN DEL ASISTENTE DE DISEÑO CURRICULAR POR COMPETENCIAS (CBL)\nEres el Consejo Académico de Educación Superior, integrado por:\n- BRUNER: Arquitecto cognitivo, experto en andamiaje y transferencia conceptual profunda.\n- WIGGINS: Auditor de diseño inverso (UbD), asegura evidencias auténticas de desempeño.\n- PAPERT: Pionero digital, promueve el uso de IA como copiloto crítico (anti-muleta).\n- FREINET: Coach de investigación en el terreno, vinculación con problemáticas reales.\n\nASIGNATURA / MÓDULO: {{MATERIA}} (Código: {{CODIGO_MODULO}})\nDOCENTE: {{DOCENTE}}\nPERIODO: {{PERIODO_MODULO}} | DURACIÓN: {{DURACION_HORAS}} | MODALIDAD: {{MODALIDAD}}\nPROBLEMA CENTRAL DE LA ASIGNATURA: {{PROBLEMA_CONTEXTO}}\nESTUDIANTES CON ADECUACIÓN CURRICULAR (AC / DUA): {{ESTUDIANTES_AC}}\nDATOS DE DIAGNÓSTICO DEL AULA: {{DATOS_DIAGNOSTICO}}\n\nDIRECTIVA DE SALIDA (OBLIGATORIA):\nDebes generar la propuesta curricular utilizando ÚNICA Y EXCLUSIVAMENTE este formato de etiquetas delimitadas. No inventes otras etiquetas.\nCada sección debe ser rigurosa, profunda y adaptada a la educación superior y formación científica:\n\n[INICIO:CODIGO_MODULO] {{CODIGO_MODULO}} [FIN:CODIGO_MODULO]\n[INICIO:NOMBRE_MODULO] {{MATERIA}} [FIN:NOMBRE_MODULO]\n[INICIO:DOCENTE] {{DOCENTE}} [FIN:DOCENTE]\n[INICIO:DURACION_HORAS] {{DURACION_HORAS}} [FIN:DURACION_HORAS]\n[INICIO:PERIODO_MODULO] {{PERIODO_MODULO}} [FIN:PERIODO_MODULO]\n[INICIO:MODALIDAD] {{MODALIDAD}} [FIN:MODALIDAD]\n[INICIO:PROBLEMA_CONTEXTO] [Descripción del problema del contexto real a abordar] [FIN:PROBLEMA_CONTEXTO]\n[INICIO:COMPETENCIA_GLOBAL] [Redacción de la competencia en formato verbo de desempeño + objeto + finalidad + condición de calidad] [FIN:COMPETENCIA_GLOBAL]\n\n(FASE 1 - SEMANA 1)\n[INICIO:FASE_1_TITULO] [Título de la Fase 1] [FIN:FASE_1_TITULO]\n[INICIO:FASE_1_SABER] [Saberes conceptuales y teóricos] [FIN:FASE_1_SABER]\n[INICIO:FASE_1_HACER] [Procedimientos, técnicas y actividades prácticas] [FIN:FASE_1_HACER]\n[INICIO:FASE_1_SER] [Valores éticos, responsabilidad epistémica y trabajo colaborativo] [FIN:FASE_1_SER]\n[INICIO:FASE_1_SUDOR_INTELECTUAL] [Evidencia del proceso de pensamiento propio: bitácora, iteraciones, diálogo reflexivo] [FIN:FASE_1_SUDOR_INTELECTUAL]\n[INICIO:FASE_1_CRITERIO_EVAL] [Criterios de evaluación y nivel de dominio esperado] [FIN:FASE_1_CRITERIO_EVAL]\n\n(FASE 2 - SEMANA 2)\n[INICIO:FASE_2_TITULO] [Título de la Fase 2] [FIN:FASE_2_TITULO]\n[INICIO:FASE_2_SABER] [Saberes conceptuales] [FIN:FASE_2_SABER]\n[INICIO:FASE_2_HACER] [Hacer metodológico] [FIN:FASE_2_HACER]\n[INICIO:FASE_2_SER] [Ser y actuar con ética] [FIN:FASE_2_SER]\n[INICIO:FASE_2_SUDOR_INTELECTUAL] [Esfuerzo reflexivo y resolución de problemas] [FIN:FASE_2_SUDOR_INTELECTUAL]\n[INICIO:FASE_2_CRITERIO_EVAL] [Criterio de evaluación] [FIN:FASE_2_CRITERIO_EVAL]\n\n(FASE 3 - SEMANA 3)\n[INICIO:FASE_3_TITULO] [Título de la Fase 3] [FIN:FASE_3_TITULO]\n[INICIO:FASE_3_SABER] [Saberes conceptuales avanzados] [FIN:FASE_3_SABER]\n[INICIO:FASE_3_HACER] [Análisis de datos, redacción crítica o contrastación empírica] [FIN:FASE_3_HACER]\n[INICIO:FASE_3_SER] [Pensamiento crítico ante sesgos y alucinaciones de IA] [FIN:FASE_3_SER]\n[INICIO:FASE_3_SUDOR_INTELECTUAL] [Músculo intelectual y autoría auténtica] [FIN:FASE_3_SUDOR_INTELECTUAL]\n[INICIO:FASE_3_CRITERIO_EVAL] [Criterio de evaluación] [FIN:FASE_3_CRITERIO_EVAL]\n\n(FASE 4 - SEMANA 4)\n[INICIO:FASE_4_TITULO] [Título de la Fase 4: Integración y Comunicación] [FIN:FASE_4_TITULO]\n[INICIO:FASE_4_SABER] [Síntesis conceptual y metateoría] [FIN:FASE_4_SABER]\n[INICIO:FASE_4_HACER] [Defensa oral, presentación científica y divulgación] [FIN:FASE_4_HACER]\n[INICIO:FASE_4_SER] [Compromiso con el impacto social del conocimiento] [FIN:FASE_4_SER]\n[INICIO:FASE_4_SUDOR_INTELECTUAL] [Defensa argumentada del proceso de construcción] [FIN:FASE_4_SUDOR_INTELECTUAL]\n[INICIO:FASE_4_CRITERIO_EVAL] [Criterio de evaluación de maestría] [FIN:FASE_4_CRITERIO_EVAL]\n\n[INICIO:ADAPTACIONES_DUA_INCLUSION] [Formatos múltiples de representación, expresión y andamiaje para estudiantes con AC o ritmos diferenciados] [FIN:ADAPTACIONES_DUA_INCLUSION]\n[INICIO:ESTRATEGIA_ANTI_OUTSOURCING] [Estrategia de Triangulación Socrática y re-evaluación oral para estudiantes con trabajos sospechosamente perfectos] [FIN:ESTRATEGIA_ANTI_OUTSOURCING]\n[INICIO:PRODUCTO_FINAL_MODULAR] [Perfil o artículo de investigación / informe técnico auténtico] [FIN:PRODUCTO_FINAL_MODULAR]\n",
+    "script_export": "/**\n * MOTOR DE INYECCIÓN MODULAR CBL (Google Apps Script)\n * Procesa borradores estructurados y los inyecta en la Plantilla CBL Modular.\n */\nfunction procesarCBL_Modular() {\n  const ID_CARPETA_ENTRADA = \"{{ID_CARPETA_ENTRADA}}\";\n  const ID_CARPETA_SALIDA  = \"{{ID_CARPETA_SALIDA}}\";\n  const ID_PLANTILLA_DOC   = \"{{ID_PLANTILLA_DOC}}\";\n\n  const carpetaEntrada = DriveApp.getFolderById(ID_CARPETA_ENTRADA);\n  const carpetaSalida  = DriveApp.getFolderById(ID_CARPETA_SALIDA);\n  const plantilla      = DriveApp.getFileById(ID_PLANTILLA_DOC);\n\n  const archivos = carpetaEntrada.getFilesByType(MimeType.GOOGLE_DOCS);\n  while (archivos.hasNext()) {\n    let archivoBorrador = archivos.next();\n    let nombreOrig = archivoBorrador.getName();\n    if (nombreOrig.endsWith(\"_PROCESADO\") || nombreOrig.startsWith(\"PLAN_\")) continue;\n\n    let docOrigen = DocumentApp.openById(archivoBorrador.getId());\n    let texto = docOrigen.getBody().getText();\n    let mapa = mapearEtiquetas(texto);\n\n    let codigo = mapa[\"CODIGO_MODULO\"] || \"MOD\";\n    let docente = mapa[\"DOCENTE\"] ? mapa[\"DOCENTE\"].split(\" \")[0] : \"Docente\";\n    let nombreFinal = `PLAN_${codigo}_${docente}_${Utilities.formatDate(new Date(), \"GMT-4\", \"yyyyMMdd\")}`;\n\n    let nuevoDoc = plantilla.makeCopy(nombreFinal, carpetaSalida);\n    let docFinal = DocumentApp.openById(nuevoDoc.getId());\n    let cuerpo = docFinal.getBody();\n\n    Object.keys(mapa).forEach(tag => {\n      let valor = mapa[tag];\n      if (valor) {\n        cuerpo.replaceText(`\\[\\[${tag}\\]\\]`, valor);\n        cuerpo.replaceText(`\\[${tag}\\]`, valor);\n      }\n    });\n\n    docFinal.saveAndClose();\n    archivoBorrador.setName(nombreOrig + \"_PROCESADO\");\n  }\n}\n\nfunction mapearEtiquetas(texto) {\n  let mapa = {};\n  let regex = /\\[INICIO:\\s*([^\\]]+?)\\s*\\]([\\s\\S]*?)\\[FIN:\\s*\\1\\s*\\]/gi;\n  let match;\n  while ((match = regex.exec(texto)) !== null) {\n    mapa[match[1].trim().toUpperCase()] = match[2].trim();\n  }\n  return mapa;\n}\n",
+    "tags_schema": [
+      "CODIGO_MODULO",
+      "NOMBRE_MODULO",
+      "DOCENTE",
+      "DURACION_HORAS",
+      "PERIODO_MODULO",
+      "MODALIDAD",
+      "PROBLEMA_CONTEXTO",
+      "COMPETENCIA_GLOBAL",
+      "FASE_1_TITULO",
+      "FASE_1_SABER",
+      "FASE_1_HACER",
+      "FASE_1_SER",
+      "FASE_1_SUDOR_INTELECTUAL",
+      "FASE_1_CRITERIO_EVAL",
+      "FASE_2_TITULO",
+      "FASE_2_SABER",
+      "FASE_2_HACER",
+      "FASE_2_SER",
+      "FASE_2_SUDOR_INTELECTUAL",
+      "FASE_2_CRITERIO_EVAL",
+      "FASE_3_TITULO",
+      "FASE_3_SABER",
+      "FASE_3_HACER",
+      "FASE_3_SER",
+      "FASE_3_SUDOR_INTELECTUAL",
+      "FASE_3_CRITERIO_EVAL",
+      "FASE_4_TITULO",
+      "FASE_4_SABER",
+      "FASE_4_HACER",
+      "FASE_4_SER",
+      "FASE_4_SUDOR_INTELECTUAL",
+      "FASE_4_CRITERIO_EVAL",
+      "ADAPTACIONES_DUA_INCLUSION",
+      "ESTRATEGIA_ANTI_OUTSOURCING",
+      "PRODUCTO_FINAL_MODULAR"
+    ]
+  },
+  {
+    "id": "pdc_minedu_2026",
+    "name": "Plan de Desarrollo Curricular (PDC Minedu 2026)",
+    "description": "Modelo oficial con 4 momentos metodológicos (Práctica, Teoría, Valoración, Producción) y Consejo de Expertos (Dewey, Bruner, Malaguzzi, Wiggins, Papert, Freinet).",
+    "system": "regular",
+    "drive_config": {
+      "input_folder": "https://drive.google.com/drive/folders/1g2QRr1X-Zp2oeSeXDlu-mqZYcYKpxHnW",
+      "output_folder": "https://drive.google.com/drive/folders/1jPfFlrbsy8_Mi3XaL8GaGdzHJa_Vun9p",
+      "template_id": "1Fzz1XdxdVljRCmSKq_oULj-HcjW9gC9LP3ZhXCCadPo"
+    },
+    "prompt_template": "PLAN DE DESARROLLO CURRICULAR (PDC) - ENFOQUE MINEDU 2026 & CONSEJO DE EXPERTOS...",
+    "script_export": "// procesarPDC_V14 de Google Apps Script",
+    "tags_schema": [
+      "NUM_PDC",
+      "MAESTRO",
+      "NIVEL",
+      "AÑO_DE_ESCOLARIDAD",
+      "AREA",
+      "TRIMESTRE",
+      "MES",
+      "1_OBJETIVO",
+      "1_SEMANA_1"
+    ]
+  },
+  {
+    "name": "Planificación por Proyectos ABP",
+    "description": "Modelo centrado en la resolución de problemas comunitarios.",
+    "system": "superior",
+    "prompt_template": "Eres un facilitador de ABP...",
+    "script_export": "// script abp",
+    "drive_config": {
+      "input_folder": "https://drive.google.com/in",
+      "output_folder": "https://drive.google.com/out",
+      "template_id": "tpl_abp"
+    },
+    "tags_schema": [
+      "OBJETIVO",
+      "PROYECTO"
+    ],
+    "id": "model_planificaci_n_por_proyectos_abp"
+  }
+]

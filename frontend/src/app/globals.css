@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #FBF9F5;
+  --foreground: #1E293B;
+  --surface-card: #FFFFFF;
+  --border-warm: #E2DDD5;
+  --accent-gold: #D97706;
+  --accent-academic: #1E3A8A;
+  --accent-human: #BE123C;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.font-editorial {
+  font-family: 'Lora', Georgia, Cambria, 'Times New Roman', serif;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Textura sutil de cuaderno pedagógico */
+.bg-notebook {
+  background-color: #FAF8F5;
+  background-image: radial-gradient(#E5E0D8 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+/* Sombra artesanal suave */
+.shadow-atelier {
+  box-shadow: 0 4px 20px -2px rgba(30, 41, 59, 0.05), 0 2px 6px -1px rgba(30, 41, 59, 0.03);
+}
+
+.shadow-atelier-hover:hover {
+  box-shadow: 0 10px 25px -4px rgba(30, 41, 59, 0.08), 0 4px 10px -2px rgba(30, 41, 59, 0.04);
+}
+
+/* Estilo de barra de desplazamiento estilizada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1C7BA;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B5A898;
+}

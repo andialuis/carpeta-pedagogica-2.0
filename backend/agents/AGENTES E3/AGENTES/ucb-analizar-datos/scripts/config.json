@@ -1,0 +1,132 @@
+{
+  "hojas_esperadas": [
+    "ACTIVOS",
+    "ABANDONOS",
+    "REGLAS_EVALUACION"
+  ],
+  "palabras": {
+    "asistencia": [
+      "asistencia",
+      "asistio",
+      "presente",
+      "falta",
+      "ausencia",
+      "puntualidad"
+    ],
+    "plataforma": [
+      "moodle",
+      "aula virtual",
+      "plataforma",
+      "campus",
+      "log",
+      "registro",
+      "acceso",
+      "conexion",
+      "clic",
+      "click",
+      "visita",
+      "sesion",
+      "actividad en linea"
+    ],
+    "duracion": [
+      "tiempo",
+      "duracion",
+      "minutos",
+      "segundos",
+      "tardo",
+      "demora"
+    ],
+    "hora_inicio": [
+      "hora de inicio",
+      "hora inicio",
+      "comenzo",
+      "empezo",
+      "primer acceso",
+      "inicio de la prueba"
+    ],
+    "vigilado": [
+      "parcial",
+      "examen",
+      "prueba",
+      "laboratorio",
+      "practico",
+      "practica",
+      "oral",
+      "defensa",
+      "presencial",
+      "en aula"
+    ],
+    "no_vigilado": [
+      "tarea",
+      "actividad",
+      "trabajo",
+      "proyecto",
+      "casa",
+      "domicilio",
+      "en linea",
+      "online",
+      "virtual",
+      "foro",
+      "quiz",
+      "cuestionario",
+      "entrega",
+      "informe"
+    ],
+    "contexto": [
+      "turno",
+      "modalidad",
+      "grupo",
+      "paralelo",
+      "sede",
+      "seccion",
+      "carrera",
+      "genero",
+      "sexo",
+      "beca",
+      "repitente",
+      "condicion",
+      "procedencia",
+      "colegio"
+    ],
+    "no_analizable": [
+      "codigo",
+      "identidad",
+      "nombre",
+      "apellido",
+      "correo",
+      "email",
+      "carnet",
+      "cedula",
+      "documento",
+      "matricula"
+    ]
+  },
+  "maximo_categorias_contexto": 6,
+  "minimo_por_grupo": 3,
+  "minimo_datos_para_estadistica": 5,
+  "umbral_correlacion_relevante": 0.3,
+  "umbral_correlacion_redundante": 0.95,
+  "umbral_p": 0.05,
+  "permutaciones": 2000,
+  "permutaciones_relaciones": 1000,
+  "semilla": 20260101,
+  "umbral_z_atipico": 2.5,
+  "mejora_para_avisar_atipico": 0.2,
+  "umbral_brecha_instrumentos": 0.25,
+  "umbral_hora_sospechosa_segundos": 120,
+  "proporcion_tiempo_sospechoso": 0.4,
+  "umbral_perfil": 0.5,
+  "hallazgos_objetivo": 5,
+  "colores": {
+    "ucb": "#003366",
+    "acento": "#C9A227",
+    "alerta": "#B23A48",
+    "apoyo": "#2E7D8F",
+    "gris": "#7A8290"
+  },
+  "relaciones_a_reportar": 12,
+  "hallazgos_maximo": 8,
+  "relaciones_maximo_en_informe": 2,
+  "proporcion_para_instrumento_aislado": 0.6,
+  "dias_de_aviso_anticipado": 14
+}

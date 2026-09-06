@@ -1,0 +1,73 @@
+# ==============================================================================
+# CARPETA PEDAGÓGICA 2.0 — REGLAS DE EXCLUSIÓN DE GIT (.gitignore)
+# Autor: Luis Alfredo Andia Valverde (luis.andia.valverde@gmail.com)
+# Licencia: Creative Commons BY-NC 4.0 (Uso Libre No Comercial)
+# ==============================================================================
+
+# Entornos virtuales Python
+venv/
+backend/venv/
+env/
+.venv/
+
+# Dependencias y compilación de Node.js / Next.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+
+# Caché de Python y bytecode compilado
+__pycache__/
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+*.py[cod]
+*$py.class
+
+# Claves de API y variables de entorno privadas (SEGURIDAD CRÍTICA)
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env.local
+frontend/.env.*.local
+*.env.local
+
+# Credenciales OAuth de Google Cloud y tokens de acceso
+credentials.json
+backend/credentials.json
+!credentials.json.example
+!backend/credentials.json.example
+token.json
+backend/token.json
+*credentials*.json
+!*credentials.json.example
+*token*.json
+client_secret*.json
+*.pem
+*.key
+
+# Bases de datos SQLite locales
+*.sqlite3
+*.db
+backend/*.db
+
+# Archivos temporales y descargas incompletas
+scratch/
+backend/scratch/
+*.tmp
+*.log
+*.crdownload
+
+# Archivos de respaldo comprimidos
+*.zip
+*.tar.gz
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

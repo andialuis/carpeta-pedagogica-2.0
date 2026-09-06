@@ -1,0 +1,27 @@
+{
+  "hojas_esperadas": ["BASE", "DICCIONARIO", "COBERTURA", "EMPAREJAMIENTOS",
+                      "INCIDENCIAS", "REGLAS_EVALUACION"],
+
+  "papel_identidad": ["identifica al estudiante", "metadato de procedencia"],
+
+  "situaciones_cobertura": ["encontrado", "encontrado_vacio", "ausente", "no_reconocido"],
+
+  "marcas_asistencia": {
+    "1": ["p", "presente", "si", "sí", "asistio", "asistió", "x", "1"],
+    "0": ["a", "f", "falta", "ausente", "no", "0"],
+    "0.5": ["t", "tarde", "atraso", "retraso"]
+  },
+
+  "texto_vacio": "Sin registro",
+
+  "umbral_atipico_z": 3.0,
+  "minimo_datos_para_estadistica": 5,
+  "proporcion_decimales_para_columna_entera": 0.15,
+
+  "minimo_evaluaciones_para_activo": 1,
+  "proporcion_ausencias_para_abandono": 0.6,
+  "senales_minimas_para_abandono": 2,
+
+  "umbral_correlacion_relevante": 0.30,
+  "diferencia_para_avisar_cambio_de_sentido": 0.25
+}

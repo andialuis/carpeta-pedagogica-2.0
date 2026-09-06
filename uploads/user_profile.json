@@ -1,0 +1,13 @@
+{
+  "nombre": "Luis Alfredo Andia Valverde",
+  "titulo": "Docente e Investigador Educativo",
+  "institucion": "Universidad / Comunidad Académica",
+  "email": "luis.andia.valverde@gmail.com",
+  "bio": "Creador y desarrollador de Carpeta Pedagógica 2.0. Docente comprometido con el Aprendizaje Basado en Competencias (CBL), el Diseño Universal para el Aprendizaje (DUA marco CAST 2024) y la pedagogía crítica contra el outsourcing cognitivo.",
+  "marco_predeterminado": "cbl_cast",
+  "sensibilidad_outsourcing": "normal",
+  "tolerancia_rezago": "estricta",
+  "autor": "Luis Alfredo Andia Valverde",
+  "email_autor": "luis.andia.valverde@gmail.com",
+  "licencia": "Autorizada su distribución y uso sin beneficio comercial (CC BY-NC 4.0)"
+}

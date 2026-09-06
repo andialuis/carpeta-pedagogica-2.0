@@ -1,0 +1,30 @@
+{
+  "subject": "INV101 - Introduccion a la Investigacion",
+  "generated_at": "2026-09-06T14:08:49.405920",
+  "etapa": "1 - Preparar Datos",
+  "total_students": 25,
+  "total_variables": 33,
+  "dimensions": {
+    "rendimiento": true,
+    "competencias_cbl": true,
+    "interaccion_digital": true,
+    "contexto_sociodemografico": true,
+    "afectivo_motivacional": true,
+    "proceso_sudor_intelectual": true,
+    "diagnostico_inicial": true
+  },
+  "source_files": [
+    "asistencia.xlsx",
+    "autoevaluacion_autorregulacion.xlsx",
+    "DATOS_CRUDOS.xlsx",
+    "ficha_socioeducativa.xlsx",
+    "LISTA_OFICIAL_matricula.xlsx",
+    "moodle_log_actividad.csv",
+    "notas_evaluaciones.xlsx",
+    "quiz_diagnostico.xlsx",
+    "registro_sudor_intelectual.xlsx",
+    "rubrica_cbl.xlsx",
+    "triangulacion_socratica.xlsx"
+  ],
+  "warnings": []
+}

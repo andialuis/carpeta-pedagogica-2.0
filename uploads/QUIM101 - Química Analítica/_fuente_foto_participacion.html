@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1202px;height:1578px;overflow:hidden}
+  body{
+    background:#efece2;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Caveat',cursive;
+  }
+
+  /* Hoja de papel */
+  .hoja{
+    position:relative;
+    width:1150px;height:1534px;
+    background:#fdfbf4;
+    box-shadow:0 4px 18px rgba(60,50,30,.22), 0 1px 3px rgba(0,0,0,.1);
+    padding:56px 60px 0;
+    /* renglones tenues */
+    background-image:repeating-linear-gradient(
+      to bottom,
+      transparent 0px, transparent 51px,
+      rgba(140,150,175,.16) 51px, rgba(140,150,175,.16) 52px
+    );
+    background-position:0 236px;
+  }
+  /* leve textura de papel */
+  .hoja::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 12% 8%,  rgba(190,175,140,.10), transparent 55%),
+      radial-gradient(ellipse at 88% 92%, rgba(190,175,140,.09), transparent 55%);
+  }
+
+  h1{
+    font-size:47px;font-weight:600;letter-spacing:.02em;
+    color:#2c3563;line-height:1;
+    margin-bottom:12px;
+  }
+  .sub{
+    font-size:29px;font-weight:400;color:#3a4270;
+    margin-bottom:16px;
+  }
+  .sub .sep{padding:0 14px;color:#6a7099}
+
+  /* doble línea bajo el encabezado */
+  .rule{height:0;border-top:2.5px solid #2c3563;opacity:.85;margin-bottom:3px}
+  .rule.thin{border-top:1px solid #2c3563;opacity:.5;margin-bottom:26px}
+
+  table{width:100%;border-collapse:collapse}
+  th{
+    font-weight:400;font-size:28px;color:#3a4270;
+    letter-spacing:.10em;text-align:left;
+    padding-bottom:14px;
+  }
+  th.n{text-align:center;width:250px}
+
+  td{
+    height:52px;vertical-align:bottom;padding-bottom:5px;
+    border-bottom:1px solid rgba(140,150,175,.22);
+  }
+  td.nom{
+    font-size:32px;font-weight:500;color:#243063;
+    letter-spacing:.005em;
+  }
+  td.nota{
+    text-align:center;
+    font-size:35px;font-weight:600;color:#96202a;
+  }
+  td.nota span{display:inline-block}
+
+  .firma{
+    position:absolute;left:60px;bottom:34px;
+    font-size:30px;color:#3a4270;
+  }
+  .firma i{
+    display:inline-block;width:300px;
+    border-bottom:1.5px solid rgba(58,66,112,.5);
+    margin-left:12px;
+  }
+</style></head>
+<body>
+<div class="hoja">
+  <h1>PARTICIPACION EN CLASE - QUIM101</h1>
+  <div class="sub">Registro del docente <span class="sep">/</span> nota sobre 100</div>
+  <div class="rule"></div><div class="rule thin"></div>
+
+  <table>
+    <tr><th>ESTUDIANTE</th><th class="n">NOTA</th></tr>
+    <!-- typos y formatos mezclados: son deliberados (ejercicio de identidades cruzadas) -->
+    <tr><td class="nom">Carlos Aranibar</td>            <td class="nota"><span style="transform:rotate(-2.5deg)">97</span></td></tr>
+    <tr><td class="nom">Baldivieso, María Fernanda</td> <td class="nota"><span style="transform:rotate(1.5deg)">94</span></td></tr>
+    <tr><td class="nom">Callisaya Huanca, Jorge</td>    <td class="nota"><span style="transform:rotate(-1deg)">84</span></td></tr>
+    <tr><td class="nom">Daniela Chavez Salinas</td>     <td class="nota"><span style="transform:rotate(2deg)">48</span></td></tr>
+    <tr><td class="nom">Condori aMmani, Ruben</td>      <td class="nota"><span style="transform:rotate(-1.5deg)">43</span></td></tr>
+    <tr><td class="nom">Delgado Pinto, Alejandra</td>   <td class="nota"><span style="transform:rotate(1deg)">41</span></td></tr>
+    <tr><td class="nom">Escobar Villarroel, Sergio</td> <td class="nota"><span style="transform:rotate(-2deg)">72</span></td></tr>
+    <tr><td class="nom">Fernandez, Lucia Isabel</td>    <td class="nota"><span style="transform:rotate(1.8deg)">81</span></td></tr>
+    <tr><td class="nom">Marco Gutierrez</td>            <td class="nota"><span style="transform:rotate(-2.8deg)">74</span></td></tr>
+    <tr><td class="nom">Patricia Hinojosa</td>          <td class="nota"><span style="transform:rotate(1.2deg)">59</span></td></tr>
+    <tr><td class="nom">Diego Ibañez</td>               <td class="nota"><span style="transform:rotate(-1.4deg)">69</span></td></tr>
+    <tr><td class="nom">Rodrigo Jimenez</td>            <td class="nota"><span style="transform:rotate(2.2deg)">58</span></td></tr>
+    <tr><td class="nom">Laguna Espinoza, Andrea</td>    <td class="nota"><span style="transform:rotate(-1deg)">52</span></td></tr>
+    <tr><td class="nom">Lopze Quisbert, Fabian</td>     <td class="nota"><span style="transform:rotate(1.6deg)">66</span></td></tr>
+    <tr><td class="nom">Luis Mamani</td>                <td class="nota"><span style="transform:rotate(-2.2deg)">43</span></td></tr>
+    <tr><td class="nom">Lucia Mamni</td>                <td class="nota"><span style="transform:rotate(1deg)">66</span></td></tr>
+    <tr><td class="nom">Mendoza, Camila</td>            <td class="nota"><span style="transform:rotate(-1.8deg)">93</span></td></tr>
+    <tr><td class="nom">Montaño Rivera, Ivan</td>       <td class="nota"><span style="transform:rotate(2.4deg)">94</span></td></tr>
+    <tr><td class="nom">Adraina Nuñez Peña</td>         <td class="nota"><span style="transform:rotate(-1.2deg)">83</span></td></tr>
+    <tr><td class="nom">Gonzalo Ortiz Cabrera</td>      <td class="nota"><span style="transform:rotate(1.4deg)">68</span></td></tr>
+  </table>
+
+  <div class="firma">Firma docente:<i></i></div>
+</div>
+</body></html>

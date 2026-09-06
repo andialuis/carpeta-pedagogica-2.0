@@ -1,0 +1,346 @@
+{
+    "subject": "FIS301 - Fisica Cuantica Aplicada",
+    "generated_at": "2026-09-06T15:21:04.498416",
+    "total_students": 12,
+    "promedio_general": 76.7,
+    "mediana_general": 76.8,
+    "desviacion_estandar": 7.1,
+    "skewness": -0.15,
+    "skewness_diagnostico": "Distribución Cuasi-Simétrica: Calificaciones balanceadas.",
+    "kurtosis": -1.11,
+    "kurtosis_diagnostico": "Platicúrtica: Distribución aplanada y polarizada (alta dispersión).",
+    "spearman_asistencia_nota": 0.29,
+    "spearman_proceso_nota": -0.1,
+    "riesgo_abandono": 0,
+    "cobertura_cbl": "Análisis Multidimensional Activo",
+    "alerta_outsourcing_cognitivo": false,
+    "outsourcing_count": 0,
+    "potencial_oculto_count": 3,
+    "necesidad_andamiaje_vygotsky": "0 estudiantes requieren andamiaje urgente; 3 con potencial oculto detectado.",
+    "alertas": [
+        "Sin anomalías de Outsourcing Cognitivo detectadas.",
+        "Nivel de retención óptimo en la clase.",
+        "3 estudiantes con alto proceso pero notas moderadas (Potencial Oculto).",
+        "Diagnóstico de Forma: Distribución Cuasi-Simétrica: Calificaciones balanceadas. (Asimetría g1 = -0.15)."
+    ],
+    "deci_ryan_clase": {
+        "autonomia": 7.5,
+        "competencia": 7.2,
+        "relacion": 7.3
+    },
+    "gauss_distribucion": [
+        {
+            "rango": "0-9",
+            "estudiantes": 0
+        },
+        {
+            "rango": "10-19",
+            "estudiantes": 0
+        },
+        {
+            "rango": "20-29",
+            "estudiantes": 0
+        },
+        {
+            "rango": "30-39",
+            "estudiantes": 0
+        },
+        {
+            "rango": "40-49",
+            "estudiantes": 0
+        },
+        {
+            "rango": "50-59",
+            "estudiantes": 0
+        },
+        {
+            "rango": "60-69",
+            "estudiantes": 2
+        },
+        {
+            "rango": "70-79",
+            "estudiantes": 5
+        },
+        {
+            "rango": "80-89",
+            "estudiantes": 5
+        },
+        {
+            "rango": "90-99",
+            "estudiantes": 0
+        },
+        {
+            "rango": "100-109",
+            "estudiantes": 0
+        }
+    ],
+    "scatter_rendimiento_proceso": [
+        {
+            "id": "Est_001",
+            "promedio": 83.6,
+            "iteraciones": 12,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_002",
+            "promedio": 72.3,
+            "iteraciones": 30,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_003",
+            "promedio": 87.6,
+            "iteraciones": 2,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_004",
+            "promedio": 64.5,
+            "iteraciones": 39,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_005",
+            "promedio": 81.8,
+            "iteraciones": 11,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_006",
+            "promedio": 72.8,
+            "iteraciones": 2,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_007",
+            "promedio": 82.1,
+            "iteraciones": 23,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_008",
+            "promedio": 74.2,
+            "iteraciones": 16,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_009",
+            "promedio": 79.3,
+            "iteraciones": 3,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_010",
+            "promedio": 82.6,
+            "iteraciones": 43,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_011",
+            "promedio": 70.0,
+            "iteraciones": 21,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        },
+        {
+            "id": "Est_012",
+            "promedio": 69.2,
+            "iteraciones": 1,
+            "riesgo": "Bajo",
+            "alerta_outsourcing": false
+        }
+    ],
+    "estudiantes": [
+        {
+            "id": "Est_001",
+            "nombre_real": "Ana Maria Gomez",
+            "promedio": 83.6,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Ana Maria Gomez."
+        },
+        {
+            "id": "Est_002",
+            "nombre_real": "Carlos Eduardo Rios",
+            "promedio": 72.3,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Carlos Eduardo Rios."
+        },
+        {
+            "id": "Est_003",
+            "nombre_real": "Sofia Fernandez",
+            "promedio": 87.6,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Sofia Fernandez."
+        },
+        {
+            "id": "Est_004",
+            "nombre_real": "Diego Armando Perez",
+            "promedio": 64.5,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Diego Armando Perez."
+        },
+        {
+            "id": "Est_005",
+            "nombre_real": "Valentina Morales",
+            "promedio": 81.8,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Valentina Morales."
+        },
+        {
+            "id": "Est_006",
+            "nombre_real": "Luis Fernando Castro",
+            "promedio": 72.8,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Luis Fernando Castro."
+        },
+        {
+            "id": "Est_007",
+            "nombre_real": "Camila Andrea Vega",
+            "promedio": 82.1,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Camila Andrea Vega."
+        },
+        {
+            "id": "Est_008",
+            "nombre_real": "Mateo Silva",
+            "promedio": 74.2,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Mateo Silva."
+        },
+        {
+            "id": "Est_009",
+            "nombre_real": "Lucia Mendoza",
+            "promedio": 79.3,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Lucia Mendoza."
+        },
+        {
+            "id": "Est_010",
+            "nombre_real": "Sebastian Ruiz",
+            "promedio": 82.6,
+            "nivel_cbl": "Avanzado",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 9,
+            "competencia_deci_ryan": 9,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
+            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
+            "recomendacion": "Plan formativo personalizado para Sebastian Ruiz."
+        },
+        {
+            "id": "Est_011",
+            "nombre_real": "Isabella Navarro",
+            "promedio": 70.0,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
+            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
+            "recomendacion": "Plan formativo personalizado para Isabella Navarro."
+        },
+        {
+            "id": "Est_012",
+            "nombre_real": "Gabriel Vargas",
+            "promedio": 69.2,
+            "nivel_cbl": "Competente",
+            "riesgo_abandono": "Bajo",
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 6,
+            "relacion_deci_ryan": 6,
+            "alerta_outsourcing_cognitivo": false,
+            "requiere_triangulacion": false,
+            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
+            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
+            "recomendacion": "Plan formativo personalizado para Gabriel Vargas."
+        }
+    ],
+    "hipotesis_gemini": "El grupo de FIS301 - Fisica Cuantica Aplicada presenta un promedio de 76.7/100 (Mediana: 76.8) con desviación estándar de 7.1. Asimetría de Fisher: -0.15 (Distribución Cuasi-Simétrica: Calificaciones balanceadas.). Se identifican 0 casos en riesgo y 0 alertas de outsourcing cognitivo."
+}

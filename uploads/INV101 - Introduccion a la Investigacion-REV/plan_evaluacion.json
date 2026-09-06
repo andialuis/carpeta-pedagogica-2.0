@@ -1,0 +1,144 @@
+{
+  "subject_name": "INV101 - Introduccion a la Investigacion",
+  "periodo": "Módulo 1 - 2026 (Investigación Aplicada)",
+  "modelo_evaluativo": "cbl_superior",
+  "plan_base": {
+    "etapas": [
+      {
+        "id": "etapa_diagnostica",
+        "nombre": "Evaluación Diagnóstica Inicial",
+        "dimension": "Diagnóstico",
+        "ponderacion": 10,
+        "instrumentos": [
+          "micro_quizzes"
+        ],
+        "criterio": "Verificación de prerrequisitos metodológicos y conceptuales básicos."
+      },
+      {
+        "id": "etapa_formativa",
+        "nombre": "Evaluación Formativa e Hitos de Proceso",
+        "dimension": "Hacer & Proceso (Sudor Intelectual)",
+        "ponderacion": 40,
+        "instrumentos": [
+          "rubrica_cbl",
+          "registro_sudor"
+        ],
+        "criterio": "Avance en matriz de antecedentes, fichas de lectura y bitácoras de iteración reflexiva."
+      },
+      {
+        "id": "etapa_sumativa",
+        "nombre": "Evaluación Sumativa / Desempeño Auténtico",
+        "dimension": "Producto & Transferencia",
+        "ponderacion": 40,
+        "instrumentos": [
+          "triangulacion"
+        ],
+        "criterio": "Defensa del perfil de investigación y demostración de autoría propia."
+      },
+      {
+        "id": "etapa_autoevaluacion",
+        "nombre": "Metacognición y Autoevaluación Guiada",
+        "dimension": "Ser & Autorregulación (Hattie d=1.16)",
+        "ponderacion": 10,
+        "instrumentos": [
+          "ficha_autorregulacion"
+        ],
+        "criterio": "Reflexión crítica sobre el propio proceso de aprendizaje, dificultades y superación."
+      }
+    ]
+  },
+  "adaptaciones_curriculares_ac": [
+    {
+      "id": "ac_01",
+      "estudiante_iniciales": "E. L.",
+      "diagnostico_necesidad": "Ritmo de procesamiento diferenciado y preferencia por canales visuales (DUA)",
+      "ajustes_ponderacion": {
+        "etapa_formativa": 50,
+        "etapa_sumativa": 30
+      },
+      "instrumentos_diferenciados": [
+        "rubrica_cbl",
+        "registro_sudor"
+      ],
+      "observaciones": "Se autoriza entrega mediante mapas conceptuales hipervinculados y evaluación en dos sesiones."
+    },
+    {
+      "id": "ac_custom",
+      "estudiante_iniciales": "C. R.",
+      "diagnostico_necesidad": "Tiempos extendidos y formato oral socrático",
+      "ajustes_ponderacion": {
+        "etapa_formativa": 50,
+        "etapa_sumativa": 30
+      },
+      "instrumentos_diferenciados": [
+        "triangulacion",
+        "rubrica_cbl"
+      ],
+      "observaciones": "Evaluación en coloquio individual"
+    }
+  ],
+  "alertas_intervencion": [
+    {
+      "estudiante_id": "Est_009",
+      "iniciales": "D.V.G.",
+      "alerta": "Riesgo Crítico de Rezago / Prerrequisitos Pendientes",
+      "instrumento_obligatorio": "micro_quizzes",
+      "instrumento_nombre": "Micro-quizzes de Andamiaje",
+      "medida_pedagogica": "Plan de nivelación con retroalimentación inmediata (Hattie d=1.16) y flexibilización de tiempos."
+    },
+    {
+      "estudiante_id": "Est_010",
+      "iniciales": "F.R.Q.",
+      "alerta": "Riesgo Crítico de Rezago / Prerrequisitos Pendientes",
+      "instrumento_obligatorio": "micro_quizzes",
+      "instrumento_nombre": "Micro-quizzes de Andamiaje",
+      "medida_pedagogica": "Plan de nivelación con retroalimentación inmediata (Hattie d=1.16) y flexibilización de tiempos."
+    },
+    {
+      "estudiante_id": "Est_011",
+      "iniciales": "P.S.L.",
+      "alerta": "Riesgo Crítico de Rezago / Prerrequisitos Pendientes",
+      "instrumento_obligatorio": "micro_quizzes",
+      "instrumento_nombre": "Micro-quizzes de Andamiaje",
+      "medida_pedagogica": "Plan de nivelación con retroalimentación inmediata (Hattie d=1.16) y flexibilización de tiempos."
+    },
+    {
+      "estudiante_id": "Est_012",
+      "iniciales": "S.F.R.",
+      "alerta": "Alerta de Outsourcing Cognitivo (Uso pasivo de IA)",
+      "instrumento_obligatorio": "triangulacion",
+      "instrumento_nombre": "Guía de Triangulación Socrática",
+      "medida_pedagogica": "Re-evaluación oral socrática individual para constatar comprensión profunda y dominio conceptual."
+    },
+    {
+      "estudiante_id": "Est_013",
+      "iniciales": "I.V.P.",
+      "alerta": "Alerta de Outsourcing Cognitivo (Uso pasivo de IA)",
+      "instrumento_obligatorio": "triangulacion",
+      "instrumento_nombre": "Guía de Triangulación Socrática",
+      "medida_pedagogica": "Re-evaluación oral socrática individual para constatar comprensión profunda y dominio conceptual."
+    },
+    {
+      "estudiante_id": "Est_014",
+      "iniciales": "M.C.S.",
+      "alerta": "Alerta de Outsourcing Cognitivo (Uso pasivo de IA)",
+      "instrumento_obligatorio": "triangulacion",
+      "instrumento_nombre": "Guía de Triangulación Socrática",
+      "medida_pedagogica": "Re-evaluación oral socrática individual para constatar comprensión profunda y dominio conceptual."
+    }
+  ],
+  "instrumentos_faltantes": [],
+  "dua_estudiantes": {
+    "Est_012": {
+      "id": "Est_012",
+      "iniciales": "S. F. R.",
+      "principio_1_compromiso": "Coloquio socrático dialógico con docente (Anti-outsourcing)",
+      "principio_2_representacion": "Organizadores gráficos e infografías estructuradas",
+      "principio_3_accion_expresion": "Defensa oral socrática individual (Triangulación)",
+      "instrumento_clave": "triangulacion",
+      "tiempo_extendido": true,
+      "evaluacion_fragmentada": false,
+      "observaciones": "Intervención por alerta de outsourcing cognitivo; sustentación oral obligatoria de 10 minutos."
+    }
+  }
+}

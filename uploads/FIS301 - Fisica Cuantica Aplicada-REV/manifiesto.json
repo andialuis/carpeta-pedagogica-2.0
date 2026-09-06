@@ -1,0 +1,25 @@
+{
+  "subject": "FIS301 - Fisica Cuantica Aplicada",
+  "generated_at": "2026-09-06T15:20:56.601973",
+  "etapa": "1 - Preparar Datos",
+  "total_students": 12,
+  "total_variables": 21,
+  "dimensions": {
+    "rendimiento": true,
+    "competencias_cbl": false,
+    "interaccion_digital": false,
+    "contexto_sociodemografico": true,
+    "afectivo_motivacional": false,
+    "proceso_sudor_intelectual": true,
+    "diagnostico_inicial": false
+  },
+  "source_files": [
+    "asistencia.xlsx",
+    "LISTA_OFICIAL_matricula.xlsx",
+    "notas_evaluaciones.xlsx",
+    "registro_sudor_intelectual.xlsx"
+  ],
+  "warnings": [
+    "Sin datos CBL: Analisis de maestria competencial limitado."
+  ]
+}
