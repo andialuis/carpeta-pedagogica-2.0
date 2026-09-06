@@ -15,21 +15,19 @@ echo        - Dependencias pesadas excluidas:        [OK]
 echo        - Historial local limpio:                [OK]
 echo.
 echo ==============================================================================
-echo  INSTRUCCIONES EN GITHUB:
-echo  1. Entra a tu cuenta en: https://github.com/new
-echo  2. Crea un repositorio nuevo (ejemplo: "carpeta-pedagogica-2.0").
-echo     IMPORTANTE: Dejalo VACIO (NO marques "Add a README", ni .gitignore ni License).
-echo  3. Copia la direccion URL HTTPS de tu repositorio.
-echo     (Ejemplo: https://github.com/tu-usuario/carpeta-pedagogica-2.0.git)
+echo  Repositorio configurado:
+echo  --> https://github.com/andialuis/carpeta-pedagogica-2.0.git
 echo ==============================================================================
 echo.
 
-set /p REPO_URL="Pega aqui la URL de tu repositorio de GitHub y presiona ENTER: "
+set "DEFAULT_URL=https://github.com/andialuis/carpeta-pedagogica-2.0.git"
+echo Presiona ENTER para usar la direccion predeterminada:
+echo [%DEFAULT_URL%]
+echo.
+set /p REPO_URL="O escribe otra URL si lo deseas (ENTER para continuar): "
 
 if "%REPO_URL%"=="" (
-    echo [AVISO] No ingresaste ninguna URL. Operacion cancelada.
-    pause
-    exit /b 1
+    set "REPO_URL=%DEFAULT_URL%"
 )
 
 echo.
@@ -40,7 +38,7 @@ echo [2/3] Vinculando repositorio remoto...
 
 echo.
 echo [3/3] Subiendo codigo de forma segura a GitHub...
-echo (Si es la primera vez, el Gestor de Credenciales abrira tu navegador para autorizar con 1 clic)
+echo (Si es la primera vez, se abrira una ventana en tu navegador para autorizar con 1 clic)
 echo.
 "C:\Program Files\Git\cmd\git.exe" push -u origin main
 
@@ -50,7 +48,10 @@ if %ERRORLEVEL% EQU 0 (
     echo    FELICITACIONES! PROYECTO PUBLICADO EXITOSAMENTE EN GITHUB!
     echo ==============================================================================
     echo.
-    echo Tu repositorio esta en linea con:
+    echo Tu repositorio esta en linea:
+    echo   --^> %REPO_URL%
+    echo.
+    echo Contenido publicado:
     echo   * Codigo completo de Frontend y Backend
     echo   * Habilidad nativa de Antigravity (.agents/skills/carpeta-pedagogica)
     echo   * Licencia CC BY-NC 4.0 a nombre de Luis Alfredo Andia Valverde
@@ -59,11 +60,9 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
     echo.
     echo ==============================================================================
-    echo [ATENCION] Hubo un detalle al subir el codigo.
-    echo Posibles causas:
-    echo 1. La URL del repositorio tiene un error tipografico.
-    echo 2. El repositorio en GitHub ya tenia un README inicial (no estaba vacio).
-    echo 3. Faltan permisos de acceso en tu cuenta.
+    echo [ATENCION] Si no se pudo subir:
+    echo 1. Asegurate de haber hecho clic en el boton verde "Crear repositorio" en GitHub.
+    echo 2. Si se abrio la ventana de autorizacion en el navegador, completala.
     echo ==============================================================================
 )
 
