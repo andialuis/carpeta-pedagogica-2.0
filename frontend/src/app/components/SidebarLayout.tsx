@@ -7,7 +7,8 @@ import PedagogicalCopilot from './PedagogicalCopilot';
 import { 
   FileSpreadsheet, Bot, BrainCircuit, Activity, 
   BookOpen, PlusCircle, Feather, Award, Compass, Sparkles, Cpu,
-  FolderTree, User, Settings, HelpCircle, FileText, CheckSquare
+  FolderTree, User, Settings, HelpCircle, FileText, CheckSquare,
+  FlaskConical
 } from 'lucide-react';
 
 export default function SidebarLayout({ children }: { children: React.ReactNode }) {
@@ -39,6 +40,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
     { step: '4', name: 'Flujo de Agentes', path: '/agents', icon: <Bot className="w-4 h-4" />, badge: 'IA' },
     { step: '5', name: 'Tablero de Control', path: '/analytics', icon: <Activity className="w-4 h-4" />, badge: 'Métricas' },
     { step: '6', name: 'Evaluación', path: '/evaluacion', icon: <Award className="w-4 h-4" />, badge: 'DUA' },
+    { step: '7', name: 'Investigación', path: '/investigacion', icon: <FlaskConical className="w-4 h-4 text-violet-600" />, badge: 'Comparar' },
   ];
 
   // Módulos de Gestión y Documentación
@@ -77,7 +79,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
           <div>
             <div className="px-3 pt-1 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
               <span>Flujo de Trabajo</span>
-              <span className="text-[9px] bg-slate-100 text-slate-500 px-1.5 py-0.2 rounded font-mono">1 a 6</span>
+              <span className="text-[9px] bg-slate-100 text-slate-500 px-1.5 py-0.2 rounded font-mono">1 a 7</span>
             </div>
 
             <div className="space-y-1">

@@ -1968,3 +1968,212 @@ def get_version_summary_endpoint(subject_name: str):
     }
 
 
+
+# ═══════════════════════════════════════════════════════════════════
+#  MODULO DE INVESTIGACION COMPARATIVA
+#  Centro de Analisis Cruzado: Eje A (grupo/asignaturas) y Eje B (asignatura/grupos)
+# ═══════════════════════════════════════════════════════════════════
+
+from research_service import (
+    get_subjects_index, load_subject_metrics, compare_subjects,
+    get_research_lines, build_hypothesis_prompt, build_comparison_narrative_prompt,
+    export_comparison_xlsx, export_comparison_docx
+)
+
+
+@app.get("/api/research/subjects-index")
+def research_subjects_index():
+    """Devuelve todas las asignaturas agrupadas por grupo (Eje A) y por codigo (Eje B)."""
+    return get_subjects_index()
+
+
+@app.get("/api/research/lines")
+def research_lines():
+    """Devuelve las lineas de investigacion predefinidas con metricas sugeridas."""
+    return {"lines": get_research_lines()}
+
+
+class ResearchSetupRequest(BaseModel):
+    research_line_id: str
+    selected_subjects: List[dict]
+    custom_question: Optional[str] = ""
+
+
+@app.post("/api/research/setup-hypothesis")
+async def research_setup_hypothesis(req: ResearchSetupRequest):
+    """
+    Asistencia IA para formalizar hipotesis de investigacion, recomendar metricas
+    y proponer diseno metodologico segun la linea seleccionada.
+    """
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        from dotenv import load_dotenv
+        load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+        api_key = os.environ.get("GEMINI_API_KEY")
+
+    prompt = build_hypothesis_prompt(
+        req.research_line_id,
+        {"selected_subjects": req.selected_subjects},
+        req.custom_question
+    )
+
+    if api_key:
+        try:
+            from google import genai
+            from google.genai import types
+            client = genai.Client(api_key=api_key)
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.4,
+                    response_mime_type="application/json"
+                )
+            )
+            text = response.text.strip()
+            if text.startswith("```"):
+                text = re.sub(r"^```[a-z]*\n?", "", text)
+                text = re.sub(r"\n?```$", "", text)
+            hypothesis = json.loads(text)
+            return {"hypothesis": hypothesis, "motor": "gemini"}
+        except Exception as e:
+            pass
+
+    # Fallback determinista
+    line = next((l for l in get_research_lines() if l["id"] == req.research_line_id), None)
+    fallback = {
+        "hipotesis_nula": "H0: No existe diferencia estadisticamente significativa entre las asignaturas/grupos seleccionados.",
+        "hipotesis_alternativa": line.get("hipotesis_ejemplo", "H1: Existe diferencia significativa entre los grupos comparados.") if line else "H1: Existe diferencia significativa.",
+        "pregunta_investigacion": line.get("description", "Comparacion entre asignaturas.") if line else req.custom_question or "Comparacion entre asignaturas.",
+        "metricas_recomendadas": line.get("metricas_clave", ["promedio", "pct_aprobados", "n_riesgo_abandono"]) if line else ["promedio", "pct_aprobados"],
+        "diseno_metodologico": "Estudio comparativo descriptivo. Se comparan estadisticos descriptivos entre grupos o asignaturas.",
+        "advertencias": ["Los datos de muestra generados automaticamente no reflejan poblaciones reales.", "Se requiere al menos n=30 por grupo para inferencia estadistica valida."],
+        "interpretacion_esperada": "Se confirmara H1 si la diferencia de promedios supera 1 desviacion estandar del grupo de referencia."
+    }
+    return {"hypothesis": fallback, "motor": "determinista"}
+
+
+class ResearchCompareRequest(BaseModel):
+    subject_names: List[str]
+    focus_metrics: Optional[List[str]] = None
+
+
+@app.post("/api/research/compare")
+async def research_compare(req: ResearchCompareRequest):
+    """
+    Compara metricas entre multiples asignaturas/grupos.
+    Calcula deltas, z-scores, rankings y correlaciones de Pearson.
+    """
+    result = compare_subjects(req.subject_names, req.focus_metrics)
+    return result
+
+
+class ResearchNarrativeRequest(BaseModel):
+    subject_names: List[str]
+    focus_metrics: Optional[List[str]] = None
+    hypothesis: dict
+    teacher_name: Optional[str] = "Docente"
+
+
+@app.post("/api/research/narrative")
+async def research_narrative(req: ResearchNarrativeRequest):
+    """
+    Genera informe narrativo de investigacion comparativa asistido por Gemini.
+    """
+    comparison_data = compare_subjects(req.subject_names, req.focus_metrics)
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        from dotenv import load_dotenv
+        load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+        api_key = os.environ.get("GEMINI_API_KEY")
+
+    prompt = build_comparison_narrative_prompt(comparison_data, req.hypothesis, req.teacher_name)
+
+    if api_key:
+        try:
+            from google import genai
+            from google.genai import types
+            client = genai.Client(api_key=api_key)
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(temperature=0.5)
+            )
+            return {"narrative": response.text, "motor": "gemini", "comparison_data": comparison_data}
+        except Exception as e:
+            pass
+
+    # Fallback
+    fallback = _build_deterministic_narrative(comparison_data, req.hypothesis)
+    return {"narrative": fallback, "motor": "determinista", "comparison_data": comparison_data}
+
+
+def _build_deterministic_narrative(comparison_data: dict, hypothesis: dict) -> str:
+    subjects = comparison_data.get("subjects", [])
+    best = comparison_data.get("best_overall")
+    worst = comparison_data.get("worst_overall")
+    n = comparison_data.get("n_compared", 0)
+    lines = [
+        f"1. Resumen ejecutivo",
+        f"Se compararon {n} asignatura(s)/grupo(s). La hipotesis planteada fue: {hypothesis.get('hipotesis_alternativa','No definida')}.",
+        "",
+        "2. Hallazgos principales",
+    ]
+    for s in subjects:
+        nombre = s.get("asignatura") or s.get("display_name","")
+        grupo = s.get("group","")
+        prom = s.get("promedio")
+        apr = s.get("pct_aprobados")
+        riesgo = s.get("n_riesgo_abandono")
+        delta = s.get("deltas",{}).get("promedio")
+        lines.append(f"- {nombre} ({grupo}): promedio={prom}, aprobados={apr}%, riesgo={riesgo}, delta vs media={delta:+.1f}" if delta is not None else f"- {nombre} ({grupo}): promedio={prom}, aprobados={apr}%, riesgo={riesgo}")
+    if best:
+        lines.append(f"- Mejor rendimiento general: {best}")
+    if worst and worst != best:
+        lines.append(f"- Menor rendimiento general: {worst}")
+    lines += ["", "3. Interpretacion pedagogica",
+              "Desde la perspectiva de Vygotsky, las diferencias entre grupos pueden indicar variaciones en la Zona de Desarrollo Proximo activa. Desde Deci & Ryan, diferencias en autonomia percibida pueden explicar variaciones de engagement.",
+              "", "4. Conclusion respecto a la hipotesis",
+              "Con los datos disponibles no es posible realizar inferencia estadistica formal (muestra de datos de ejemplo). Se recomienda ejecutar el pipeline completo de Etapas 1-3 antes de concluir sobre la hipotesis.",
+              "", "5. Recomendaciones",
+              "- Ejecutar etapas 1-3 para todas las asignaturas antes de comparar.",
+              "- Disenar un instrumento de recoleccion comun para facilitar la comparacion intergrupal.",
+              "- Revisar el plan curricular de la asignatura con menor rendimiento."]
+    return "\n".join(lines)
+
+
+class ResearchExportRequest(BaseModel):
+    subject_names: List[str]
+    focus_metrics: Optional[List[str]] = None
+    hypothesis: dict
+    narrative: Optional[str] = ""
+    teacher_name: Optional[str] = "Docente"
+
+
+@app.post("/api/research/export/xlsx")
+async def research_export_xlsx(req: ResearchExportRequest):
+    """Exporta la investigacion comparativa como Excel con evidencia objetiva."""
+    from fastapi.responses import Response
+    comparison_data = compare_subjects(req.subject_names, req.focus_metrics)
+    xlsx_bytes = export_comparison_xlsx(comparison_data, req.hypothesis, req.narrative)
+    filename = "Investigacion_Comparativa_Evidencia.xlsx"
+    return Response(
+        content=xlsx_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename=\"{filename}\""}
+    )
+
+
+@app.post("/api/research/export/docx")
+async def research_export_docx(req: ResearchExportRequest):
+    """Exporta la investigacion comparativa como Word (informe formal ISO 21001)."""
+    from fastapi.responses import Response
+    comparison_data = compare_subjects(req.subject_names, req.focus_metrics)
+    docx_bytes = export_comparison_docx(comparison_data, req.hypothesis, req.narrative, req.teacher_name)
+    filename = "Informe_Investigacion_Comparativa.docx"
+    return Response(
+        content=docx_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={"Content-Disposition": f"attachment; filename=\"{filename}\""}
+    )
