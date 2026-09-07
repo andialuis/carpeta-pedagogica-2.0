@@ -15,6 +15,7 @@ export default function NuevaMateriaPage() {
   const [formData, setFormData] = useState({
     name: '',
     code: '',
+    group: 'Grupo 1',
     system: 'superior', // regular, superior, tecnico, otro
     level: 'pregrado', // kinder, primaria, secundaria, pregrado, postgrado, tecnico_medio, tecnico_superior
     duration: 'semestral', // mensual, bimestral, trimestral, semestral, anual, modular
@@ -46,7 +47,7 @@ export default function NuevaMateriaPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim()) {
-      alert('Por favor introduce el nombre de la materia.');
+      alert('Por favor introduce el nombre de la asignatura.');
       return;
     }
 
@@ -62,7 +63,7 @@ export default function NuevaMateriaPage() {
         setSuccess(true);
         setCreatedSubject(data.subject_name);
       } else {
-        alert(data.detail || 'Ocurrió un error al crear la materia.');
+        alert(data.detail || 'Ocurrió un error al crear la asignatura.');
       }
     } catch (err) {
       alert('Error al conectar con el servidor.');
@@ -82,10 +83,10 @@ export default function NuevaMateriaPage() {
           </div>
           <h1 className="text-3xl font-bold font-editorial text-slate-900 flex items-center gap-3">
             <BookPlus className="w-8 h-8 text-amber-700" />
-            Configurar Nueva Materia
+            Configurar Nueva Asignatura
           </h1>
           <p className="text-slate-500 text-sm mt-0.5 font-medium">
-            Crea la estructura pedagógica, ciclo temporal y dataset inicial para cualquier nivel educativo
+            Crea la estructura pedagógica, asigna el grupo/cohorte y dataset inicial para cualquier nivel educativo
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -105,7 +106,7 @@ export default function NuevaMateriaPage() {
             <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200">
               <CheckCircle2 className="w-10 h-10" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">¡Materia Creada Exitosamente!</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">¡Asignatura Creada Exitosamente!</h2>
             <p className="text-slate-600 mb-6 font-medium">
               Se ha creado el espacio de trabajo para: <strong className="text-indigo-700">{createdSubject}</strong> con sus carpetas analíticas y manifiesto.
             </p>
@@ -134,6 +135,7 @@ export default function NuevaMateriaPage() {
                   setFormData({
                     name: '',
                     code: '',
+                    group: 'Grupo 1',
                     system: 'superior',
                     level: 'pregrado',
                     duration: 'semestral',
@@ -156,7 +158,7 @@ export default function NuevaMateriaPage() {
             <section className="space-y-4">
               <h2 className="text-lg font-bold font-editorial text-slate-900 flex items-center gap-2 border-b border-[#EFEAE1] pb-2">
                 <GraduationCap className="w-5 h-5 text-amber-700" />
-                1. Información Básica de la Materia
+                1. Información Básica de la Asignatura
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">
@@ -181,6 +183,42 @@ export default function NuevaMateriaPage() {
                     placeholder="Ej. INV101, MAT201..."
                     className="w-full bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl p-2.5 text-slate-900 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
                   />
+                </div>
+              </div>
+
+              {/* Grupo / Cohorte y Previsualización Oficial */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                    Grupo / Paralelo / Cohorte
+                  </label>
+                  <input
+                    type="text"
+                    name="group"
+                    value={formData.group}
+                    onChange={handleChange}
+                    placeholder="Ej. Grupo 1, Grupo 2, 2026, Paralelo A..."
+                    className="w-full bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl p-2.5 text-slate-900 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">
+                    Permite gestionar múltiples grupos de la misma asignatura (ej. INV101 Grupo 2026 y Grupo 2) con notas y expedientes independientes.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                    Identificador Oficial del Expediente
+                  </label>
+                  <div className="bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl p-2.5 flex items-center min-h-[42px]">
+                    <span className="font-mono text-xs font-bold text-indigo-950">
+                      {formData.code ? `${formData.code.trim()} - ` : ''}
+                      {formData.name.trim() || 'Nombre Asignatura'}
+                      {formData.group ? ` (${formData.group.trim()})` : ''}
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-400 mt-1">
+                    Nombre de la carpeta de trabajo y encabezado oficial en documentos ISO 21001.
+                  </p>
                 </div>
               </div>
             </section>
@@ -353,7 +391,7 @@ export default function NuevaMateriaPage() {
                 disabled={loading}
                 className="flex-1 bg-slate-900 text-amber-300 font-bold py-3.5 px-6 rounded-xl hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-sm disabled:opacity-50"
               >
-                {loading ? 'Creando Estructura de Materia...' : '✓ Crear y Configurar Materia'}
+                {loading ? 'Creando Estructura de la Asignatura...' : '✓ Crear y Configurar Asignatura'}
               </button>
               <button
                 type="button"

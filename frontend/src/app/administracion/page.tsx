@@ -110,7 +110,7 @@ export default function AdministracionPage() {
 
             <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E3DA]">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-slate-700">Materias Activas</span>
+                <span className="text-xs font-bold text-slate-700">Asignaturas Activas</span>
                 <Database className="w-4 h-4 text-amber-700" />
               </div>
               <p className="text-2xl font-bold font-editorial text-slate-900">
@@ -315,7 +315,7 @@ export default function AdministracionPage() {
           <div className="bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8E3DA] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <label className="text-xs font-bold text-slate-700 whitespace-nowrap">
-                Materia a exportar:
+                Asignatura a exportar:
               </label>
               {stats?.materias && stats.materias.length > 0 ? (
                 <select

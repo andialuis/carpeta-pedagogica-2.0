@@ -45,10 +45,11 @@ from typing import Optional, List
 class SubjectCreateRequest(BaseModel):
     name: str
     code: Optional[str] = None
-    system: str = "superior" # regular, superior, tecnico, otro
-    level: Optional[str] = "pregrado" # kinder, primaria, secundaria, pregrado, postgrado, tecnico_medio, tecnico_superior
-    duration: str = "semestral" # mensual, bimestral, trimestral, semestral, anual, modular
-    year: int = 2025
+    group: Optional[str] = None  # e.g. "Grupo 1", "Grupo 2", "2026", "G1", "Paralelo A"
+    system: str = "superior"  # regular, superior, tecnico, otro
+    level: Optional[str] = "pregrado"  # kinder, primaria, secundaria, pregrado, postgrado, tecnico_medio, tecnico_superior
+    duration: str = "semestral"  # mensual, bimestral, trimestral, semestral, anual, modular
+    year: int = 2026
     period: Optional[str] = "1"
     teacher: Optional[str] = "Docente Titular"
     description: Optional[str] = ""
@@ -63,21 +64,30 @@ def sanitize_folder_name(name: str) -> str:
     # Quitar caracteres prohibidos en Windows: < > : " / \ | ? *
     clean = re.sub(r'[<>:"/\\|?*]', '', clean)
     clean = re.sub(r'\s+', ' ', clean).strip()
-    return clean if clean else "Materia_Sin_Nombre"
+    return clean if clean else "Asignatura_Sin_Nombre"
 
 @app.post("/api/subjects/create")
 async def create_subject(req: SubjectCreateRequest):
-    """Crea una nueva materia con su estructura de carpetas, metadatos y dataset inicial."""
+    """Crea una nueva asignatura con su estructura de carpetas, metadatos y dataset inicial con soporte de grupo/cohorte."""
     import json
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
     
-    # Formatear y sanitizar nombre de carpeta
+    # Formatear y sanitizar nombre de carpeta con código, nombre y grupo
     raw_name = req.name.strip()
-    if req.code and req.code.strip():
-        folder_name = sanitize_folder_name(f"{req.code.strip()} - {raw_name}")
+    code_part = req.code.strip() if req.code and req.code.strip() else ""
+    group_part = req.group.strip() if req.group and req.group.strip() else ""
+    
+    parts = []
+    if code_part:
+        parts.append(code_part)
+    parts.append(raw_name)
+    base_title = " - ".join(parts) if code_part else raw_name
+    
+    if group_part:
+        folder_name = sanitize_folder_name(f"{base_title} ({group_part})")
     else:
-        folder_name = sanitize_folder_name(raw_name)
+        folder_name = sanitize_folder_name(base_title)
         
     base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
     raw_dir = os.path.join(base_dir, folder_name)
@@ -89,11 +99,13 @@ async def create_subject(req: SubjectCreateRequest):
     os.makedirs(os.path.join(rev_dir, "imagenes"), exist_ok=True)
     os.makedirs(os.path.join(rev_dir, "presentaciones"), exist_ok=True)
     
-    # Crear manifiesto con metadatos
+    # Crear manifiesto con metadatos completos incluyendo Asignatura y Grupo
     manifest = {
         "subject_name": folder_name,
-        "name": req.name,
-        "code": req.code,
+        "asignatura": req.name.strip(),
+        "name": req.name.strip(),
+        "code": code_part,
+        "group": group_part or "Grupo 1",
         "system": req.system,
         "level": req.level,
         "duration": req.duration,
@@ -1086,7 +1098,8 @@ async def upload_and_analyze(file: UploadFile = File(...)):
 
 @app.get("/api/documents/pending")
 def get_pending_documents():
-    """Devuelve las carpetas agrupadas por Materia y Versión."""
+    """Devuelve las carpetas agrupadas por Asignatura y Versión, con soporte de Grupo / Cohorte."""
+    import json
     base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
     
     if not os.path.exists(base_dir):
@@ -1099,10 +1112,46 @@ def get_pending_documents():
         item_path = os.path.join(base_dir, item)
         if os.path.isdir(item_path) and not item.startswith(('_', '.')):
             is_rev = item.endswith("-REV")
-            base_name = item.replace("-REV", "") if is_rev else item
+            base_name = item[:-4] if is_rev else item
             
             if base_name not in subjects_dict:
-                subjects_dict[base_name] = {"name": base_name, "versions": []}
+                manifest_data = {}
+                manif_rev = os.path.join(base_dir, f"{base_name}-REV", "manifiesto.json")
+                manif_raw = os.path.join(base_dir, base_name, "manifiesto.json")
+                target_manif = manif_rev if os.path.exists(manif_rev) else (manif_raw if os.path.exists(manif_raw) else None)
+                if target_manif:
+                    try:
+                        with open(target_manif, "r", encoding="utf-8") as mf:
+                            manifest_data = json.load(mf)
+                    except Exception:
+                        pass
+                
+                code = manifest_data.get("code") or ""
+                asignatura = manifest_data.get("asignatura") or manifest_data.get("name") or ""
+                group = manifest_data.get("group") or ""
+                year = manifest_data.get("year") or ""
+                period = manifest_data.get("period") or ""
+                
+                if not asignatura:
+                    # Parse standard patterns like "INV101 - Introduccion a la Investigacion (Grupo 2 - 2026)"
+                    m = re.match(r'^([A-Za-z0-9]+)\s*-\s*([^()]+?)(?:\s*\(([^)]+)\))?$', base_name)
+                    if m:
+                        code = code or m.group(1).strip()
+                        asignatura = m.group(2).strip()
+                        if not group and m.group(3):
+                            group = m.group(3).strip()
+                    else:
+                        asignatura = base_name
+
+                subjects_dict[base_name] = {
+                    "name": base_name,
+                    "code": code,
+                    "asignatura": asignatura,
+                    "group": group,
+                    "year": year,
+                    "period": period,
+                    "versions": []
+                }
             
             # Buscar archivos recursivamente dentro de esta versión
             files_list = []

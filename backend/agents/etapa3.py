@@ -58,7 +58,7 @@ def run():
         print(f"Error: No se encontró {input_file}. Ejecuta la Etapa 1 o 2 primero.")
         sys.exit(1)
         
-    print(f"Cargando datos desde {input_file} para materia: {subject_name}")
+    print(f"Cargando datos desde {input_file} para asignatura: {subject_name}")
     df = pd.read_excel(input_file)
     
     # Cargar llave de nombres si existe
@@ -119,8 +119,8 @@ def run():
             client = genai.Client(api_key=api_key)
             datos_estudiantes = df.head(30).to_csv(index=False)
             prompt = f"""Eres un experto pedagógico en Analítica de Aprendizaje con Enfoque Humano (Deci & Ryan, Vygotsky, Freire).
-Materia: {subject_name}
-Datos de la clase:
+Asignatura: {subject_name}
+Datos del grupo:
 {datos_estudiantes}
 
 Escribe un informe analítico estructurado en formato JSON estricto con las siguientes claves:

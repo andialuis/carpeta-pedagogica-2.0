@@ -81,7 +81,7 @@ export default function Home() {
 
   // Pasos de la lógica de trabajo
   const workflowSteps = [
-    { num: '1', title: 'Crear Clase', desc: 'Ingesta de planillas y creación', path: '/', active: true, icon: <PlusCircle className="w-4 h-4" /> },
+    { num: '1', title: 'Crear Asignatura', desc: 'Ingesta de planillas y creación', path: '/', active: true, icon: <PlusCircle className="w-4 h-4" /> },
     { num: '2', title: 'Planificar', desc: 'Diseño curricular por competencias', path: '/planificacion', active: false, icon: <BrainCircuit className="w-4 h-4" /> },
     { num: '3', title: 'Organizar', desc: 'Expedientes y carpetas REV', path: '/organizar', active: false, icon: <FolderTree className="w-4 h-4" /> },
     { num: '4', title: 'Flujo de Agentes', desc: '4 etapas de analítica de datos', path: '/agents', active: false, icon: <Bot className="w-4 h-4" /> },
@@ -98,7 +98,7 @@ export default function Home() {
             <span className="text-[10px] font-bold tracking-widest uppercase text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-full border border-amber-300">
               Paso 1 del Flujo Pedagógico
             </span>
-            <span className="text-[10px] font-medium text-slate-400">• Ingesta & Creación de Clase</span>
+            <span className="text-[10px] font-medium text-slate-400">• Ingesta & Creación de Asignatura</span>
           </div>
           <h1 className="text-3xl font-bold font-editorial text-slate-900 flex items-center gap-3">
             Carpeta Pedagógica 2.0
@@ -113,7 +113,7 @@ export default function Home() {
             className="bg-slate-900 hover:bg-slate-800 text-amber-300 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-xs flex items-center gap-1.5"
           >
             <PlusCircle className="w-3.5 h-3.5 text-amber-400" />
-            Crear Nueva Materia
+            Crear Nueva Asignatura
           </a>
           <a
             href="/documentacion"
@@ -175,7 +175,7 @@ export default function Home() {
             <div className="flex items-center justify-between border-b border-[#EFEAE1] pb-3 mb-3">
               <div className="flex items-center gap-2">
                 <UploadCloud className="w-4 h-4 text-amber-700" />
-                <h2 className="text-base font-bold font-editorial text-slate-900">Subir Archivo de Clase</h2>
+                <h2 className="text-base font-bold font-editorial text-slate-900">Subir Planilla de Asignatura</h2>
               </div>
               <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono font-semibold">
                 .xlsx / .csv
@@ -272,7 +272,7 @@ export default function Home() {
                 className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#FAF8F5] hover:bg-amber-50/70 border border-[#E8E3DA] text-slate-800 font-semibold transition"
               >
                 <span className="flex items-center gap-2">
-                  <PlusCircle className="w-4 h-4 text-amber-600" /> Crear Expediente de Materia
+                  <PlusCircle className="w-4 h-4 text-amber-600" /> Crear Expediente de Asignatura
                 </span>
                 <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
               </a>
@@ -319,10 +319,10 @@ export default function Home() {
               <div>
                 <h2 className="text-xl font-bold font-editorial text-slate-900 flex items-center gap-2">
                   <FolderTree className="w-5 h-5 text-amber-700" />
-                  Materias & Expedientes Activos
+                  Asignaturas & Expedientes Activos
                 </h2>
                 <span className="text-xs text-slate-500 font-medium">
-                  {pendingFiles.length} {pendingFiles.length === 1 ? 'materia registrada' : 'materias registradas'} en el sistema
+                  {pendingFiles.length} {pendingFiles.length === 1 ? 'asignatura registrada' : 'asignaturas registradas'} en el sistema
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -348,16 +348,16 @@ export default function Home() {
                   href="/materias/nueva" 
                   className="text-xs bg-amber-50 text-amber-900 font-bold px-3 py-1.5 rounded-xl hover:bg-amber-100 transition border border-amber-200"
                 >
-                  + Nueva Materia
+                  + Nueva Asignatura
                 </a>
               </div>
             </div>
 
             {pendingFiles.length === 0 ? (
               <div className="py-12 text-center text-slate-400 font-editorial">
-                <p className="text-base italic mb-2">No hay materias ni archivos detectados.</p>
+                <p className="text-base italic mb-2">No hay asignaturas ni archivos detectados.</p>
                 <p className="text-xs text-slate-500 font-sans-clean">
-                  Carga una planilla en la columna izquierda o haz clic en "+ Nueva Materia" para comenzar.
+                  Carga una planilla en la columna izquierda o haz clic en "+ Nueva Asignatura" para comenzar.
                 </p>
               </div>
             ) : (
@@ -368,16 +368,28 @@ export default function Home() {
                   const revFilesCount = subj.versions?.find((v: any) => v.name.includes('REV'))?.files?.length || 0;
                   return (
                     <div key={i} className="border border-[#E8E3DA] rounded-2xl overflow-hidden shadow-2xs transition hover:border-amber-300">
-                      {/* Cabecera de la Materia */}
+                      {/* Cabecera de la Asignatura */}
                       <div className="bg-[#FAF8F5] p-4 border-b border-[#E8E3DA] flex flex-col md:flex-row md:items-center justify-between gap-3">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold font-mono text-xs shadow-xs">
                             {subj.name.substring(0, 3)}
                           </div>
                           <div>
-                            <h3 className="font-bold font-editorial text-slate-900 text-base leading-snug">
-                              {subj.name}
-                            </h3>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <h3 className="font-bold font-editorial text-slate-900 text-base leading-snug">
+                                {subj.asignatura || subj.name}
+                              </h3>
+                              {subj.code && (
+                                <span className="text-[10px] font-mono font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-300">
+                                  {subj.code}
+                                </span>
+                              )}
+                              {subj.group && (
+                                <span className="text-[10px] font-semibold bg-indigo-50 text-indigo-800 px-2.5 py-0.5 rounded-full border border-indigo-200">
+                                  👥 {subj.group}
+                                </span>
+                              )}
+                            </div>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className={`text-[10px] font-bold px-2 py-0.2 rounded-full border ${
                                 hasRev 
@@ -537,7 +549,7 @@ export default function Home() {
                   href="/organizar"
                   className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-700 px-6 py-3 rounded-xl font-semibold hover:bg-[#F2EDE5] transition text-xs text-center"
                 >
-                  Ver en Expedientes de Materias
+                  Ver en Expedientes de Asignaturas
                 </a>
               </div>
             ) : (

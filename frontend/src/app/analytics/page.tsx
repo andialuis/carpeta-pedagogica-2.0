@@ -241,14 +241,14 @@ export default function AnalyticsDashboard() {
         <div className="flex flex-wrap items-center gap-3">
           <div className="bg-white border border-[#E2DDD5] p-2 rounded-xl shadow-xs flex items-center gap-2.5">
             <label className="font-semibold text-slate-700 text-xs pl-2 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Materia:
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Asignatura:
             </label>
             <select 
               className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-900 text-xs rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2 font-bold"
               value={selectedSubject}
               onChange={(e) => setSelectedSubject(e.target.value)}
             >
-              {subjects.length === 0 && <option value="">Sin materias detectadas</option>}
+              {subjects.length === 0 && <option value="">Sin asignaturas detectadas</option>}
               {subjects.map((subj, idx) => (
                 <option key={idx} value={subj.name}>{subj.name}</option>
               ))}
@@ -494,7 +494,7 @@ export default function AnalyticsDashboard() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                   <h3 className="text-lg font-bold text-slate-800 mb-1">Distribución de Calificaciones (Campana de Gauss)</h3>
-                  <p className="text-sm text-slate-500 mb-6">Muestra cómo se agrupan las notas de la clase actual.</p>
+                  <p className="text-sm text-slate-500 mb-6">Muestra cómo se agrupan las notas del grupo actual.</p>
                   <div className="h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={activeGaussData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -547,7 +547,7 @@ export default function AnalyticsDashboard() {
                       <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} />
                       <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                       <Legend />
-                      <Line type="monotone" dataKey="interaccion" name="Interacción en Clase (%)" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                      <Line type="monotone" dataKey="interaccion" name="Interacción en Sesiones (%)" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
                       <Line type="monotone" dataKey="entregas" name="Entregas a Tiempo (%)" stroke="#10b981" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
                     </LineChart>
                   </ResponsiveContainer>
@@ -556,7 +556,7 @@ export default function AnalyticsDashboard() {
               
               <div className="col-span-1 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
                 <h3 className="text-lg font-bold text-slate-800 mb-1">Niveles de Riesgo</h3>
-                <p className="text-sm text-slate-500 mb-6">Distribución de la clase según modelo de abandono.</p>
+                <p className="text-sm text-slate-500 mb-6">Distribución del grupo según modelo de abandono.</p>
                 <div className="flex-1 w-full flex justify-center items-center">
                   <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
@@ -633,7 +633,7 @@ export default function AnalyticsDashboard() {
                     <div>
                       <h3 className="text-2xl font-bold text-rose-900 mb-2">Gráficos No Generados (Educación Bancaria)</h3>
                       <p className="text-rose-700 mb-4 font-medium">
-                        De acuerdo con nuestro compromiso de Máxima Transparencia, no podemos presentarte las analíticas de Autodeterminación (Deci & Ryan) ni medir el Sudor Intelectual de la clase.
+                        De acuerdo con nuestro compromiso de Máxima Transparencia, no podemos presentarte las analíticas de Autodeterminación (Deci & Ryan) ni medir el Sudor Intelectual del grupo.
                       </p>
                       <p className="text-sm text-rose-600 mb-6">
                         El sistema ha detectado que los datos cargados en la Etapa 1 consisten únicamente en variables numéricas o de rendimiento (evaluaciones tradicionales). Esto impide verificar si el estudiante ha dependido excesivamente de la IA sin aportar "músculo intelectual", dejándonos a ciegas frente al riesgo de <b>Outsourcing Cognitivo</b>.
@@ -644,7 +644,7 @@ export default function AnalyticsDashboard() {
                           <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Solución Proactiva:
                         </h4>
                         <p className="text-sm text-slate-600 mb-4">
-                          Descarga el siguiente instrumento diseñado específicamente para recolectar las métricas de proceso que te faltan. Una vez completado, súbelo a la carpeta de tu materia y vuelve a ejecutar la Etapa 1.
+                          Descarga el siguiente instrumento diseñado específicamente para recolectar las métricas de proceso que te faltan. Una vez completado, súbelo a la carpeta de tu asignatura y vuelve a ejecutar la Etapa 1.
                         </p>
                         <button 
                           onClick={() => handleDownloadInstrument('registro_sudor')}
@@ -703,7 +703,7 @@ export default function AnalyticsDashboard() {
                               <PolarGrid stroke="#e2e8f0" />
                               <PolarAngleAxis dataKey="subject" tick={{ fill: '#475569', fontSize: 12, fontWeight: 700 }} />
                               <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#94a3b8' }} />
-                              <Radar name="Promedio Clase" dataKey="A" stroke="#be123c" fill="#fda4af" fillOpacity={0.5} />
+                              <Radar name="Promedio del Grupo" dataKey="A" stroke="#be123c" fill="#fda4af" fillOpacity={0.5} />
                               <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                             </RadarChart>
                           </ResponsiveContainer>
@@ -760,7 +760,7 @@ export default function AnalyticsDashboard() {
                             <p className="text-[11px] text-slate-700 leading-snug">
                               <strong>¿Para qué le sirve al maestro?:</strong> {compScore < 70
                                 ? 'Alerta de sobrecarga conceptual; conviene descomponer tareas complejas en micro-metas con retroalimentación inmediata antes del examen sumativo.'
-                                : 'La clase tiene base conceptual sólida; puedes elevar el nivel de exigencia y problematización teórica sin frustración.'}
+                                : 'El grupo tiene base conceptual sólida; puedes elevar el nivel de exigencia y problematización teórica sin frustración.'}
                             </p>
                           </div>
 
@@ -830,7 +830,7 @@ export default function AnalyticsDashboard() {
                         {/* Diagnóstico Sintético General */}
                         <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 text-xs font-semibold mb-4 flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                          <span>{analyticsData?.insights?.necesidad_andamiaje_vygotsky || "Evaluando la zona de desarrollo próximo de la clase..."}</span>
+                          <span>{analyticsData?.insights?.necesidad_andamiaje_vygotsky || "Evaluando la zona de desarrollo próximo del grupo..."}</span>
                         </div>
 
                         {/* Desglose de Estudiantes Específicos */}
@@ -1121,7 +1121,7 @@ export default function AnalyticsDashboard() {
                     </span>
                   </div>
                   <p className="text-xs text-slate-500 font-medium">
-                    Materia: <strong className="text-slate-700">{selectedSubject}</strong> • Enfoque CAST DUA & CBL
+                    Asignatura: <strong className="text-slate-700">{selectedSubject}</strong> • Enfoque CAST DUA & CBL
                   </p>
                 </div>
               </div>

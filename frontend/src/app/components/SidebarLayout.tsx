@@ -33,7 +33,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
 
   // Flujo Pedagógico Secuencial y Lógica de Trabajo
   const workflowItems = [
-    { step: '1', name: 'Crear Clase', path: '/', icon: <PlusCircle className="w-4 h-4 text-amber-600" />, badge: 'Inicio' },
+    { step: '1', name: 'Crear Asignatura', path: '/', icon: <PlusCircle className="w-4 h-4 text-amber-600" />, badge: 'Inicio' },
     { step: '2', name: 'Planificar', path: '/planificacion', icon: <BrainCircuit className="w-4 h-4" />, badge: 'PDC' },
     { step: '3', name: 'Organizar', path: '/organizar', icon: <FolderTree className="w-4 h-4" />, badge: 'REV' },
     { step: '4', name: 'Flujo de Agentes', path: '/agents', icon: <Bot className="w-4 h-4" />, badge: 'IA' },

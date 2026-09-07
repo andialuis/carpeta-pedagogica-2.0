@@ -78,7 +78,7 @@ export default function AgentsDashboard() {
 
   // Dispara la auditoría de suficiencia antes de ejecutar
   const initiateStageExecution = async (moduleId: string) => {
-    if (!selectedSubject) return alert("Selecciona una materia primero");
+    if (!selectedSubject) return alert("Selecciona una asignatura primero");
     setPendingModuleId(moduleId);
     setAuditLoading(true);
     setShowAuditModal(true);
@@ -172,7 +172,7 @@ export default function AgentsDashboard() {
   };
 
   const handleDownloadVersionControl = () => {
-    if (!selectedSubject) return alert("Selecciona una materia primero");
+    if (!selectedSubject) return alert("Selecciona una asignatura primero");
     window.open(`/api/documents/version-control/${encodeURIComponent(selectedSubject)}`, '_blank');
   };
 
@@ -196,14 +196,14 @@ export default function AgentsDashboard() {
         </div>
         <div className="bg-white border border-[#E2DDD5] p-2 rounded-xl shadow-xs flex items-center gap-2.5">
           <label className="font-semibold text-slate-700 text-xs pl-2 flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500"></span> Materia Activa:
+            <span className="w-2 h-2 rounded-full bg-amber-500"></span> Asignatura Activa:
           </label>
           <select 
             className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-900 text-xs rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2 font-bold"
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
           >
-            {subjects.length === 0 && <option value="">Sin materias detectadas</option>}
+            {subjects.length === 0 && <option value="">Sin asignaturas detectadas</option>}
             {subjects.map((subj, idx) => (
               <option key={idx} value={subj.name}>{subj.name}</option>
             ))}
@@ -380,7 +380,7 @@ export default function AgentsDashboard() {
                     <h2 className="text-2xl font-bold font-editorial text-slate-900 mt-2.5">
                       Auditoría de Datos: {auditData.stage_id.toUpperCase()}
                     </h2>
-                    <p className="text-slate-500 text-xs mt-1">Materia: <span className="font-semibold text-slate-700">{auditData.subject_name}</span></p>
+                    <p className="text-slate-500 text-xs mt-1">Asignatura: <span className="font-semibold text-slate-700">{auditData.subject_name}</span></p>
                   </div>
                   <div className={`px-3 py-1 rounded-full text-xs font-bold ${
                     auditData.status === 'completo' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :

@@ -86,7 +86,7 @@ export default function LmsConnectionModal({
           {/* Selector de Plataforma */}
           <div>
             <label className="font-bold text-slate-900 text-xs block mb-2 uppercase tracking-wider">
-              1. Selecciona la plataforma donde tienes tus clases:
+              1. Selecciona la plataforma donde gestionas tu asignatura:
             </label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {/* Moodle */}
@@ -208,7 +208,7 @@ export default function LmsConnectionModal({
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <div>
                 <span className="text-[10px] uppercase font-bold text-amber-400 block tracking-wider">
-                  Materia a Sincronizar:
+                  Asignatura a Sincronizar:
                 </span>
                 {subjects.length > 0 ? (
                   <select

@@ -72,22 +72,22 @@ export default function OrganizarExpedientesPage() {
           </div>
           <h1 className="text-3xl font-bold font-editorial text-slate-900 flex items-center gap-3">
             <FolderTree className="w-8 h-8 text-indigo-700" />
-            Organización de Expedientes de Clase
+            Organización de Expedientes de la Asignatura
           </h1>
           <p className="text-slate-500 text-sm mt-0.5">
             Estructuración de carpetas académicas, versiones integradas (-REV) y consolidación de evidencias
           </p>
         </div>
 
-        {/* Selector de Materia */}
+        {/* Selector de Asignatura */}
         <div className="flex items-center gap-3 bg-white border border-[#DDD7CD] p-2 rounded-2xl shadow-xs">
-          <label className="text-xs font-bold text-slate-700 pl-2">Materia:</label>
+          <label className="text-xs font-bold text-slate-700 pl-2">Asignatura:</label>
           <select 
             value={selectedSubject} 
             onChange={(e) => setSelectedSubject(e.target.value)}
             className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-900 text-xs rounded-xl p-2 font-bold focus:ring-amber-500 focus:border-amber-500"
           >
-            {subjects.length === 0 && <option value="">Sin materias</option>}
+            {subjects.length === 0 && <option value="">Sin asignaturas</option>}
             {subjects.map((s, idx) => (
               <option key={idx} value={s.name}>{s.name}</option>
             ))}
@@ -175,7 +175,7 @@ export default function OrganizarExpedientesPage() {
               </div>
             </div>
 
-            {/* Árbol de Versiones de la Materia */}
+            {/* Árbol de Versiones de la Asignatura */}
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
               Archivos en el Repositorio Local (Uploads)
             </h3>

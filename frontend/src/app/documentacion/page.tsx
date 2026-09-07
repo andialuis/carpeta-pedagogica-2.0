@@ -85,10 +85,10 @@ export default function DocumentacionPage() {
                 <div className="flex-1 bg-[#FAF8F5] p-5 rounded-2xl border border-[#E8E3DA]">
                   <div className="flex items-center gap-2 mb-1 font-bold text-slate-900 text-sm">
                     <PlusCircle className="w-4 h-4 text-amber-700" />
-                    <span>Crear Clase & Ingesta Documental</span>
+                    <span>Crear Asignatura &amp; Ingesta Documental</span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed font-serif-warm mb-2">
-                    En la pantalla principal (<code>/</code>), sube una planilla Excel (<code>.xlsx</code>) o CSV con las calificaciones del curso, o haz clic en <strong>"+ Crear Nueva Materia"</strong> para configurar un expediente desde cero con su nivel, sistema y competencias esperadas.
+                    En la pantalla principal (<code>/</code>), sube una planilla Excel (<code>.xlsx</code>) o CSV con las calificaciones del curso, o haz clic en <strong>&quot;+ Crear Nueva Asignatura&quot;</strong> para configurar un expediente desde cero con su nivel, sistema y competencias esperadas.
                   </p>
                   <span className="text-[10px] bg-white text-slate-700 font-semibold px-2.5 py-1 rounded-lg border border-[#DDD7CD] inline-block">
                     ✓ Validación Human-in-the-loop antes de inyectar datos

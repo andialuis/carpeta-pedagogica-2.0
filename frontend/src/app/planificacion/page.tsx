@@ -117,7 +117,7 @@ export default function PlanificacionPage() {
         setActiveModel(data.model);
       }
     } catch (e) {
-      console.error('Error cargando planificación de materia', e);
+      console.error('Error cargando planificación de asignatura', e);
     }
   };
 
@@ -225,12 +225,12 @@ export default function PlanificacionPage() {
           </p>
         </div>
 
-        {/* Selectores Superiores de Materia y Modelo */}
+        {/* Selectores Superiores de Asignatura y Modelo */}
         <div className="flex flex-wrap items-center gap-3">
-          {/* Selector de Materia */}
+          {/* Selector de Asignatura */}
           <div className="bg-white border border-[#E2DDD5] p-2 rounded-xl shadow-xs flex items-center gap-2">
             <label className="font-semibold text-slate-700 text-xs pl-2 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Materia:
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Asignatura:
             </label>
             <select
               className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-900 text-xs rounded-lg p-2 font-bold focus:ring-amber-500"
