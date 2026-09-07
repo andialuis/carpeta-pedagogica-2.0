@@ -1097,7 +1097,7 @@ def get_pending_documents():
     # Solo miramos el primer nivel de carpetas dentro de uploads
     for item in os.listdir(base_dir):
         item_path = os.path.join(base_dir, item)
-        if os.path.isdir(item_path):
+        if os.path.isdir(item_path) and not item.startswith(('_', '.')):
             is_rev = item.endswith("-REV")
             base_name = item.replace("-REV", "") if is_rev else item
             
@@ -1628,7 +1628,7 @@ def get_system_stats():
     if os.path.exists(uploads_dir):
         for item in os.listdir(uploads_dir):
             item_path = os.path.join(uploads_dir, item)
-            if os.path.isdir(item_path):
+            if os.path.isdir(item_path) and not item.startswith(('_', '.')):
                 if not item.endswith("-REV"):
                     subjects_count += 1
                     subjects_list.append(item)
