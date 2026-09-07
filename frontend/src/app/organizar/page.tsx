@@ -38,7 +38,7 @@ export default function OrganizarExpedientesPage() {
         setSelectedSubject(list[0].name);
       }
     } catch (e) {
-      console.error("Error al cargar materias");
+      console.error("Error al cargar asignaturas");
     }
   };
 
@@ -243,6 +243,21 @@ export default function OrganizarExpedientesPage() {
                   <div className="text-left">
                     <span className="block leading-tight">Dataset Anonimizado (.xlsx)</span>
                     <span className="text-[10px] text-slate-500 font-normal">Para R, SPSS o Stata</span>
+                  </div>
+                </div>
+                <Download className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => window.open(`/api/documents/version-control/${encodeURIComponent(selectedSubject)}`, '_blank')}
+                disabled={!selectedSubject}
+                className="w-full bg-[#FAF8F5] hover:bg-amber-50/80 text-amber-900 border border-amber-300/80 font-bold p-3 rounded-2xl transition shadow-2xs flex items-center justify-between text-xs cursor-pointer disabled:opacity-50"
+              >
+                <div className="flex items-center gap-2">
+                  <FileSpreadsheet className="w-4 h-4 text-amber-700" />
+                  <div className="text-left">
+                    <span className="block leading-tight">Control de Versiones (.xlsx)</span>
+                    <span className="text-[10px] text-slate-500 font-normal">ISO 21001:2018 Cláusula 7.5</span>
                   </div>
                 </div>
                 <Download className="w-4 h-4" />

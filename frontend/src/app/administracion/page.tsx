@@ -202,7 +202,7 @@ export default function AdministracionPage() {
               <div>
                 <h4 className="text-sm font-bold text-slate-900 mb-1">Copia de Seguridad (.ZIP)</h4>
                 <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-                  Descarga un archivo comprimido conteniendo todas las materias, expedientes REV, planes curriculares y datasets.
+                  Descarga un archivo comprimido conteniendo todas las asignaturas, expedientes REV, planes curriculares y datasets.
                 </p>
               </div>
               <button
@@ -218,7 +218,7 @@ export default function AdministracionPage() {
               <div>
                 <h4 className="text-sm font-bold text-slate-900 mb-1">Limpieza de Archivos Temporales</h4>
                 <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-                  Purga la carpeta temporal de scripts de prueba (`scratch/`) y libera espacio en disco sin alterar los expedientes de materias.
+                  Purga la carpeta temporal de scripts de prueba (`scratch/`) y libera espacio en disco sin alterar los expedientes de asignaturas.
                 </p>
               </div>
               <div className="flex flex-col gap-2">

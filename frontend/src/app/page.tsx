@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { 
   FileSpreadsheet, PlusCircle, BrainCircuit, FolderTree, 
   Bot, Activity, Award, FileText, ArrowRight, Sparkles, 
-  UploadCloud, RefreshCw, CheckCircle2, ShieldCheck, ChevronRight, FileDown, Share2
+  UploadCloud, RefreshCw, CheckCircle2, ShieldCheck, ChevronRight, FileDown, Share2,
+  FlaskConical
 } from 'lucide-react';
 import LmsConnectionModal from './components/LmsConnectionModal';
 
@@ -87,6 +88,7 @@ export default function Home() {
     { num: '4', title: 'Flujo de Agentes', desc: '4 etapas de analítica de datos', path: '/agents', active: false, icon: <Bot className="w-4 h-4" /> },
     { num: '5', title: 'Tablero de Control', desc: 'Métricas, Gauss e insights IA', path: '/analytics', active: false, icon: <Activity className="w-4 h-4" /> },
     { num: '6', title: 'Evaluación', desc: 'Rúbricas CBL, DUA y Dossier', path: '/evaluacion', active: false, icon: <Award className="w-4 h-4" /> },
+    { num: '7', title: 'Investigación', desc: 'Comparación cruzada Eje A/B', path: '/investigacion', active: false, icon: <FlaskConical className="w-4 h-4" /> },
   ];
 
   return (
@@ -109,7 +111,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2.5 flex-wrap">
           <a 
-            href="/materias/nueva" 
+            href="/asignaturas/nueva" 
             className="bg-slate-900 hover:bg-slate-800 text-amber-300 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-xs flex items-center gap-1.5"
           >
             <PlusCircle className="w-3.5 h-3.5 text-amber-400" />
@@ -133,7 +135,7 @@ export default function Home() {
           </span>
           <span className="text-[10px] font-medium text-slate-400">Paso 1 activo</span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
           {workflowSteps.map((step) => (
             <a
               key={step.num}

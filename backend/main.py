@@ -195,7 +195,7 @@ async def create_subject(req: SubjectCreateRequest):
         
     return {
         "success": True,
-        "message": f"Materia '{folder_name}' creada exitosamente.",
+        "message": f"Asignatura '{folder_name}' creada exitosamente.",
         "subject_name": folder_name,
         "metadata": manifest
     }
@@ -908,7 +908,7 @@ async def pedagogical_copilot_chat(req: CopilotChatRequest):
     """Copiloto Pedagógico Inteligente con Gemini."""
     api_key = os.environ.get("GEMINI_API_KEY")
     
-    context_info = "Sin materia seleccionada en este momento."
+    context_info = "Sin asignatura seleccionada en este momento."
     if req.subject_name:
         canonical_name, rev_dir = resolve_subject_folder(req.subject_name)
         man_path = os.path.join(rev_dir, "manifiesto.json")
@@ -931,7 +931,7 @@ async def pedagogical_copilot_chat(req: CopilotChatRequest):
                 pass
                 
         context_info = f"""
-        Materia Activa: {canonical_name}
+        Asignatura Activa: {canonical_name}
         Datos Curriculares: Nivel {manifest.get('level', 'Superior')}, Sistema {manifest.get('system', 'Superior')}, Periodo {manifest.get('period', '1')}.
         Problema del Contexto: {manifest.get('description', 'Formación en investigación y rigor epistémico')}.
         Diagnóstico de Aula: Total estudiantes: {insights.get('total_estudiantes', 0)}, Promedio: {insights.get('promedio_general', 'N/A')}, Casos de Riesgo: {insights.get('estudiantes_riesgo_count', 0)}, Alertas de Outsourcing Cognitivo: {insights.get('estudiantes_outsourcing_count', 0)}.
@@ -944,7 +944,7 @@ async def pedagogical_copilot_chat(req: CopilotChatRequest):
     3. Prevención del "Outsourcing Cognitivo" y fomento del sudor intelectual propio (Paulo Freire, John Dewey, Lev Vygotsky ZDP, John Hattie d=1.16).
     4. Evaluación Formativa, rúbricas analíticas y Triangulación Socrática dialógica.
     
-    Contexto de la materia actual:
+    Contexto de la asignatura actual:
     {context_info}
     
     Instrucciones para tus respuestas:
@@ -978,7 +978,7 @@ async def pedagogical_copilot_chat(req: CopilotChatRequest):
     reply = f"""
     ### 🧭 Sugerencia del Copiloto (Modo Local)
     
-    Para la materia **{req.subject_name or 'seleccionada'}**, te sugiero considerar las siguientes directrices pedagógicas:
+    Para la asignatura **{req.subject_name or 'seleccionada'}**, te sugiero considerar las siguientes directrices pedagógicas:
     
     1. **Validación del Sudor Intelectual:** Si detectas trabajos con redacción avanzada pero pocas iteraciones de borradores, programa una **Triangulación Socrática** de 5 minutos pidiéndole al alumno que explique el porqué de sus fuentes clave.
     2. **Inclusión DUA:** Diversifica los formatos de entrega permitiendo tanto informes escritos como defensas en video-ensayo o mapas conceptuales interactivos.
@@ -996,7 +996,7 @@ async def generate_analytics_narrative(subject_name: str):
     canonical_name, rev_dir = resolve_subject_folder(subject_name)
     ins_path = os.path.join(rev_dir, "bases_de_datos", "insights.json")
     if not os.path.exists(ins_path):
-        raise HTTPException(status_code=404, detail="No hay insights analíticos generados para esta materia aún.")
+        raise HTTPException(status_code=404, detail="No hay insights analíticos generados para esta asignatura aún.")
         
     with open(ins_path, "r", encoding="utf-8") as f:
         insights = json.load(f)
@@ -1043,7 +1043,7 @@ async def generate_analytics_narrative(subject_name: str):
 
     report = f"""
     # 📑 Diagnóstico Ejecutivo de Analítica del Aprendizaje
-    **Materia:** {canonical_name} | **Motor:** Determinista Local
+    **Asignatura:** {canonical_name} | **Motor:** Determinista Local
     
     ## 1. Clima y Madurez Académica del Aula
     El curso cuenta con **{insights.get('total_estudiantes', 0)} estudiantes evaluados**. El promedio general se sitúa en **{insights.get('promedio_general', 0):.1f}/100** con una dispersión de **{insights.get('desviacion_estandar', 0):.1f} puntos**. La asimetría calculada de Fisher ({insights.get('asimetria_fisher', 0):.2f}) refleja una concentración típica de estudiantes que requiere atención diferenciada.
@@ -1732,6 +1732,8 @@ def get_system_stats():
         "autor": "Luis Alfredo Andia Valverde",
         "email_autor": "luis.andia.valverde@gmail.com",
         "licencia": "Autorizada su distribución y uso sin beneficio comercial (CC BY-NC 4.0)",
+        "total_asignaturas": subjects_count,
+        "asignaturas": subjects_list,
         "total_materias": subjects_count,
         "materias": subjects_list,
         "total_archivos": total_files,
@@ -1938,34 +1940,6 @@ def download_backup_zip(filename: str):
         filename=filename,
         media_type="application/zip"
     )
-
-@app.get("/api/documents/version-control/{subject_name}")
-def download_version_control_xlsx(subject_name: str):
-    """Descarga el libro Excel oficial de Control de Versiones Documental (ISO 21001)."""
-    from version_control_service import get_version_control_path, init_version_control_workbook
-    clean_name = sanitize_folder_name(subject_name)
-    path = get_version_control_path(clean_name)
-    if not os.path.exists(path):
-        init_version_control_workbook(clean_name)
-    return FileResponse(
-        path=path,
-        filename="CONTROL_VERSIONES_DOCUMENTAL.xlsx",
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
-
-@app.get("/api/documents/version-summary/{subject_name}")
-def get_version_summary_endpoint(subject_name: str):
-    """Retorna el inventario de documentos vigentes y sus versiones registradas."""
-    from version_control_service import get_subject_version_matrix
-    clean_name = sanitize_folder_name(subject_name)
-    docs = get_subject_version_matrix(clean_name)
-    return {
-        "subject": clean_name,
-        "total_documents": len(docs),
-        "documents": docs,
-        "iso_norm": "ISO 21001:2018 Cláusula 7.5",
-        "warning": "Si edita manualmente archivos Word/Excel fuera del sistema, actualice el número de versión para mantener la validez documental ante auditorías de calidad."
-    }
 
 
 

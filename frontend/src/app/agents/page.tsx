@@ -310,7 +310,7 @@ export default function AgentsDashboard() {
                       onClick={() => setShowDriveModal(true)}
                       disabled={!selectedSubject}
                       className="text-xs bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-xl transition border border-blue-200 flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                      title="Subir copia de seguridad de las carpetas de la materia a Google Drive"
+                      title="Subir copia de seguridad de las carpetas de la asignatura a Google Drive"
                     >
                       <CloudUpload className="w-3.5 h-3.5 text-blue-600" />
                       ☁️ Respaldar en Google Drive

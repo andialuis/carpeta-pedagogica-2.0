@@ -90,10 +90,10 @@ export default function DriveBackupModal({ isOpen, onClose, subjectName }: Drive
           </button>
         </div>
 
-        {/* Info de la materia */}
+        {/* Info de la asignatura */}
         <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-3.5 mb-5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-500 font-medium">Materia seleccionada:</span>
+            <span className="text-slate-500 font-medium">Asignatura seleccionada:</span>
             <span className="font-bold text-slate-900 font-mono">{subjectName || 'No seleccionada'}</span>
           </div>
           <div className="flex items-center justify-between text-xs mt-1.5 pt-1.5 border-t border-[#E8E3DA]">

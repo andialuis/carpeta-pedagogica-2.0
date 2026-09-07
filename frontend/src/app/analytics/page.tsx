@@ -448,7 +448,7 @@ export default function AnalyticsDashboard() {
                     <span className="text-3xl font-black text-emerald-700">88%</span>
                   </div>
                   <div className="mt-2 text-xs font-bold text-emerald-600">
-                    Probabilidad de aprobar la materia
+                    Probabilidad de aprobar la asignatura
                   </div>
                 </div>
               </div>

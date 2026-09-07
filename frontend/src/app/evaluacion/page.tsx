@@ -283,15 +283,15 @@ export default function EvaluacionPage() {
             Plan de Evaluación y Adaptaciones
           </h1>
           <p className="text-slate-500 text-sm mt-0.5 font-medium">
-            Diseño del plan de evaluación por materia, adecuaciones curriculares (AC), alertas anti-outsourcing y DUA
+            Diseño del plan de evaluación por asignatura, adecuaciones curriculares (AC), alertas anti-outsourcing y DUA
           </p>
         </div>
 
-        {/* Selector de Materia */}
+        {/* Selector de Asignatura */}
         <div className="flex items-center gap-3">
           <div className="bg-white border border-[#E2DDD5] p-2 rounded-xl shadow-xs flex items-center gap-2">
             <label className="font-semibold text-slate-700 text-xs pl-2 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Materia:
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span> Asignatura:
             </label>
             <select
               className="bg-[#FAF8F5] border border-[#DDD7CD] text-slate-900 text-xs rounded-lg p-2 font-bold focus:ring-amber-500"
@@ -327,7 +327,7 @@ export default function EvaluacionPage() {
                 Sugerencia Pedagógica Proactiva: Datos e Instrumentos Faltantes
               </h3>
               <p className="text-slate-600 leading-relaxed">
-                Para personalizar la evaluación según DUA y medir el esfuerzo real (Sudor Intelectual), se detectaron instrumentos no cargados aún en la carpeta de la materia:
+                Para personalizar la evaluación según DUA y medir el esfuerzo real (Sudor Intelectual), se detectaron instrumentos no cargados aún en la carpeta de la asignatura:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2">
                 {planData.instrumentos_faltantes.map((ins: any, i: number) => (
@@ -368,7 +368,7 @@ export default function EvaluacionPage() {
             activeTab === 'plan_base' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
           }`}
         >
-          <Sliders className="w-3.5 h-3.5 text-amber-700" /> Plan Base de la Materia
+          <Sliders className="w-3.5 h-3.5 text-amber-700" /> Plan Base de la Asignatura
         </button>
 
         <button
@@ -1020,7 +1020,7 @@ export default function EvaluacionPage() {
                 ))
               ) : (
                 <div className="text-center p-8 bg-[#FAF8F5] rounded-xl border border-slate-200 text-slate-500 italic text-xs">
-                  Sin alertas críticas detectadas para esta materia. El grupo opera en progresión óptima.
+                  Sin alertas críticas detectadas para esta asignatura. El grupo opera en progresión óptima.
                 </div>
               )}
             </div>
