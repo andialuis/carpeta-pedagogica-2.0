@@ -1,10 +1,13 @@
 [INICIO:CODIGO_MODULO] INV101 [FIN:CODIGO_MODULO]
 [INICIO:NOMBRE_MODULO] INV101 - Introduccion a la Investigacion [FIN:NOMBRE_MODULO]
-[INICIO:DOCENTE] Docente Titular [FIN:DOCENTE]
+[INICIO:DOCENTE] Dr. Luis Alfredo Andia [FIN:DOCENTE]
 [INICIO:DURACION_HORAS] 80 horas académicas [FIN:DURACION_HORAS]
+[INICIO:HORAS_PRESENCIALES] 48 horas presenciales / sincrónicas [FIN:HORAS_PRESENCIALES]
+[INICIO:HORAS_AUTONOMAS] 32 horas de trabajo autónomo [FIN:HORAS_AUTONOMAS]
+[INICIO:CREDITOS_SCT] 3 Créditos SCT / ECTS [FIN:CREDITOS_SCT]
 [INICIO:PERIODO_MODULO] Módulo 1 - 2026 [FIN:PERIODO_MODULO]
 [INICIO:MODALIDAD] Semipresencial / Aula Invertida [FIN:MODALIDAD]
-[INICIO:PROBLEMA_CONTEXTO] Outsourcing cognitivo y desinformacion [FIN:PROBLEMA_CONTEXTO]
+[INICIO:PROBLEMA_CONTEXTO] Riesgo de outsourcing cognitivo y uso acrítico de IA en formulación de investigaciones. [FIN:PROBLEMA_CONTEXTO]
 [INICIO:COMPETENCIA_GLOBAL] Formular problemas de investigación y diseñar proyectos científicos aplicando el rigor metodológico, pensamiento crítico y ética epistémica para dar respuesta a necesidades sociales. [FIN:COMPETENCIA_GLOBAL]
 
 [INICIO:FASE_1_TITULO] Epistemología y Pregunta de Investigación [FIN:FASE_1_TITULO]
@@ -35,6 +38,6 @@
 [INICIO:FASE_4_SUDOR_INTELECTUAL] Defensa verbal individual del documento validando autoría y comprensión profunda. [FIN:FASE_4_SUDOR_INTELECTUAL]
 [INICIO:FASE_4_CRITERIO_EVAL] Perfil completo y sustentación oral rigurosa con dominio conceptual de las decisiones tomadas. [FIN:FASE_4_CRITERIO_EVAL]
 
-[INICIO:ADAPTACIONES_DUA_INCLUSION] . Múltiples medios de representación (diagramas metodológicos, grabaciones) y evaluación flexible por hitos. [FIN:ADAPTACIONES_DUA_INCLUSION]
+[INICIO:ADAPTACIONES_DUA_INCLUSION] Ninguno registrado (Adaptaciones DUA generales aplicadas). Múltiples medios de representación (diagramas metodológicos, grabaciones) y evaluación flexible por hitos. [FIN:ADAPTACIONES_DUA_INCLUSION]
 [INICIO:ESTRATEGIA_ANTI_OUTSOURCING] Triangulación Socrática obligatoria mediante coloquio oral individual de 10 minutos para defender el proceso de diseño metodológico. [FIN:ESTRATEGIA_ANTI_OUTSOURCING]
 [INICIO:PRODUCTO_FINAL_MODULAR] Perfil de Investigación Científica defendido oralmente con evidencia de proceso. [FIN:PRODUCTO_FINAL_MODULAR]

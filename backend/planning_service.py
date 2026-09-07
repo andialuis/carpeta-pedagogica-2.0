@@ -37,6 +37,9 @@ Cada sección debe ser rigurosa, profunda y adaptada a la educación superior y 
 [INICIO:NOMBRE_MODULO] {{MATERIA}} [FIN:NOMBRE_MODULO]
 [INICIO:DOCENTE] {{DOCENTE}} [FIN:DOCENTE]
 [INICIO:DURACION_HORAS] {{DURACION_HORAS}} [FIN:DURACION_HORAS]
+[INICIO:HORAS_PRESENCIALES] {{HORAS_PRESENCIALES}} [FIN:HORAS_PRESENCIALES]
+[INICIO:HORAS_AUTONOMAS] {{HORAS_AUTONOMAS}} [FIN:HORAS_AUTONOMAS]
+[INICIO:CREDITOS_SCT] {{CREDITOS_SCT}} [FIN:CREDITOS_SCT]
 [INICIO:PERIODO_MODULO] {{PERIODO_MODULO}} [FIN:PERIODO_MODULO]
 [INICIO:MODALIDAD] {{MODALIDAD}} [FIN:MODALIDAD]
 [INICIO:PROBLEMA_CONTEXTO] [Descripción del problema del contexto real a abordar] [FIN:PROBLEMA_CONTEXTO]
@@ -244,12 +247,13 @@ def ensure_subject_planning_dirs(subject_name: str) -> Dict[str, str]:
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(tpl_dir, exist_ok=True)
 
-    # Copiar plantilla base si no existe
+    # Copiar plantilla base si no existe o si la de templates es más reciente
     dest_tpl = os.path.join(tpl_dir, "Plantilla_CBL_Modular_INV101.docx")
     src_tpl = os.path.join(TEMPLATES_DIR, "Plantilla_CBL_Modular.docx")
-    if not os.path.exists(dest_tpl) and os.path.exists(src_tpl):
+    if os.path.exists(src_tpl):
         import shutil
-        shutil.copyfile(src_tpl, dest_tpl)
+        if not os.path.exists(dest_tpl) or os.path.getmtime(src_tpl) > os.path.getmtime(dest_tpl):
+            shutil.copyfile(src_tpl, dest_tpl)
 
     return {
         "entrada": in_dir,
@@ -281,8 +285,8 @@ def inject_tags_into_docx(template_path: str, tags_map: Dict[str, str], output_p
             return
         modified = text
         for tag, val in tags_map.items():
-            modified = modified.replace(f"[[{tag}]]", val)
-            modified = modified.replace(f"[{tag}]", val)
+            modified = modified.replace(f"[[{tag}]]", str(val))
+            modified = modified.replace(f"[{tag}]", str(val))
         if modified != text:
             # Preservar estilos asignando el texto completo
             paragraph.text = modified
@@ -298,6 +302,15 @@ def inject_tags_into_docx(template_path: str, tags_map: Dict[str, str], output_p
                 for p in cell.paragraphs:
                     _replace_in_paragraph(p)
 
+    # 3. Encabezados y pies de página en todas las secciones
+    for section in doc.sections:
+        if section.header:
+            for p in section.header.paragraphs:
+                _replace_in_paragraph(p)
+        if section.footer:
+            for p in section.footer.paragraphs:
+                _replace_in_paragraph(p)
+
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     doc.save(output_path)
     return output_path
@@ -311,6 +324,9 @@ def generate_cbl_plan_draft(subject_name: str, params: Dict[str, Any], api_key: 
     docente = params.get("docente", "Lic. / Dr. Docente Titular")
     periodo = params.get("periodo", "Módulo 1 - 2026")
     horas = params.get("duracion_horas", "80 horas académicas")
+    horas_presenciales = params.get("horas_presenciales", "48 horas presenciales / sincrónicas")
+    horas_autonomas = params.get("horas_autonomas", "32 horas de trabajo autónomo")
+    creditos_sct = params.get("creditos_sct", "3 Créditos SCT / ECTS")
     modalidad = params.get("modalidad", "Semipresencial / Aula Invertida")
     problema = params.get("problema_contexto", "Riesgo de outsourcing cognitivo y uso acrítico de IA en formulación de investigaciones.")
     estudiantes_ac = params.get("estudiantes_ac", "Ninguno registrado (Adaptaciones DUA generales aplicadas)")
@@ -322,6 +338,9 @@ def generate_cbl_plan_draft(subject_name: str, params: Dict[str, Any], api_key: 
     prompt = prompt.replace("{{DOCENTE}}", docente)
     prompt = prompt.replace("{{PERIODO_MODULO}}", periodo)
     prompt = prompt.replace("{{DURACION_HORAS}}", horas)
+    prompt = prompt.replace("{{HORAS_PRESENCIALES}}", horas_presenciales)
+    prompt = prompt.replace("{{HORAS_AUTONOMAS}}", horas_autonomas)
+    prompt = prompt.replace("{{CREDITOS_SCT}}", creditos_sct)
     prompt = prompt.replace("{{MODALIDAD}}", modalidad)
     prompt = prompt.replace("{{PROBLEMA_CONTEXTO}}", problema)
     prompt = prompt.replace("{{ESTUDIANTES_AC}}", estudiantes_ac)
@@ -371,6 +390,9 @@ def generate_cbl_plan_draft(subject_name: str, params: Dict[str, Any], api_key: 
 [INICIO:NOMBRE_MODULO] {clean_subj} [FIN:NOMBRE_MODULO]
 [INICIO:DOCENTE] {docente} [FIN:DOCENTE]
 [INICIO:DURACION_HORAS] {horas} [FIN:DURACION_HORAS]
+[INICIO:HORAS_PRESENCIALES] {horas_presenciales} [FIN:HORAS_PRESENCIALES]
+[INICIO:HORAS_AUTONOMAS] {horas_autonomas} [FIN:HORAS_AUTONOMAS]
+[INICIO:CREDITOS_SCT] {creditos_sct} [FIN:CREDITOS_SCT]
 [INICIO:PERIODO_MODULO] {periodo} [FIN:PERIODO_MODULO]
 [INICIO:MODALIDAD] {modalidad} [FIN:MODALIDAD]
 [INICIO:PROBLEMA_CONTEXTO] {problema} [FIN:PROBLEMA_CONTEXTO]
@@ -446,6 +468,25 @@ def process_cbl_plan_to_output(subject_name: str) -> Dict[str, Any]:
     out_file = os.path.join(dirs["salida"], f"PLAN_MODULAR_{clean_subj.replace(' ', '_')}.docx")
 
     inject_tags_into_docx(tpl_path, tags_map, out_file)
+
+    # Registrar en libro oficial de Control de Versiones Documental (ISO 21001:2018 Cláusula 7.5)
+    try:
+        from version_control_service import record_document_version
+        code_val = tags_map.get("CODIGO_MODULO", clean_subj.split("-")[0].strip() if "-" in clean_subj else "PDC")
+        record_document_version(
+            subject_name=clean_subj,
+            doc_name=f"Plan de Aprendizaje Modular CBL - {clean_subj}",
+            doc_code=f"DOC-DIR-CP2-PDC-{code_val}",
+            doc_type="Planificación Didáctica Modular",
+            new_version="1.0",
+            author_or_agent="Motor de Planificación CBL / UbD",
+            change_description="Compilación oficial del Plan de Aprendizaje Modular con alineamiento constructivo, créditos SCT e inclusión DUA.",
+            justification="Aseguramiento del diseño curricular modular bajo estándar ISO 21001:2018 Cláusula 7.5.",
+            file_path=out_file,
+            approval_status="Aprobado Institucional"
+        )
+    except Exception as e:
+        print(f"[Planning Service] Advertencia al registrar en control de versiones: {e}")
 
     return {
         "success": True,

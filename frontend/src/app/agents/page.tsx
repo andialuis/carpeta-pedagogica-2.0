@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { 
   ShieldCheck, AlertTriangle, FileDown, CheckCircle2, 
-  RefreshCw, Play, Brain, Sparkles, Scale, CloudUpload
+  RefreshCw, Play, Brain, Sparkles, Scale, CloudUpload, FileSpreadsheet
 } from 'lucide-react';
 import DriveBackupModal from '../components/DriveBackupModal';
 
@@ -70,9 +70,9 @@ export default function AgentsDashboard() {
   };
 
   const fallbackModules = [
-    { id: "e1", name: "Etapa 1: Preparar Datos", description: "Limpia y clasifica los datos crudos.", products: "BASE_INTEGRADA.xlsx" },
+    { id: "e1", name: "Etapa 1: Preparar Datos & Control de Versiones", description: "Limpia y clasifica los datos crudos, e inicializa la Matriz de Control de Versiones Documental (ISO 21001:2018 Cláusula 7.5).", products: "BASE_INTEGRADA.xlsx, CONTROL_VERSIONES_DOCUMENTAL.xlsx" },
     { id: "e2", name: "Etapa 2: Procesar Datos", description: "Anonimiza e imputa datos vacíos (Crea diccionario de nombres).", products: "BASE_LIMPIA_ANONIMIZADA.xlsx, llave_nombres.json" },
-    { id: "e3", name: "Etapa 3: Analizar Datos", description: "Genera indicadores e hipótesis usando Gemini.", products: "INFORME_COMPLETO_E3.docx, insights.json" },
+    { id: "e3", name: "Etapa 3: Analizar Datos & Auditoría Cognitiva", description: "Genera indicadores multidimensionales, auditoría de outsourcing e hipótesis usando Gemini.", products: "INFORME_COMPLETO_E3.docx, insights.json" },
     { id: "e4", name: "Etapa 4: Visualizar Datos", description: "Construye los tableros analíticos interactivos.", products: "Dashboard Interactivo Web (Next.js)" }
   ];
 
@@ -169,6 +169,11 @@ export default function AgentsDashboard() {
 
   const handleDownloadInstrument = (instrumentId: string) => {
     window.open(`/api/instruments/download/${instrumentId}`, '_blank');
+  };
+
+  const handleDownloadVersionControl = () => {
+    if (!selectedSubject) return alert("Selecciona una materia primero");
+    window.open(`/api/documents/version-control/${encodeURIComponent(selectedSubject)}`, '_blank');
   };
 
   return (
@@ -277,22 +282,48 @@ export default function AgentsDashboard() {
                 </button>
               </div>
 
-              {/* Botón de respaldo en Google Drive para la Etapa 1 */}
+              {/* Controles de Calidad, Control de Versiones Documental (ISO 21001) y Respaldo Nube */}
               {mod.id === 'e1' && (
-                <div className="mt-4 pt-3 border-t border-[#E8E3DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                  <div className="text-[11px] text-slate-500">
-                    <span className="font-semibold text-slate-700">Respaldo en la Nube:</span> Copia de carpetas Base y REV
+                <div className="mt-4 pt-3 border-t border-[#E8E3DA] space-y-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="text-[11px] text-slate-600">
+                      <span className="font-semibold text-slate-800">Control de Versiones ISO 21001:</span> Matriz documental y Hash SHA-256
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleDownloadVersionControl}
+                      disabled={!selectedSubject}
+                      className="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-bold px-3 py-1.5 rounded-xl transition border border-emerald-300 flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                      title="Descargar libro Excel de control de versiones y auditoría de documentos"
+                    >
+                      <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-700" />
+                      📑 Control de Versiones (.xlsx)
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowDriveModal(true)}
-                    disabled={!selectedSubject}
-                    className="text-xs bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-xl transition border border-blue-200 flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                    title="Subir copia de seguridad de las carpetas de la materia a Google Drive"
-                  >
-                    <CloudUpload className="w-3.5 h-3.5 text-blue-600" />
-                    ☁️ Respaldar en Google Drive
-                  </button>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="text-[11px] text-slate-500">
+                      <span className="font-semibold text-slate-700">Respaldo en la Nube:</span> Copia de carpetas Base y REV
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowDriveModal(true)}
+                      disabled={!selectedSubject}
+                      className="text-xs bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-xl transition border border-blue-200 flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                      title="Subir copia de seguridad de las carpetas de la materia a Google Drive"
+                    >
+                      <CloudUpload className="w-3.5 h-3.5 text-blue-600" />
+                      ☁️ Respaldar en Google Drive
+                    </button>
+                  </div>
+
+                  {/* Banner de Advertencia de Trazabilidad ISO 21001 */}
+                  <div className="p-3 bg-amber-50/90 border border-amber-200/90 rounded-xl flex items-start gap-2.5">
+                    <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                    <p className="text-[11px] text-amber-950 leading-relaxed">
+                      <strong className="font-bold">Aviso de Auditoría Institucional (ISO 21001 Cláusula 7.5):</strong> Si editas manualmente los archivos Word o Excel fuera del software, debes registrar el cambio actualizando la versión (ej. 1.0 a 1.1) y fecha en la hoja <code className="bg-amber-100 px-1 py-0.5 rounded text-amber-950 font-mono font-bold">CONTROL_VERSIONES_DOCUMENTAL.xlsx</code> para no invalidar la trazabilidad ante pares evaluadores y comités de acreditación.
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
@@ -455,6 +486,7 @@ export default function AgentsDashboard() {
               </div>
             ) : null}
 
+          </div>
         </div>
       )}
 

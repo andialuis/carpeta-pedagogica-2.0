@@ -11,11 +11,30 @@ from docx import Document
 from docx.shared import Inches, Pt, RGBColor, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.oxml.ns import qn
-from docx.oxml import OxmlElement
+from docx.oxml.ns import qn, nsdecls
+from docx.oxml import OxmlElement, parse_xml
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+def set_cell_background(cell, hex_color):
+    """Aplica color de fondo hexadecimal a una celda de tabla."""
+    tcPr = cell._tc.get_or_add_tcPr()
+    shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{hex_color}"/>')
+    tcPr.append(shd)
+
+def set_cell_margins(cell, top=80, bottom=80, left=100, right=100):
+    """Establece márgenes internos de celda en dxa."""
+    tcPr = cell._tc.get_or_add_tcPr()
+    tcMar = parse_xml(
+        f'<w:tcMar {nsdecls("w")}>'
+        f'<w:top w:w="{top}" w:type="dxa"/>'
+        f'<w:bottom w:w="{bottom}" w:type="dxa"/>'
+        f'<w:left w:w="{left}" w:type="dxa"/>'
+        f'<w:right w:w="{right}" w:type="dxa"/>'
+        f'</w:tcMar>'
+    )
+    tcPr.append(tcMar)
 
 def run():
     print("Iniciando Etapa 3: Análisis con IA y Enfoque Humano...")
@@ -23,6 +42,7 @@ def run():
     
     agents_dir = os.path.dirname(__file__)
     backend_dir = os.path.dirname(agents_dir)
+    sys.path.insert(0, backend_dir)
     root_dir = os.path.dirname(backend_dir)
     target_dir = os.path.join(root_dir, "uploads", f"{subject_name}-REV", "bases_de_datos")
     
@@ -408,61 +428,397 @@ Escribe un informe analítico estructurado en formato JSON estricto con las sigu
     # Construir INFORME_COMPLETO_E3.docx
     print("Construyendo INFORME_COMPLETO_E3.docx...")
     doc = Document()
-    doc.add_heading(f"Informe Profesional de Analítica Educativa", 0)
-    doc.add_heading(f"Materia: {subject_name}", 1)
-    
-    doc.add_heading("1. Resumen Ejecutivo y Diagnóstico", 2)
-    doc.add_paragraph(informe_texto.strip())
-    
-    doc.add_heading("2. Indicadores Clave de la Clase (KPIs)", 2)
-    kpis = [
-        ("Promedio General", f"{insights.get('promedio_general', 0)} / 100"),
-        ("Estudiantes en Riesgo", f"{insights.get('riesgo_abandono', 0)} / {len(insights.get('estudiantes', []))}"),
-        ("Alertas de Outsourcing Cognitivo", f"{insights.get('outsourcing_count', 0)}"),
-        ("Casos con Potencial Oculto", f"{insights.get('potencial_oculto_count', 0)}"),
+
+    codigo_materia = subject_name.split("-")[0].strip() if "-" in subject_name else "E3"
+    total_est = len(insights.get("estudiantes", []))
+
+    # Configuración de márgenes estándar (0.8 pulgadas)
+    for section in doc.sections:
+        section.top_margin = Inches(0.8)
+        section.bottom_margin = Inches(0.8)
+        section.left_margin = Inches(0.8)
+        section.right_margin = Inches(0.8)
+
+        # Encabezado institucional de calidad
+        header = section.header
+        p_head = header.paragraphs[0]
+        p_head.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        r_h = p_head.add_run(f"INFORME ANALÍTICO DE APRENDIZAJE • DOC-DIR-CP2-INF3-{codigo_materia} • ISO 21001")
+        r_h.font.name = "Arial"
+        r_h.font.size = Pt(7.5)
+        r_h.font.color.rgb = RGBColor(100, 116, 139)
+
+        # Pie de página institucional
+        footer = section.footer
+        p_foot = footer.paragraphs[0]
+        p_foot.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        r_f = p_foot.add_run("Carpeta Pedagógica 2.0 • Sistema de Analítica de Aprendizaje & Aseguramiento de Calidad")
+        r_f.font.name = "Arial"
+        r_f.font.size = Pt(7.5)
+        r_f.font.color.rgb = RGBColor(100, 116, 139)
+
+    # Colores institucionales
+    C_NAVY = RGBColor(26, 58, 92)       # #1A3A5C
+    C_SLATE = RGBColor(30, 41, 59)      # #1E293B
+    C_AMBER = RGBColor(180, 83, 9)      # #B45309
+    C_DARK = RGBColor(15, 23, 42)       # #0F172A
+    C_MUTED = RGBColor(100, 116, 139)   # #64748B
+
+    # Portada / Título Principal
+    p_inst = doc.add_paragraph()
+    p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r_inst = p_inst.add_run("SISTEMA DE GESTIÓN DE LA CALIDAD EDUCATIVA • ISO 21001:2018\n")
+    r_inst.font.name = "Arial"
+    r_inst.font.size = Pt(8.5)
+    r_inst.font.bold = True
+    r_inst.font.color.rgb = C_AMBER
+
+    r_title = p_inst.add_run("INFORME OFICIAL DE ANALÍTICA DEL APRENDIZAJE Y AUDITORÍA COGNITIVA")
+    r_title.font.name = "Arial"
+    r_title.font.size = Pt(15)
+    r_title.font.bold = True
+    r_title.font.color.rgb = C_NAVY
+
+    p_sub = doc.add_paragraph()
+    p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r_sub = p_sub.add_run(f"ASIGNATURA: {subject_name.upper()} • ANÁLISIS MULTIDIMENSIONAL • ENFOQUE HUMANO")
+    r_sub.font.name = "Arial"
+    r_sub.font.size = Pt(9.5)
+    r_sub.font.bold = True
+    r_sub.font.color.rgb = C_SLATE
+
+    # Tabla de Control Documental ISO 21001
+    t_iso = doc.add_table(rows=3, cols=2)
+    t_iso.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_iso.autofit = False
+
+    iso_meta = [
+        ("Código Documental:", f"DOC-DIR-CP2-INF3-{codigo_materia}"),
+        ("Versión y Vigencia:", "1.0 (Oficial Aprobado) • Periodo Académico Vigente"),
+        ("Norma y Sistema Aplicable:", "ISO 21001:2018 Cláusula 9.1 (Seguimiento, Medición, Análisis y Evaluación)")
     ]
-    t = doc.add_table(rows=1, cols=2)
-    t.style = 'Table Grid'
-    t.rows[0].cells[0].text = "Indicador"
-    t.rows[0].cells[1].text = "Valor"
-    for k, v in kpis:
-        r = t.add_row()
-        r.cells[0].text = k
-        r.cells[1].text = str(v)
+    for idx, (lbl, val) in enumerate(iso_meta):
+        c0, c1 = t_iso.cell(idx, 0), t_iso.cell(idx, 1)
+        set_cell_margins(c0, 50, 50, 100, 100)
+        set_cell_margins(c1, 50, 50, 100, 100)
+        set_cell_background(c0, "F1F5F9")
+        set_cell_background(c1, "FFFFFF")
+        
+        p0 = c0.paragraphs[0]
+        r0 = p0.add_run(lbl)
+        r0.font.name = "Arial"
+        r0.font.size = Pt(8)
+        r0.font.bold = True
+        r0.font.color.rgb = C_SLATE
+
+        p1 = c1.paragraphs[0]
+        r1 = p1.add_run(val)
+        r1.font.name = "Arial"
+        r1.font.size = Pt(8)
+        r1.font.color.rgb = C_DARK
+
+    doc.add_paragraph() # Espacio
+
+    # Ficha Técnica de Calidad de la Muestra
+    h_fic = doc.add_paragraph()
+    r_hfic = h_fic.add_run("FICHA TÉCNICA DE CALIDAD DE LA MUESTRA")
+    r_hfic.font.name = "Arial"
+    r_hfic.font.size = Pt(10.5)
+    r_hfic.font.bold = True
+    r_hfic.font.color.rgb = C_SLATE
+
+    t_fic = doc.add_table(rows=2, cols=2)
+    t_fic.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_fic.autofit = False
+
+    from datetime import datetime
+    corte_str = datetime.now().strftime("%d/%m/%Y %H:%M")
+    fic_data = [
+        (f"Población Evaluada (N): {total_est} estudiantes", f"Muestra Analizada (n): {total_est} registros (100% Cobertura Censal)"),
+        (f"Fecha y Hora de Corte: {corte_str}", "Confiabilidad Estadística: Censo Completo • Coeficiente de Spearman ρ")
+    ]
+    for r_i, r_data in enumerate(fic_data):
+        for c_i, text in enumerate(r_data):
+            cell = t_fic.cell(r_i, c_i)
+            set_cell_margins(cell, 60, 60, 100, 100)
+            set_cell_background(cell, "F8FAFC")
+            p = cell.paragraphs[0]
+            r = p.add_run(text)
+            r.font.name = "Arial"
+            r.font.size = Pt(8)
+            r.font.color.rgb = C_SLATE
+
+    doc.add_paragraph() # Espacio
+    
+    # 1. Resumen Ejecutivo y Diagnóstico
+    h1 = doc.add_paragraph()
+    r_h1 = h1.add_run("1. RESUMEN EJECUTIVO Y DIAGNÓSTICO INTEGRAL")
+    r_h1.font.name = "Arial"
+    r_h1.font.size = Pt(10.5)
+    r_h1.font.bold = True
+    r_h1.font.color.rgb = C_SLATE
+
+    p_diag = doc.add_paragraph()
+    r_diag = p_diag.add_run(informe_texto.strip())
+    r_diag.font.name = "Arial"
+    r_diag.font.size = Pt(9)
+    r_diag.font.color.rgb = C_DARK
+    
+    # 2. Indicadores Clave de la Clase (KPIs)
+    h2 = doc.add_paragraph()
+    r_h2 = h2.add_run("2. INDICADORES CLAVE DE LA CLASE (KPIs)")
+    r_h2.font.name = "Arial"
+    r_h2.font.size = Pt(10.5)
+    r_h2.font.bold = True
+    r_h2.font.color.rgb = C_SLATE
+
+    kpis = [
+        ("Promedio General de la Asignatura", f"{insights.get('promedio_general', 0)} / 100"),
+        ("Estudiantes en Riesgo de Rezago o Abandono", f"{insights.get('riesgo_abandono', 0)} de {total_est}"),
+        ("Alertas de Outsourcing Cognitivo (Requieren Triangulación)", f"{insights.get('outsourcing_count', 0)} casos"),
+        ("Estudiantes con Potencial Oculto (Alto Proceso / Nota Media)", f"{insights.get('potencial_oculto_count', 0)} casos"),
+    ]
+    t_kpi = doc.add_table(rows=1, cols=2)
+    t_kpi.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_kpi.autofit = False
+
+    c0, c1 = t_kpi.cell(0, 0), t_kpi.cell(0, 1)
+    set_cell_background(c0, "1A3A5C")
+    set_cell_background(c1, "1A3A5C")
+    set_cell_margins(c0, 80, 80, 100, 100)
+    set_cell_margins(c1, 80, 80, 100, 100)
+    
+    p0 = c0.paragraphs[0]
+    r0 = p0.add_run("Indicador Pedagógico")
+    r0.font.name = "Arial"
+    r0.font.size = Pt(8.5)
+    r0.font.bold = True
+    r0.font.color.rgb = RGBColor(255, 255, 255)
+
+    p1 = c1.paragraphs[0]
+    r1 = p1.add_run("Valor / Métrica Institucional")
+    r1.font.name = "Arial"
+    r1.font.size = Pt(8.5)
+    r1.font.bold = True
+    r1.font.color.rgb = RGBColor(255, 255, 255)
+
+    for r_i, (k, v) in enumerate(kpis, start=1):
+        row = t_kpi.add_row()
+        bg = "FFFFFF" if r_i % 2 != 0 else "F8FAFC"
+        for c_idx, cell in enumerate(row.cells):
+            set_cell_background(cell, bg)
+            set_cell_margins(cell, 70, 70, 100, 100)
+            p = cell.paragraphs[0]
+            r = p.add_run(str(k if c_idx == 0 else v))
+            r.font.name = "Arial"
+            r.font.size = Pt(8.5)
+            r.font.bold = (c_idx == 1)
+            r.font.color.rgb = C_SLATE if c_idx == 1 else C_DARK
+
+    doc.add_paragraph() # Espacio
 
     if os.path.exists(fig1_path):
-        doc.add_heading("3. Distribución Estadística del Rendimiento", 2)
+        h3 = doc.add_paragraph()
+        r_h3 = h3.add_run("3. DISTRIBUCIÓN ESTADÍSTICA DEL RENDIMIENTO")
+        r_h3.font.name = "Arial"
+        r_h3.font.size = Pt(10.5)
+        r_h3.font.bold = True
+        r_h3.font.color.rgb = C_SLATE
         doc.add_picture(fig1_path, width=Inches(6.0))
+        doc.add_paragraph() # Espacio
 
-    doc.add_heading("4. Rigor Matemático y Análisis de Distribución", 2)
-    doc.add_paragraph("Evaluación estadística avanzada para verificar supuestos de normalidad, asimetría de notas y correlaciones no paramétricas:")
-    
+    # 4. Rigor Matemático y Análisis de Distribución
+    h4 = doc.add_paragraph()
+    r_h4 = h4.add_run("4. RIGOR MATEMÁTICO Y ANÁLISIS DE DISTRIBUCIÓN")
+    r_h4.font.name = "Arial"
+    r_h4.font.size = Pt(10.5)
+    r_h4.font.bold = True
+    r_h4.font.color.rgb = C_SLATE
+
     stat_metrics = [
         ("Media Aritmética (x̄)", f"{insights.get('promedio_general', 0)} / 100"),
-        ("Mediana Muestral", f"{insights.get('mediana_general', 0)} / 100"),
-        ("Desviación Estándar Muestral (s)", f"{insights.get('desviacion_estandar', 0)}"),
-        ("Coeficiente de Asimetría (g1 - Fisher-Pearson)", f"{insights.get('skewness', 0)} ({insights.get('skewness_diagnostico', '')})"),
+        ("Mediana Muestral (Me)", f"{insights.get('mediana_general', 0)} / 100"),
+        ("Desviación Estándar (s)", f"{insights.get('desviacion_estandar', 0)}"),
+        ("Coeficiente de Asimetría (g1 - Fisher)", f"{insights.get('skewness', 0)} ({insights.get('skewness_diagnostico', '')})"),
         ("Curtosis Muestral (g2 - Fisher)", f"{insights.get('kurtosis', 0)} ({insights.get('kurtosis_diagnostico', '')})"),
         ("Correlación de Spearman Asistencia-Rendimiento (ρ)", f"{insights.get('spearman_asistencia_nota', 0)} (No paramétrica)"),
         ("Correlación de Spearman Sudor Intelectual-Rendimiento (ρ)", f"{insights.get('spearman_proceso_nota', 0)} (Medición de Proceso)"),
     ]
     t_stat = doc.add_table(rows=1, cols=2)
-    t_stat.style = 'Table Grid'
-    t_stat.rows[0].cells[0].text = "Parámetro / Prueba Estadística"
-    t_stat.rows[0].cells[1].text = "Resultado y Diagnóstico"
-    for param, res in stat_metrics:
-        r = t_stat.add_row()
-        r.cells[0].text = param
-        r.cells[1].text = str(res)
+    t_stat.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_stat.autofit = False
 
-    doc.add_heading("5. Alertas Pedagógicas y Enfoque Humano", 2)
+    c0, c1 = t_stat.cell(0, 0), t_stat.cell(0, 1)
+    set_cell_background(c0, "1A3A5C")
+    set_cell_background(c1, "1A3A5C")
+    set_cell_margins(c0, 80, 80, 100, 100)
+    set_cell_margins(c1, 80, 80, 100, 100)
+
+    p0 = c0.paragraphs[0]
+    r0 = p0.add_run("Parámetro / Prueba Estadística")
+    r0.font.name = "Arial"
+    r0.font.size = Pt(8.5)
+    r0.font.bold = True
+    r0.font.color.rgb = RGBColor(255, 255, 255)
+
+    p1 = c1.paragraphs[0]
+    r1 = p1.add_run("Resultado y Diagnóstico Formal")
+    r1.font.name = "Arial"
+    r1.font.size = Pt(8.5)
+    r1.font.bold = True
+    r1.font.color.rgb = RGBColor(255, 255, 255)
+
+    for r_i, (param, res) in enumerate(stat_metrics, start=1):
+        row = t_stat.add_row()
+        bg = "FFFFFF" if r_i % 2 != 0 else "F8FAFC"
+        for c_idx, cell in enumerate(row.cells):
+            set_cell_background(cell, bg)
+            set_cell_margins(cell, 70, 70, 100, 100)
+            p = cell.paragraphs[0]
+            r = p.add_run(str(param if c_idx == 0 else res))
+            r.font.name = "Arial"
+            r.font.size = Pt(8)
+            r.font.bold = (c_idx == 0)
+            r.font.color.rgb = C_SLATE if c_idx == 0 else C_DARK
+
+    doc.add_paragraph() # Espacio
+
+    # 5. Alertas Pedagógicas y Diagnóstico de Enfoque Humano
+    h5 = doc.add_paragraph()
+    r_h5 = h5.add_run("5. ALERTAS PEDAGÓGICAS Y DIAGNÓSTICO DE ENFOQUE HUMANO")
+    r_h5.font.name = "Arial"
+    r_h5.font.size = Pt(10.5)
+    r_h5.font.bold = True
+    r_h5.font.color.rgb = C_SLATE
+
     for a in insights.get("alertas", []):
-        doc.add_paragraph(f"• {a}")
+        p_al = doc.add_paragraph()
+        r_al = p_al.add_run(f"• {a}")
+        r_al.font.name = "Arial"
+        r_al.font.size = Pt(8.5)
+        r_al.font.color.rgb = C_DARK
 
-    doc.add_heading("6. Marco Teórico Aplicado", 2)
-    doc.add_paragraph(f"• Autodeterminación (Deci & Ryan): Autonomía={insights.get('deci_ryan_clase',{}).get('autonomia',7)}/10, Competencia={insights.get('deci_ryan_clase',{}).get('competencia',7)}/10, Relación={insights.get('deci_ryan_clase',{}).get('relacion',7)}/10.")
-    doc.add_paragraph(f"• Zona de Desarrollo Próximo (Vygotsky): {insights.get('necesidad_andamiaje_vygotsky', 'Evaluación continua')}")
-    doc.add_paragraph("• Pedagogía Crítica (Freire): Triangulación Socrática implementada para validar autoría y desarrollo de músculo intelectual propio.")
+    p_mar = doc.add_paragraph()
+    p_mar.add_run("Fundamentación Epistémica:\n").bold = True
+    p_mar.add_run(f"• Autodeterminación (Deci & Ryan): Autonomía={insights.get('deci_ryan_clase',{}).get('autonomia',7)}/10, Competencia={insights.get('deci_ryan_clase',{}).get('competencia',7)}/10, Relación={insights.get('deci_ryan_clase',{}).get('relacion',7)}/10.\n")
+    p_mar.add_run(f"• Zona de Desarrollo Próximo (Vygotsky): {insights.get('necesidad_andamiaje_vygotsky', 'Evaluación continua')}\n")
+    p_mar.add_run("• Pedagogía Crítica (Freire): Triangulación Socrática activada para validar autoría auténtica y erradicar la simulación pasiva.")
+    for run_item in p_mar.runs:
+        run_item.font.name = "Arial"
+        run_item.font.size = Pt(8)
+
+    doc.add_paragraph() # Espacio
+
+    # 6. Matriz de Prescripción y Compromisos de Andamiaje en 3 Niveles
+    h6 = doc.add_paragraph()
+    r_h6 = h6.add_run("6. MATRIZ DE PRESCRIPCIÓN Y ACCIONES EN 3 NIVELES INSTITUCIONALES")
+    r_h6.font.name = "Arial"
+    r_h6.font.size = Pt(10.5)
+    r_h6.font.bold = True
+    r_h6.font.color.rgb = C_SLATE
+
+    t_presc = doc.add_table(rows=4, cols=3)
+    t_presc.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_presc.autofit = False
+
+    presc_headers = ["Nivel de Gestión", "Acción Pedagógica / Prescripción", "Evidencia de Cumplimiento"]
+    for c_i, h_txt in enumerate(presc_headers):
+        c = t_presc.cell(0, c_i)
+        set_cell_background(c, "1A3A5C")
+        set_cell_margins(c, 80, 80, 80, 80)
+        p = c.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = p.add_run(h_txt)
+        r.font.name = "Arial"
+        r.font.size = Pt(8)
+        r.font.bold = True
+        r.font.color.rgb = RGBColor(255, 255, 255)
+
+    presc_data = [
+        ("Nivel 1: Aula (Docente Titular)",
+         "Aplicar andamiaje diferenciado en ZDP a casos en riesgo; ejecutar Triangulación Socrática a estudiantes con alerta de outsourcing.",
+         "Actas de Triangulación Socrática y registros de Sudor Intelectual."),
+        ("Nivel 2: Tutoría / Bienestar",
+         "Acompañamiento psicopedagógico y seguimiento a estudiantes con ausentismo o brechas situacionales en conectividad/empleo.",
+         "Ficha Socioeducativa de Contexto y bitácora de tutorías."),
+        ("Nivel 3: Coordinación Académica",
+         "Supervisar el alineamiento constructivo entre rúbricas CBL y evidencias, asegurando los créditos SCT y horas de trabajo autónomo.",
+         "Plan de Aprendizaje Modular oficial y auditoría de portafolios.")
+    ]
+
+    for r_i, (n_niv, n_acc, n_evi) in enumerate(presc_data, start=1):
+        row_c = t_presc.rows[r_i].cells
+        bg = "FFFFFF" if r_i % 2 != 0 else "F8FAFC"
+        for cell in row_c:
+            set_cell_background(cell, bg)
+            set_cell_margins(cell, 70, 70, 80, 80)
+
+        p0 = row_c[0].paragraphs[0]
+        r0 = p0.add_run(n_niv)
+        r0.font.name = "Arial"
+        r0.font.size = Pt(8)
+        r0.font.bold = True
+        r0.font.color.rgb = C_SLATE
+
+        p1 = row_c[1].paragraphs[0]
+        r1 = p1.add_run(n_acc)
+        r1.font.name = "Arial"
+        r1.font.size = Pt(8)
+        r1.font.color.rgb = C_DARK
+
+        p2 = row_c[2].paragraphs[0]
+        r2 = p2.add_run(n_evi)
+        r2.font.name = "Arial"
+        r2.font.size = Pt(8)
+        r2.font.color.rgb = C_MUTED
+
+    doc.add_paragraph() # Espacio
+
+    # 7. Ciclo de Firmas de Calidad Institucional (Tripartita)
+    h7 = doc.add_paragraph()
+    r_h7 = h7.add_run("7. FIRMAS DE APROBACIÓN Y CIERRE DE CALIDAD (ISO 21001)")
+    r_h7.font.name = "Arial"
+    r_h7.font.size = Pt(10.5)
+    r_h7.font.bold = True
+    r_h7.font.color.rgb = C_SLATE
+
+    t_sign = doc.add_table(rows=2, cols=3)
+    t_sign.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t_sign.autofit = False
+
+    sign_roles = [
+        ("DOCENTE TITULAR", "Elaboración y diagnóstico analítico"),
+        ("COORDINACIÓN DE CARRERA", "Revisión y pertinencia pedagógica"),
+        ("DIRECCIÓN ACADÉMICA / DECANATO", "Aprobación y certificación oficial")
+    ]
+
+    for col_idx, (role, desc) in enumerate(sign_roles):
+        c_top = t_sign.cell(0, col_idx)
+        c_bot = t_sign.cell(1, col_idx)
+        set_cell_margins(c_top, 250, 50, 50, 50)
+        set_cell_margins(c_bot, 40, 60, 50, 50)
+        set_cell_background(c_top, "FAFAFA")
+        set_cell_background(c_bot, "F1F5F9")
+
+        p_t = c_top.paragraphs[0]
+        p_t.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r_line = p_t.add_run("____________________________\nFirma y Sello")
+        r_line.font.name = "Arial"
+        r_line.font.size = Pt(7.5)
+        r_line.font.color.rgb = C_MUTED
+
+        p_b = c_bot.paragraphs[0]
+        p_b.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r_b1 = p_b.add_run(f"{role}\n")
+        r_b1.font.name = "Arial"
+        r_b1.font.bold = True
+        r_b1.font.size = Pt(8)
+        r_b1.font.color.rgb = C_SLATE
+
+        r_b2 = p_b.add_run(f"({desc})")
+        r_b2.font.name = "Arial"
+        r_b2.font.size = Pt(7)
+        r_b2.font.color.rgb = C_MUTED
 
     doc.save(docx_output)
     print(f"Documento guardado: {docx_output}")
@@ -471,6 +827,26 @@ Escribe un informe analítico estructurado en formato JSON estricto con las sigu
     with open(json_output, 'w', encoding='utf-8') as f:
         json.dump(insights, f, ensure_ascii=False, indent=4)
     print(f"JSON guardado: {json_output}")
+
+    # Registro en Control de Versiones Documental (ISO 21001:2018 Cláusula 7.5)
+    try:
+        from version_control_service import record_document_version
+        record_document_version(
+            subject_name=subject_name,
+            doc_name=f"Informe Analítico de Aprendizaje IA - {subject_name}",
+            doc_code=f"DOC-DIR-CP2-INF3-{codigo_materia}",
+            doc_type="Informe Analítico Multidimensional",
+            new_version="1.0",
+            author_or_agent="Agente Etapa 3 (Analítica & Gemini IA)",
+            change_description="Generación del Informe Analítico Oficial con ficha muestral, estadística descriptiva/inferencial y prescripción multinivel.",
+            justification="Aseguramiento de la calidad académica según ISO 21001:2018 Cláusula 9.1.",
+            file_path=docx_output,
+            approval_status="Aprobado Institucional"
+        )
+        print("Informe registrado exitosamente en CONTROL_VERSIONES_DOCUMENTAL.xlsx")
+    except Exception as e:
+        print(f"Advertencia al registrar en control de versiones: {e}")
+
     print("Etapa 3 completada con éxito.")
 
 if __name__ == "__main__":

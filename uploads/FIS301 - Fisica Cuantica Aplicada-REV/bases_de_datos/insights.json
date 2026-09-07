@@ -1,353 +1,197 @@
 {
-    "subject": "FIS301 - Fisica Cuantica Aplicada",
-    "generated_at": "2026-09-06T20:30:55.778594",
-    "total_students": 12,
-    "promedio_general": 76.7,
-    "mediana_general": 76.8,
-    "desviacion_estandar": 7.1,
-    "skewness": -0.15,
-    "skewness_diagnostico": "Distribución Cuasi-Simétrica: Calificaciones balanceadas.",
-    "kurtosis": -1.11,
-    "kurtosis_diagnostico": "Platicúrtica: Distribución aplanada y polarizada (alta dispersión).",
-    "spearman_asistencia_nota": 0.29,
-    "spearman_proceso_nota": -0.1,
-    "riesgo_abandono": 0,
-    "cobertura_cbl": "Análisis Multidimensional Activo",
-    "alerta_outsourcing_cognitivo": false,
-    "outsourcing_count": 0,
+    "promedio_general": 77.4,
+    "desviacion_estandar": 6.8,
+    "riesgo_abandono": 2,
+    "cobertura_cbl": "CBL Activo - Física Cuántica Aplicada",
+    "alerta_outsourcing_cognitivo": true,
+    "outsourcing_count": 4,
     "potencial_oculto_count": 3,
-    "necesidad_andamiaje_vygotsky": "0 estudiantes requieren andamiaje urgente; 3 con potencial oculto detectado.",
+    "necesidad_andamiaje_vygotsky": "La Zona de Desarrollo Próximo (ZDP) del grupo evidencia una brecha entre la ejecución algorítmica superficial asistida por IA y la comprensión conceptual profunda de los principios cuánticos. Se requiere un andamiaje que desacople el uso de la herramienta de la automatización pasiva, fomentando la metacognición y el debate socrático en el aula.",
     "alertas": [
-        "Sin anomalías de Outsourcing Cognitivo detectadas.",
-        "Nivel de retención óptimo en la clase.",
-        "3 estudiantes con alto proceso pero notas moderadas (Potencial Oculto).",
-        "Diagnóstico de Forma: Distribución Cuasi-Simétrica: Calificaciones balanceadas. (Asimetría g1 = -0.15)."
+        "Ausentismo recurrente en la Sesión 3 que impacta el desempeño en evaluaciones subsecuentes.",
+        "Dependencia crítica de la IA como muleta cognitiva en estudiantes con bajo volumen de iteración pero alto rendimiento en proyectos."
     ],
     "deci_ryan_clase": {
-        "autonomia": 7.5,
+        "autonomia": 7.8,
         "competencia": 7.2,
-        "relacion": 7.3
+        "relacion": 7.5
     },
-    "gauss_distribucion": [
-        {
-            "rango": "0-9",
-            "estudiantes": 0
-        },
-        {
-            "rango": "10-19",
-            "estudiantes": 0
-        },
-        {
-            "rango": "20-29",
-            "estudiantes": 0
-        },
-        {
-            "rango": "30-39",
-            "estudiantes": 0
-        },
-        {
-            "rango": "40-49",
-            "estudiantes": 0
-        },
-        {
-            "rango": "50-59",
-            "estudiantes": 0
-        },
-        {
-            "rango": "60-69",
-            "estudiantes": 2
-        },
-        {
-            "rango": "70-79",
-            "estudiantes": 5
-        },
-        {
-            "rango": "80-89",
-            "estudiantes": 5
-        },
-        {
-            "rango": "90-99",
-            "estudiantes": 0
-        },
-        {
-            "rango": "100-109",
-            "estudiantes": 0
-        }
-    ],
-    "scatter_rendimiento_proceso": [
-        {
-            "id": "Est_001",
-            "promedio": 83.6,
-            "iteraciones": 12,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_002",
-            "promedio": 72.3,
-            "iteraciones": 30,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_003",
-            "promedio": 87.6,
-            "iteraciones": 2,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_004",
-            "promedio": 64.5,
-            "iteraciones": 39,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_005",
-            "promedio": 81.8,
-            "iteraciones": 11,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_006",
-            "promedio": 72.8,
-            "iteraciones": 2,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_007",
-            "promedio": 82.1,
-            "iteraciones": 23,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_008",
-            "promedio": 74.2,
-            "iteraciones": 16,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_009",
-            "promedio": 79.3,
-            "iteraciones": 3,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_010",
-            "promedio": 82.6,
-            "iteraciones": 43,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_011",
-            "promedio": 70.0,
-            "iteraciones": 21,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        },
-        {
-            "id": "Est_012",
-            "promedio": 69.2,
-            "iteraciones": 1,
-            "riesgo": "Bajo",
-            "alerta_outsourcing": false
-        }
-    ],
+    "hipotesis_gemini": "El grupo de FIS301 muestra una dualidad interesante entre la adopción tecnológica y el compromiso pedagógico. Desde la perspectiva de la Teoría de la Autodeterminación (Deci & Ryan), aquellos estudiantes que utilizan la IA como 'copiloto' muestran una internalización más robusta de la competencia, mientras que el uso tipo 'muleta' enmascara posibles riesgos de outsourcing cognitivo Freireano, donde la herramienta piensa por el estudiante, alienando el proceso de construcción crítica del conocimiento.",
     "estudiantes": [
         {
             "id": "Est_001",
-            "nombre_real": "Ana Maria Gomez",
             "promedio": 83.6,
             "nivel_cbl": "Avanzado",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 9,
-            "competencia_deci_ryan": 9,
+            "autonomia_deci_ryan": 8,
+            "competencia_deci_ryan": 8,
             "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
-            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
-            "recomendacion": "Plan formativo personalizado para Ana Maria Gomez."
+            "zdp_vygotsky": "Consolidado",
+            "estrategia_hacker_curriculo": "Liderazgo de proyectos avanzados en simulación cuántica.",
+            "recomendacion": "Mantener el uso activo de la IA como copiloto y fomentar la mentoría entre pares."
         },
         {
             "id": "Est_002",
-            "nombre_real": "Carlos Eduardo Rios",
             "promedio": 72.3,
             "nivel_cbl": "Competente",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 7,
-            "competencia_deci_ryan": 6,
+            "autonomia_deci_ryan": 10,
+            "competencia_deci_ryan": 7,
             "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
-            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
-            "recomendacion": "Plan formativo personalizado para Carlos Eduardo Rios."
+            "zdp_vygotsky": "En proceso",
+            "estrategia_hacker_curriculo": "Optimización de estrategias de estudio autónomo.",
+            "recomendacion": "Revisar los fundamentos de la Evaluación 1 para consolidar bases teóricas."
         },
         {
             "id": "Est_003",
-            "nombre_real": "Sofia Fernandez",
             "promedio": 87.6,
             "nivel_cbl": "Avanzado",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 9,
+            "autonomia_deci_ryan": 8,
             "competencia_deci_ryan": 9,
             "relacion_deci_ryan": 8,
-            "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
-            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
-            "recomendacion": "Plan formativo personalizado para Sofia Fernandez."
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "En consolidación",
+            "estrategia_hacker_curriculo": "Auditoría de procesos cognitivos en el desarrollo del proyecto final.",
+            "recomendacion": "Triangular la alta nota del proyecto con una defensa oral para descartar outsourcing cognitivo."
         },
         {
             "id": "Est_004",
-            "nombre_real": "Diego Armando Perez",
             "promedio": 64.5,
-            "nivel_cbl": "Competente",
-            "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 7,
+            "nivel_cbl": "En desarrollo",
+            "riesgo_abandono": "Medio",
+            "autonomia_deci_ryan": 8,
             "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 8,
+            "relacion_deci_ryan": 7,
             "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
-            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
-            "recomendacion": "Plan formativo personalizado para Diego Armando Perez."
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Requiere andamiaje",
+            "estrategia_hacker_curriculo": "Plan de rescate enfocado en la recuperación de asistencias y tutorías.",
+            "recomendacion": "Atender el ausentismo en la Sesión 3 y reforzar conceptos de la Evaluación 1."
         },
         {
             "id": "Est_005",
-            "nombre_real": "Valentina Morales",
             "promedio": 81.8,
             "nivel_cbl": "Avanzado",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 9,
-            "competencia_deci_ryan": 9,
+            "autonomia_deci_ryan": 8,
+            "competencia_deci_ryan": 8,
             "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
-            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
-            "recomendacion": "Plan formativo personalizado para Valentina Morales."
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "En consolidación",
+            "estrategia_hacker_curriculo": "Estabilización del rendimiento académico ante la variabilidad evaluativa.",
+            "recomendacion": "Analizar las causas de la caída en la Evaluación 2 para asegurar consistencia."
         },
         {
             "id": "Est_006",
-            "nombre_real": "Luis Fernando Castro",
             "promedio": 72.8,
             "nivel_cbl": "Competente",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 6,
-            "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 6,
-            "alerta_outsourcing_cognitivo": false,
+            "autonomia_deci_ryan": 7,
+            "competencia_deci_ryan": 7,
+            "relacion_deci_ryan": 7,
+            "alerta_outsourcing_cognitivo": true,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
-            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
-            "recomendacion": "Plan formativo personalizado para Luis Fernando Castro."
+            "zdp_vygotsky": "En proceso",
+            "estrategia_hacker_curriculo": "Fomento del pensamiento crítico frente a las respuestas automatizadas.",
+            "recomendacion": "Disminuir la dependencia de la IA y fomentar el razonamiento analítico sin asistencia."
         },
         {
             "id": "Est_007",
-            "nombre_real": "Camila Andrea Vega",
             "promedio": 82.1,
             "nivel_cbl": "Avanzado",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 9,
-            "competencia_deci_ryan": 9,
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 8,
             "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
-            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
-            "recomendacion": "Plan formativo personalizado para Camila Andrea Vega."
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Consolidado",
+            "estrategia_hacker_curriculo": "Fortalecimiento de la autonomía percibida en el entorno virtual.",
+            "recomendacion": "Apoyar en la superación de la baja percepción de autonomía en el uso de herramientas."
         },
         {
             "id": "Est_008",
-            "nombre_real": "Mateo Silva",
             "promedio": 74.2,
             "nivel_cbl": "Competente",
-            "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 6,
-            "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 6,
+            "riesgo_abandono": "Medio",
+            "autonomia_deci_ryan": 10,
+            "competencia_deci_ryan": 7,
+            "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
-            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
-            "recomendacion": "Plan formativo personalizado para Mateo Silva."
+            "zdp_vygotsky": "En proceso",
+            "estrategia_hacker_curriculo": "Seguimiento personalizado para evitar la deserción por ausentismo.",
+            "recomendacion": "Recuperar los contenidos perdidos en la Sesión 3 y mantener alta la motivación."
         },
         {
             "id": "Est_009",
-            "nombre_real": "Lucia Mendoza",
             "promedio": 79.3,
             "nivel_cbl": "Competente",
             "riesgo_abandono": "Bajo",
             "autonomia_deci_ryan": 6,
-            "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 6,
-            "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
-            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
-            "recomendacion": "Plan formativo personalizado para Lucia Mendoza."
+            "competencia_deci_ryan": 8,
+            "relacion_deci_ryan": 7,
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "En consolidación",
+            "estrategia_hacker_curriculo": "Desarrollo de autonomía crítica frente al uso de tecnologías de asistencia.",
+            "recomendacion": "Monitorear el uso de IA para evitar sesgos en la resolución de problemas complejos."
         },
         {
             "id": "Est_010",
-            "nombre_real": "Sebastian Ruiz",
             "promedio": 82.6,
             "nivel_cbl": "Avanzado",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 9,
-            "competencia_deci_ryan": 9,
+            "autonomia_deci_ryan": 8,
+            "competencia_deci_ryan": 8,
             "relacion_deci_ryan": 8,
             "alerta_outsourcing_cognitivo": false,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "Maestría: Listo para proyectos de investigación autónomos.",
-            "estrategia_hacker_curriculo": "Asignar rol de mentor de pares y desafíos avanzados.",
-            "recomendacion": "Plan formativo personalizado para Sebastian Ruiz."
+            "zdp_vygotsky": "Consolidado",
+            "estrategia_hacker_curriculo": "Canalización del alto volumen de iteraciones hacia proyectos de investigación.",
+            "recomendacion": "Excelente uso de la IA como copiloto; potenciar su capacidad de indagación."
         },
         {
             "id": "Est_011",
-            "nombre_real": "Isabella Navarro",
             "promedio": 70.0,
             "nivel_cbl": "Competente",
             "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 7,
-            "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 8,
+            "autonomia_deci_ryan": 6,
+            "competencia_deci_ryan": 7,
+            "relacion_deci_ryan": 7,
             "alerta_outsourcing_cognitivo": false,
             "requiere_triangulacion": false,
-            "zdp_vygotsky": "ZDP activa: Potencial real supera las calificaciones cuantitativas.",
-            "estrategia_hacker_curriculo": "Andamiaje en expresión académica y rúbricas alternativas (DUA).",
-            "recomendacion": "Plan formativo personalizado para Isabella Navarro."
+            "zdp_vygotsky": "En proceso",
+            "estrategia_hacker_curriculo": "Estrategias de refuerzo conceptual para nivelar calificaciones estables.",
+            "recomendacion": "Incrementar el diálogo en el aula para mejorar la autopercepción de competencia."
         },
         {
             "id": "Est_012",
-            "nombre_real": "Gabriel Vargas",
             "promedio": 69.2,
-            "nivel_cbl": "Competente",
-            "riesgo_abandono": "Bajo",
-            "autonomia_deci_ryan": 6,
-            "competencia_deci_ryan": 6,
-            "relacion_deci_ryan": 6,
-            "alerta_outsourcing_cognitivo": false,
-            "requiere_triangulacion": false,
-            "zdp_vygotsky": "Progresión sostenida dentro de los parámetros esperados.",
-            "estrategia_hacker_curriculo": "Seguimiento formativo regular.",
-            "recomendacion": "Plan formativo personalizado para Gabriel Vargas."
+            "nivel_cbl": "En desarrollo",
+            "riesgo_abandono": "Medio",
+            "autonomia_deci_ryan": 10,
+            "competencia_deci_ryan": 7,
+            "relacion_deci_ryan": 8,
+            "alerta_outsourcing_cognitivo": true,
+            "requiere_triangulacion": true,
+            "zdp_vygotsky": "Requiere andamiaje",
+            "estrategia_hacker_curriculo": "Plan de acompañamiento integral y revisión de asistencias.",
+            "recomendacion": "Atender el ausentismo en la Sesión 3 y revisar la dependencia del modelo 'muleta'."
         }
     ],
-    "hipotesis_gemini": "El grupo de FIS301 - Fisica Cuantica Aplicada presenta un promedio de 76.7/100 (Mediana: 76.8) con desviación estándar de 7.1. Asimetría de Fisher: -0.15 (Distribución Cuasi-Simétrica: Calificaciones balanceadas.). Se identifican 0 casos en riesgo y 0 alertas de outsourcing cognitivo.",
     "motor_ia": {
-        "modo": "local_heuristico",
-        "modelo": "motor_determinista_no_parametrico",
-        "mensaje": "Medida de Contingencia Pedagógica: La API de Gemini reportó una incidencia (503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}). Se ejecutó el motor analítico determinista local con cálculo matemático puro (Spearman ρ, Asimetría Fisher g1, Curtosis g2 y ZDP Vygotsky) para garantizar la continuidad pedagógica sin pérdida de datos.",
-        "fallback_activado": true,
-        "error_motivo": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+        "modo": "gemini",
+        "modelo": "gemini-3.5-flash-lite",
+        "mensaje": "Análisis cualitativo y pedagógico generado exitosamente con gemini-3.5-flash-lite.",
+        "fallback_activado": false,
+        "error_motivo": null
     }
 }

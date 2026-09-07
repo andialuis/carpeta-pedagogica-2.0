@@ -32,9 +32,9 @@ def list_agents():
     """Devuelve la lista de agentes/módulos disponibles migrados."""
     return {
         "modules": [
-            {"id": "e1", "name": "Etapa 1: Preparar Datos", "description": "Limpia y clasifica los datos crudos.", "products": "BASE_INTEGRADA.xlsx"},
+            {"id": "e1", "name": "Etapa 1: Preparar Datos & Control de Versiones", "description": "Limpia y clasifica los datos crudos, e inicializa la Matriz de Control de Versiones Documental (ISO 21001:2018 Cláusula 7.5).", "products": "BASE_INTEGRADA.xlsx, CONTROL_VERSIONES_DOCUMENTAL.xlsx"},
             {"id": "e2", "name": "Etapa 2: Procesar Datos", "description": "Anonimiza e imputa datos vacíos (Crea diccionario de nombres).", "products": "BASE_LIMPIA_ANONIMIZADA.xlsx, llave_nombres.json"},
-            {"id": "e3", "name": "Etapa 3: Analizar Datos", "description": "Genera indicadores e hipótesis usando Gemini.", "products": "INFORME_COMPLETO_E3.docx, insights.json"},
+            {"id": "e3", "name": "Etapa 3: Analizar Datos & Auditoría Cognitiva", "description": "Genera indicadores multidimensionales, auditoría de outsourcing e hipótesis usando Gemini.", "products": "INFORME_COMPLETO_E3.docx, insights.json"},
             {"id": "e4", "name": "Etapa 4: Visualizar Datos", "description": "Construye los tableros analíticos interactivos.", "products": "Dashboard Interactivo Web (Next.js)"}
         ]
     }
@@ -1128,6 +1128,40 @@ def get_pending_documents():
         
     return {"subjects": result}
 
+@app.get("/api/documents/version-control/{subject_name}")
+def download_version_control(subject_name: str):
+    """Descarga el libro oficial de Control de Versiones Documental (ISO 21001:2018 Cláusula 7.5)."""
+    from version_control_service import get_version_control_path, init_version_control_workbook
+    wb_path = get_version_control_path(subject_name)
+    if not os.path.exists(wb_path):
+        wb_path = init_version_control_workbook(subject_name)
+    
+    clean_subj = re.sub(r'[<>:"/\\|?*]', '', subject_name).strip()
+    if clean_subj.endswith("-REV"):
+        clean_subj = clean_subj[:-4].strip()
+    return FileResponse(
+        wb_path,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        filename=f"CONTROL_VERSIONES_DOCUMENTAL_{clean_subj.replace(' ', '_')}.xlsx"
+    )
+
+@app.get("/api/documents/version-summary/{subject_name}")
+def get_version_summary(subject_name: str):
+    """Devuelve la matriz de documentos vigentes y directiva de advertencia ISO 21001."""
+    from version_control_service import get_subject_version_matrix
+    matrix = get_subject_version_matrix(subject_name)
+    return {
+        "success": True,
+        "subject_name": subject_name,
+        "documentos_vigentes": matrix,
+        "total_documentos": len(matrix),
+        "advertencia_iso": (
+            "Aviso de Calidad ISO 21001 (Cláusula 7.5): Si realiza modificaciones manuales directamente "
+            "sobre los archivos fuera de la plataforma, debe registrar el cambio actualizando el número de versión "
+            "y fecha en CONTROL_VERSIONES_DOCUMENTAL.xlsx para no invalidar la trazabilidad ante auditorías de acreditación."
+        )
+    }
+
 @app.post("/api/documents/analyze-local")
 async def analyze_local(filepath: str):
     base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
@@ -1855,4 +1889,33 @@ def download_backup_zip(filename: str):
         filename=filename,
         media_type="application/zip"
     )
+
+@app.get("/api/documents/version-control/{subject_name}")
+def download_version_control_xlsx(subject_name: str):
+    """Descarga el libro Excel oficial de Control de Versiones Documental (ISO 21001)."""
+    from version_control_service import get_version_control_path, init_version_control_workbook
+    clean_name = sanitize_folder_name(subject_name)
+    path = get_version_control_path(clean_name)
+    if not os.path.exists(path):
+        init_version_control_workbook(clean_name)
+    return FileResponse(
+        path=path,
+        filename="CONTROL_VERSIONES_DOCUMENTAL.xlsx",
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+@app.get("/api/documents/version-summary/{subject_name}")
+def get_version_summary_endpoint(subject_name: str):
+    """Retorna el inventario de documentos vigentes y sus versiones registradas."""
+    from version_control_service import get_subject_version_matrix
+    clean_name = sanitize_folder_name(subject_name)
+    docs = get_subject_version_matrix(clean_name)
+    return {
+        "subject": clean_name,
+        "total_documents": len(docs),
+        "documents": docs,
+        "iso_norm": "ISO 21001:2018 Cláusula 7.5",
+        "warning": "Si edita manualmente archivos Word/Excel fuera del sistema, actualice el número de versión para mantener la validez documental ante auditorías de calidad."
+    }
+
 

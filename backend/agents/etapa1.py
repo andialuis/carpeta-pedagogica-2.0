@@ -1,9 +1,9 @@
-﻿"""
+"""
 etapa1.py - Preparar y Consolidar Datos
 Funciona con CUALQUIER materia. Recibe subject_name como argumento CLI.
 Producto: BASE_INTEGRADA.xlsx + manifiesto.json
 """
-import os, sys, json
+import os, sys, json, re
 from datetime import datetime
 
 def run():
@@ -169,6 +169,38 @@ def run():
     with open(os.path.join(rev_dir, "manifiesto.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
+    # Inicializar y registrar en el Control de Versiones Documental (ISO 21001)
+    try:
+        sys.path.append(backend_dir)
+        from version_control_service import init_version_control_workbook, record_document_version
+        vc_file = init_version_control_workbook(subject_name)
+        record_document_version(
+            subject_name=subject_name,
+            doc_name="BASE_INTEGRADA.xlsx",
+            doc_code=f"DOC-CP2-BASE-{re.sub(r'[^a-zA-Z0-9]', '', subject_name)[:8]}",
+            doc_type="Datos Curriculares y Analíticos",
+            new_version="1.0",
+            author_or_agent="Agente Etapa 1 - Preparador",
+            change_description=f"Consolidación inicial de {len(excel_files) + len(csv_files)} archivos crudos para {len(base)} estudiantes.",
+            justification="Aseguramiento de trazabilidad y limpieza de datos según norma ISO 21001.",
+            file_path=output_path
+        )
+        record_document_version(
+            subject_name=subject_name,
+            doc_name="CONTROL_VERSIONES_DOCUMENTAL.xlsx",
+            doc_code=f"DOC-CP2-VER-{re.sub(r'[^a-zA-Z0-9]', '', subject_name)[:8]}",
+            doc_type="Registro Oficial de Control Documental",
+            new_version="1.0",
+            author_or_agent="Sistema de Gestión de Calidad",
+            change_description="Apertura de la bitácora inmutable y matriz de versiones de la asignatura.",
+            justification="Cumplimiento formal de la Cláusula 7.5 de ISO 21001 (Información Documentada).",
+            file_path=vc_file
+        )
+        print(f"  [OK] Control de Versiones Documental inicializado: {vc_file}")
+        print("  [AVISO CALIDAD] Si realiza cambios manuales en Word/Excel, actualice el número de versión en esta hoja.")
+    except Exception as e:
+        print(f"  [ADVERTENCIA] No se pudo actualizar control de versiones: {e}")
+
     for dim, present in dimensions.items():
         print(f"  {'[SI]' if present else '[NO]'} {dim}")
     if warnings:
@@ -179,3 +211,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+

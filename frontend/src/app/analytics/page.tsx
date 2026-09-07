@@ -163,7 +163,7 @@ export default function AnalyticsDashboard() {
   ].filter(d => d.value > 0) : riskData;
 
   // Cálculo Promedio Deci&Ryan Dinámico
-  let radarData = [];
+  let radarData: any[] = [];
   if (analyticsData?.insights?.estudiantes && analyticsData.insights.estudiantes.length > 0) {
     const ests = analyticsData.insights.estudiantes;
     let aut = 0, comp = 0, rel = 0;

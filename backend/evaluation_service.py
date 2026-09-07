@@ -437,7 +437,7 @@ def save_student_dua_profile(subject_name: str, student_id: str, profile_data: D
     }
 
 def generate_dua_matrix_docx(subject_name: str) -> str:
-    """Genera y guarda el documento formal en Word de la Matriz Institucional de Adaptaciones DUA."""
+    """Genera y guarda el documento formal en Word de la Matriz Institucional de Adaptaciones DUA (CAST 2024 / ISO 21001)."""
     from docx import Document
     from docx.shared import Inches, Pt, RGBColor
     from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -461,36 +461,97 @@ def generate_dua_matrix_docx(subject_name: str) -> str:
         section.left_margin = Inches(0.8)
         section.right_margin = Inches(0.8)
 
-    # Título Principal
+        # Encabezado formal de calidad
+        header = section.header
+        p_head = header.paragraphs[0]
+        p_head.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        r_h = p_head.add_run(f"MATRIZ INSTITUCIONAL DUA • {clean_subj.upper()} • CAST 2024 • ISO 21001")
+        r_h.font.name = "Arial"
+        r_h.font.size = Pt(7.5)
+        r_h.font.color.rgb = RGBColor(0x71, 0x80, 0x96)
+
+        # Pie de página institucional
+        footer = section.footer
+        p_foot = footer.paragraphs[0]
+        p_foot.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        r_f = p_foot.add_run("Carpeta Pedagógica 2.0 • Protocolo de Inclusión, Diversidad y Accesibilidad Cognitiva")
+        r_f.font.name = "Arial"
+        r_f.font.size = Pt(7.5)
+        r_f.font.color.rgb = RGBColor(0x71, 0x80, 0x96)
+
+    # PORTADA EDITORIAL Y CONTROL DOCUMENTAL
+    p_inst = doc.add_paragraph()
+    p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r_inst = p_inst.add_run("SISTEMA DE GESTIÓN CURRICULAR • ASEGURAMIENTO DE LA CALIDAD EDUCATIVA\n")
+    r_inst.bold = True
+    r_inst.font.name = "Arial"
+    r_inst.font.size = Pt(9)
+    r_inst.font.color.rgb = RGBColor(0x47, 0x55, 0x69)
+
     p_title = doc.add_paragraph()
-    r_title = p_title.add_run("CARPETA PEDAGÓGICA 2.0 • MATRIZ INSTITUCIONAL DUA")
+    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r_title = p_title.add_run("MATRIZ INSTITUCIONAL DE ADAPTACIONES DUA")
     r_title.bold = True
     r_title.font.name = "Arial"
-    r_title.font.size = Pt(14)
+    r_title.font.size = Pt(18)
     r_title.font.color.rgb = RGBColor(0x1A, 0x3A, 0x5C)
 
-    # Subtítulo
     p_sub = doc.add_paragraph()
-    r_sub = p_sub.add_run(f"Plan de Adaptaciones Curriculares y Evaluación Auténtica - Asignatura: {clean_subj}")
+    p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r_sub = p_sub.add_run(f"Diseño Universal para el Aprendizaje • Ajustes Razonables • Evaluación Auténtica\nASIGNATURA: {clean_subj.upper()}")
     r_sub.font.name = "Arial"
-    r_sub.font.size = Pt(10)
-    r_sub.italic = True
-    r_sub.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
+    r_sub.font.size = Pt(11)
+    r_sub.bold = True
+    r_sub.font.color.rgb = RGBColor(0xB4, 0x53, 0x09)
 
-    p_meta = doc.add_paragraph()
-    p_meta.add_run(f"Fecha de emisión: {datetime.date.today().strftime('%d/%m/%Y')}  |  Estudiantes registrados: {len(students)}\nMarco de Referencia: Diseño Universal para el Aprendizaje (CAST 2024) y Efecto Hattie (d = 1.16)")
-    p_meta.runs[0].font.size = Pt(9)
-    p_meta.runs[0].font.color.rgb = RGBColor(0x77, 0x77, 0x77)
+    doc.add_paragraph()
+
+    # Tabla de Control Documental ISO 21001
+    tbl_meta = doc.add_table(rows=4, cols=2)
+    tbl_meta.alignment = WD_TABLE_ALIGNMENT.CENTER
+    doc_code = f"DOC-DIR-CP2-DUA-{re.sub(r'[^a-zA-Z0-9]', '', clean_subj)[:8]}"
+    meta_rows = [
+        ("Código de Registro Oficial:", doc_code),
+        ("Versión Vigente:", "1.0 (Acreditada)"),
+        ("Marco Normativo y Científico:", "Diseño Universal para el Aprendizaje (CAST 2024), Efecto John Hattie (d = 1.16) y Ley de Protección de Datos Personales"),
+        ("Fecha de Emisión y Vigencia:", datetime.date.today().strftime("%d/%m/%Y"))
+    ]
+    for idx, (label, val) in enumerate(meta_rows):
+        c1, c2 = tbl_meta.rows[idx].cells
+        c1.text = label
+        c1.paragraphs[0].runs[0].font.bold = True
+        c1.paragraphs[0].runs[0].font.size = Pt(8.5)
+        c1.paragraphs[0].runs[0].font.name = "Arial"
+        c2.text = str(val)
+        c2.paragraphs[0].runs[0].font.size = Pt(8.5)
+        c2.paragraphs[0].runs[0].font.name = "Arial"
+
+    doc.add_paragraph()
+
+    # Fundamentación DUA y Privacidad
+    p_fund = doc.add_paragraph()
+    r_f1 = p_fund.add_run("1. Principios Orientadores del Marco CAST 2024 y Protección Soberana:\n")
+    r_f1.bold = True
+    p_fund.add_run(
+        "El DUA postula que la variabilidad es la norma y no la excepción. En este sentido, el diseño curricular no busca adaptar al estudiante a un molde único, sino flexibilizar el entorno pedagógico a través de tres redes neuronales: "
+        "(1) Redes Afectivas - Múltiples formas de Implicación y Compromiso, (2) Redes de Reconocimiento - Múltiples formas de Representación y Percepción, y (3) Redes Estratégicas - Múltiples formas de Acción y Expresión. "
+        "En estricto cumplimiento de los principios éticos de custodia institucional, la identidad de los estudiantes se reporta mediante código de matrícula e iniciales para evitar sesgos o etiquetamiento estigmatizante."
+    )
+
+    doc.add_paragraph()
 
     # Tabla de Adaptaciones
+    h_tbl = doc.add_heading("2. Matriz Nominal de Adaptaciones y Ajustes Razonables", level=1)
+    h_tbl.runs[0].font.color.rgb = RGBColor(0x1A, 0x3A, 0x5C)
+
     table = doc.add_table(rows=1, cols=6)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
 
     headers = [
-        "Estudiante\n(Iniciales)",
-        "Diagnóstico /\nAlerta Aula",
+        "Estudiante\n(Iniciales / ID)",
+        "Diagnóstico /\nAlerta de Aula",
         "Principio 1:\nCompromiso (Afectivo)",
-        "Principio 2:\nRepresentación (Reconocimiento)",
+        "Principio 2:\nRepresentación (Cognitivo)",
         "Principio 3:\nAcción y Expresión",
         "Instrumento &\nAjuste Evaluativo"
     ]
@@ -501,7 +562,7 @@ def generate_dua_matrix_docx(subject_name: str) -> str:
         p = hdr_cells[i].paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.runs[0].font.name = "Arial"
-        p.runs[0].font.size = Pt(9)
+        p.runs[0].font.size = Pt(8.5)
         p.runs[0].font.bold = True
         p.runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
         shading = parse_xml(r'<w:shd {} w:fill="1A3A5C"/>'.format(nsdecls('w')))
@@ -517,7 +578,7 @@ def generate_dua_matrix_docx(subject_name: str) -> str:
         # 2. Diagnóstico / Alerta
         diag = "Desempeño regular"
         if st.get("alerta_outsourcing"):
-            diag = "⚠ Alerta: Outsourcing Cognitivo (Uso no reflexivo de IA)"
+            diag = "⚠ Alerta: Outsourcing Cognitivo (Uso acrítico de IA)"
         elif st.get("riesgo_alto"):
             diag = "⚡ Alerta: Riesgo Severo de Rezago"
         elif st.get("iteraciones", 0) > 30:
@@ -538,7 +599,7 @@ def generate_dua_matrix_docx(subject_name: str) -> str:
         if st.get("tiempo_extendido"):
             ajuste += "\n• Tiempo extendido (+25%)"
         if st.get("evaluacion_fragmentada"):
-            ajuste += "\n• Entrega por hitos"
+            ajuste += "\n• Entrega por hitos modulares"
         row_cells[5].text = ajuste
 
         # Estilo de celdas
@@ -546,11 +607,48 @@ def generate_dua_matrix_docx(subject_name: str) -> str:
             for p in c.paragraphs:
                 for r in p.runs:
                     r.font.name = "Arial"
-                    r.font.size = Pt(8.5)
+                    r.font.size = Pt(8)
+
+    doc.add_paragraph()
+    doc.add_paragraph()
+
+    # Firmas Institucionales de Calidad Inclusiva
+    tbl_firmas = doc.add_table(rows=1, cols=2)
+    tbl_firmas.alignment = WD_TABLE_ALIGNMENT.CENTER
+    c_f1, c_f2 = tbl_firmas.rows[0].cells
+    
+    c_f1.text = "_______________________________\nDOCENTE TITULAR RESPONSABLE\nDiseño Curricular y Evaluación Auténtica"
+    c_f1.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    c_f1.paragraphs[0].runs[0].font.size = Pt(8.5)
+    c_f1.paragraphs[0].runs[0].font.name = "Arial"
+
+    c_f2.text = "_______________________________\nCOORDINACIÓN DE TUTORÍA / BIENESTAR\nValidación de Ajustes Razonables e Inclusión"
+    c_f2.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    c_f2.paragraphs[0].runs[0].font.size = Pt(8.5)
+    c_f2.paragraphs[0].runs[0].font.name = "Arial"
 
     # Carpeta de salida
     docs_dir = os.path.join(BASE_UPLOADS, f"{clean_subj}-REV", "documentos")
     os.makedirs(docs_dir, exist_ok=True)
     out_docx_path = os.path.join(docs_dir, f"MATRIZ_ADAPTACIONES_DUA_{clean_subj.replace(' ', '_')}.docx")
     doc.save(out_docx_path)
+
+    # Registro en Control de Versiones Documental (ISO 21001)
+    try:
+        from version_control_service import record_document_version
+        record_document_version(
+            subject_name=clean_subj,
+            doc_name=f"MATRIZ_ADAPTACIONES_DUA_{clean_subj.replace(' ', '_')}.docx",
+            doc_code=doc_code,
+            doc_type="Matriz de Ajustes Razonables (Inclusión DUA)",
+            new_version="1.0",
+            author_or_agent="Servicio DUA Institucional",
+            change_description=f"Alineación curricular DUA (CAST 2024) para {len(students)} estudiantes.",
+            justification="Cumplimiento de equidad, inclusión educativa y principio de no discriminación (ISO 21001).",
+            file_path=out_docx_path
+        )
+    except Exception as e:
+        print(f"Advertencia registrando DUA en control de versiones: {e}")
+
     return out_docx_path
+
