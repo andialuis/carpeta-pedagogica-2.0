@@ -1,3 +1,25 @@
+"""
+================================================================================
+Carpeta Pedagógica 2.0 • API Backend Principal (FastAPI)
+Autor: Luis Alfredo Andia Valverde (luis.andia.valverde@gmail.com)
+Licencia: Autorizada su distribución y uso sin beneficio comercial (CC BY-NC 4.0)
+Normativas: ISO 21001:2018 (Cláusula 7.5), CBL, DUA (CAST 2024), Vygotsky ZDP
+
+TABLA DE CONTENIDOS DEL SISTEMA:
+1. Configuración & Inicialización (FastAPI, CORS, Base de Datos, Modelos Pydantic)
+2. Gestión de Asignaturas & Cohortes (`/api/subjects/*`)
+3. Pipeline de 4 Agentes de Analítica de Aprendizaje (`/api/agents/*`)
+4. Planificación Curricular & Formato PDC por Competencias (`/api/planning/*`)
+5. Plan de Evaluación Formativa, Adaptaciones DUA & Rúbricas CBL (`/api/evaluation/*`)
+6. Copiloto Pedagógico IA con Gemini & Modo Local (`/api/copilot/*`)
+7. Analítica del Aprendizaje, Estadísticas de Aula & Narrativas (`/api/analytics/*`)
+8. Control de Versiones Documental & Trazabilidad ISO 21001 (`/api/documents/*`)
+9. Conectores LMS para Feedback DUA: Moodle, Classroom, Teams (`/api/lms/*`)
+10. Perfil Docente, Administración & Respaldo Integral (`/api/user/*`, `/api/system/*`)
+11. Sincronización & Respaldos Google Drive (`/api/drive/*`)
+12. Centro de Investigación Educativa Comparativa Eje A/B (`/api/research/*`)
+================================================================================
+"""
 from fastapi import FastAPI, UploadFile, File, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
@@ -15,8 +37,8 @@ from ai_service import analyze_spreadsheet_structure
 
 app = FastAPI(
     title="Carpeta Pedagógica 2.0 API",
-    description="API para el sistema de administración documental y analítica de aprendizaje",
-    version="1.0.0"
+    description="API para el sistema de administración documental, analítica humanista del aprendizaje e investigación educativa",
+    version="2.0.0"
 )
 
 app.add_middleware(
