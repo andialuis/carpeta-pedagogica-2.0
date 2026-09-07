@@ -1,6 +1,6 @@
 {
     "subject": "FIS301 - Fisica Cuantica Aplicada",
-    "generated_at": "2026-09-06T15:21:04.498416",
+    "generated_at": "2026-09-06T20:30:55.778594",
     "total_students": 12,
     "promedio_general": 76.7,
     "mediana_general": 76.8,
@@ -342,5 +342,12 @@
             "recomendacion": "Plan formativo personalizado para Gabriel Vargas."
         }
     ],
-    "hipotesis_gemini": "El grupo de FIS301 - Fisica Cuantica Aplicada presenta un promedio de 76.7/100 (Mediana: 76.8) con desviación estándar de 7.1. Asimetría de Fisher: -0.15 (Distribución Cuasi-Simétrica: Calificaciones balanceadas.). Se identifican 0 casos en riesgo y 0 alertas de outsourcing cognitivo."
+    "hipotesis_gemini": "El grupo de FIS301 - Fisica Cuantica Aplicada presenta un promedio de 76.7/100 (Mediana: 76.8) con desviación estándar de 7.1. Asimetría de Fisher: -0.15 (Distribución Cuasi-Simétrica: Calificaciones balanceadas.). Se identifican 0 casos en riesgo y 0 alertas de outsourcing cognitivo.",
+    "motor_ia": {
+        "modo": "local_heuristico",
+        "modelo": "motor_determinista_no_parametrico",
+        "mensaje": "Medida de Contingencia Pedagógica: La API de Gemini reportó una incidencia (503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}). Se ejecutó el motor analítico determinista local con cálculo matemático puro (Spearman ρ, Asimetría Fisher g1, Curtosis g2 y ZDP Vygotsky) para garantizar la continuidad pedagógica sin pérdida de datos.",
+        "fallback_activado": true,
+        "error_motivo": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    }
 }

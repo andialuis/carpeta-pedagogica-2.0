@@ -145,7 +145,18 @@ Escribe un informe analítico estructurado en formato JSON estricto con las sigu
             )
             raw_text = response.text.strip()
             insights = json.loads(raw_text)
-            if insights and insights.get("estudiantes"):
+
+            # Normalizar si Gemini devolvió un array [ {...} ] en lugar de un diccionario { ... }
+            if isinstance(insights, list):
+                if len(insights) > 0 and isinstance(insights[0], dict):
+                    if "estudiantes" in insights[0]:
+                        insights = insights[0]
+                    else:
+                        insights = {"estudiantes": insights}
+                else:
+                    insights = {"estudiantes": []}
+
+            if isinstance(insights, dict) and insights.get("estudiantes"):
                 insights["motor_ia"] = {
                     "modo": "gemini",
                     "modelo": gemini_model,

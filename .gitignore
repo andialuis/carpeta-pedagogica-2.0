@@ -66,6 +66,8 @@ backend/scratch/
 # Archivos de respaldo comprimidos
 *.zip
 *.tar.gz
+uploads/_backups/
+_backups/
 
 # Archivos del sistema operativo
 .DS_Store

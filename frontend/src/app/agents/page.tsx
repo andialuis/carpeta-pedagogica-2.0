@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react';
 import { 
   ShieldCheck, AlertTriangle, FileDown, CheckCircle2, 
-  RefreshCw, Play, Brain, Sparkles, Scale
+  RefreshCw, Play, Brain, Sparkles, Scale, CloudUpload
 } from 'lucide-react';
+import DriveBackupModal from '../components/DriveBackupModal';
 
 export default function AgentsDashboard() {
   const [modules, setModules] = useState<any[]>([]);
@@ -18,6 +19,10 @@ export default function AgentsDashboard() {
   const [auditLoading, setAuditLoading] = useState(false);
   const [auditData, setAuditData] = useState<any>(null);
   const [pendingModuleId, setPendingModuleId] = useState<string | null>(null);
+
+  // Estado para el Respaldo en Google Drive
+  const [showDriveModal, setShowDriveModal] = useState(false);
+  const [stage1JustCompleted, setStage1JustCompleted] = useState(false);
 
   useEffect(() => {
     fetchModules();
@@ -108,6 +113,18 @@ export default function AgentsDashboard() {
       const res = await fetch(`/api/agents/run/${moduleId}?subject_name=${encodeURIComponent(selectedSubject)}`, { method: 'POST' });
       const data = await res.json();
       
+      if (!res.ok) {
+        setLogs((prev) => [
+          ...prev, 
+          `[ERROR] ${data.detail || 'Falló la ejecución del agente.'}`,
+          `[SUGERENCIA] Haz clic en el botón de reintentar (↻) para volver a ejecutar con el motor robusto.`,
+          ''
+        ]);
+        setLoadingId(null);
+        setPendingModuleId(null);
+        return;
+      }
+
       setLogs((prev) => [...prev, `[SISTEMA] Ejecutando: ${data.script_executed}`]);
       
       if (data.output) {
@@ -122,6 +139,16 @@ export default function AgentsDashboard() {
       setLogs((prev) => [...prev, `[ÉXITO] Módulo completado correctamente.`, '']);
       fetchHistory(selectedSubject);
       
+      if (moduleId === 'e1') {
+        setStage1JustCompleted(true);
+        setLogs((prev) => [
+          ...prev,
+          `[SISTEMA] Carpeta -REV preparada con éxito y BASE_INTEGRADA.xlsx consolidada.`,
+          `[RESPALDO RECOMENDADO] Puedes guardar una copia segura en Google Drive haciendo clic en 'Respaldar en Google Drive'.`,
+          ''
+        ]);
+      }
+
       if (moduleId === 'e4') {
         setLogs((prev) => [...prev, `[SISTEMA] Redirigiendo al Dashboard Analítico...`]);
         setTimeout(() => {
@@ -129,8 +156,12 @@ export default function AgentsDashboard() {
         }, 1500);
       }
 
-    } catch (e) {
-      setLogs((prev) => [...prev, `[ERROR] Falló la ejecución del agente.`]);
+    } catch (e: any) {
+      setLogs((prev) => [
+        ...prev, 
+        `[ERROR] Falló la ejecución del agente: ${e.message || 'Error de conexión con el servidor.'}`,
+        `[SUGERENCIA] Presiona el botón de actualizar (↻) para reintentar la inferencia.`
+      ]);
     }
     setLoadingId(null);
     setPendingModuleId(null);
@@ -174,6 +205,32 @@ export default function AgentsDashboard() {
           </select>
         </div>
       </header>
+
+      {/* Banner reactivo de Respaldo tras completar la Etapa 1 */}
+      {stage1JustCompleted && (
+        <div className="mb-6 p-4 rounded-2xl bg-blue-50 border border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs animate-in fade-in">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <CloudUpload className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-blue-950">
+                ¡Carpetas de la Etapa 1 preparadas para {selectedSubject}!
+              </p>
+              <p className="text-[11px] text-blue-900/80">
+                Se generó la estructura <code className="bg-blue-100 px-1 py-0.5 rounded text-blue-950 font-mono">-REV</code> y se consolidó <code className="bg-blue-100 px-1 py-0.5 rounded text-blue-950 font-mono">BASE_INTEGRADA.xlsx</code>. ¿Deseas subir una copia segura a Google Drive ahora mismo?
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setShowDriveModal(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
+          >
+            <CloudUpload className="w-3.5 h-3.5" />
+            Subir a Google Drive
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <main className="space-y-6">
@@ -219,6 +276,25 @@ export default function AgentsDashboard() {
                   <RefreshCw className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* Botón de respaldo en Google Drive para la Etapa 1 */}
+              {mod.id === 'e1' && (
+                <div className="mt-4 pt-3 border-t border-[#E8E3DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                  <div className="text-[11px] text-slate-500">
+                    <span className="font-semibold text-slate-700">Respaldo en la Nube:</span> Copia de carpetas Base y REV
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowDriveModal(true)}
+                    disabled={!selectedSubject}
+                    className="text-xs bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-xl transition border border-blue-200 flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    title="Subir copia de seguridad de las carpetas de la materia a Google Drive"
+                  >
+                    <CloudUpload className="w-3.5 h-3.5 text-blue-600" />
+                    ☁️ Respaldar en Google Drive
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </main>
@@ -379,9 +455,15 @@ export default function AgentsDashboard() {
               </div>
             ) : null}
 
-          </div>
         </div>
       )}
+
+      {/* Modal Interactivo de Respaldo a Google Drive */}
+      <DriveBackupModal 
+        isOpen={showDriveModal} 
+        onClose={() => setShowDriveModal(false)} 
+        subjectName={selectedSubject} 
+      />
 
     </div>
   );

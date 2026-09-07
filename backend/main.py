@@ -1823,3 +1823,36 @@ def clear_system_cache():
                 except Exception:
                     pass
     return {"status": "ok", "message": f"Se limpiaron {count} archivos temporales del sistema."}
+
+from fastapi.responses import FileResponse
+
+@app.get("/api/drive/status")
+def drive_status_endpoint():
+    """Retorna el estado de configuración de Google Drive."""
+    from drive_service import get_drive_status
+    return get_drive_status()
+
+@app.post("/api/drive/backup-subject/{subject_name}")
+async def backup_subject_drive_endpoint(subject_name: str):
+    """Genera el respaldo de las carpetas de la materia (Base y REV generadas en Etapa 1) y lo sube a Google Drive."""
+    from drive_service import backup_subject_to_drive
+    clean_name = sanitize_folder_name(subject_name)
+    try:
+        result = await anyio.to_thread.run_sync(backup_subject_to_drive, clean_name)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error en respaldo Drive: {str(e)}")
+
+@app.get("/api/drive/download-backup/{filename}")
+def download_backup_zip(filename: str):
+    """Descarga el archivo ZIP del respaldo de una materia específica."""
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    file_path = os.path.join(base_dir, "uploads", "_backups", filename)
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="Archivo de respaldo no encontrado")
+    return FileResponse(
+        path=file_path,
+        filename=filename,
+        media_type="application/zip"
+    )
+
